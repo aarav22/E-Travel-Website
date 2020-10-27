@@ -4,7 +4,7 @@ var app = express();
 const PORT = 5000;
 
 app.listen(PORT, () => {
-    console.log(`Backend is listening at ${PORT}!`)
+    console.log(`Backend is listening at localhost:${PORT}!`)
 })
 
 app.get('/hey', (req, res) => {
