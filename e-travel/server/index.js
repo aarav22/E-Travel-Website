@@ -1,8 +1,6 @@
 // Modules in the backend: 
 var express = require('express'); // To ease working with node
 var app = express(); 
-
-
 const PORT = 5000;
 
 app.listen(PORT, () => {
