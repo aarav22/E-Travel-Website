@@ -7,7 +7,7 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom';
 
-import './NotFoundPage.css'
+import './four-o-four.component.css'
 
 export default function NotFoundPage(props) {
     return (

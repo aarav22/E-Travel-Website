@@ -4,8 +4,8 @@ import { Route, Switch} from 'react-router-dom';
 
 
 // components: 
-import Homepage from './components/Homepage'
-import NotFoundPage from './components/NotFound/NotFoundPage'
+import Homepage from './components/homepage.component/homepage.component'
+import NotFoundPage from './components/four-o-four.component/four-o-four.component'
 
 import './App.css';
 
