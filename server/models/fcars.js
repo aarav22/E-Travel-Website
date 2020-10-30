@@ -16,6 +16,18 @@ const FCarsSchema = mongoose.Schema({
     rate: {
         type: Number,
         required: true
+    },
+    pictures: {
+        type: Array,
+        default: []
+    },
+    rating: {
+        type: Number,
+        default: 0
+    }, 
+    review: {
+        type: Array,
+        default: []
     }
 });
 
