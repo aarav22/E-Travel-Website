@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true })); //  middleware for parsing b
 app.use(bodyParser.json()); // middleware for parsing json objects
 app.use(cors()); 
 
+// APIs: 
+app.post('api/user_login')
 
 const PORT = 5000;
 
