@@ -1,11 +1,11 @@
 // Modules in the backend: 
-var express = require('express'); // To ease working with node
+const express = require('express'); // To ease working with node
 const bodyParser = require('body-parser'); // For retreiving values from req.body
 const cors = require('cors'); // For cross origin requests 
 const mongoose = require('mongoose');
 
 require('dotenv').config();
-var app = express(); 
+const app = express(); 
 
 // Connection with MongoDB Atlas
 const uri = process.env.ATLAS_URI;
