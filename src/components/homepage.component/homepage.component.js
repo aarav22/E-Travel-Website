@@ -5,10 +5,9 @@ import './homepage.component.css'
 
 export default function Homepage(props) { 
     return (
-        <div>
-            <p> Hello, you're at the Homepage </p>
+        <div className= "homepage">
+            <p> Hello, you're at the Homepage. </p>
             <div className="search-box">
-                <SearchBar></SearchBar>
                 <SearchBar></SearchBar>
             </div>
            
