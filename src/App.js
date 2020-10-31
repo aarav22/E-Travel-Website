@@ -7,9 +7,13 @@ import { Route, Switch} from 'react-router-dom';
 import Homepage from './components/homepage.component/homepage.component';
 import NotFoundPage from './components/four-o-four.component/four-o-four.component';
 import Navbar from "./components/nav.component/nav.component";
+import Particles from 'react-particles-js';
 
 function App() {
   return (
+    // (
+    //   <Particles />
+    // ),
     <div className="App">
       <Navbar />
       <Switch>

@@ -29,7 +29,12 @@ const userProfileSchema = new Schema ({
     ratings: {
         type: Array, 
         default: []
+    },
+    history: {
+        type:Array,
+        default: []
     }
+
 });
 
 module.exports = mongoose.model('UserProfile', userProfileSchema); 
