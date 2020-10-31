@@ -10,5 +10,20 @@
     background-size: 'cover';
     background-repeat: 'no-repeat';
     background-color: rgba(76, 175, 80, 0.3);
+    /* background: linear-gradient(to right, #9D00FF 30%, rgba(0, 0, 0, 0.954) 75%)
+     */
     
+}
+
+.text{
+    color: 'black';
+    font-size: 14;
+}
+
+.gradient{
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
