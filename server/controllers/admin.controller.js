@@ -1,5 +1,4 @@
 const fcars = require('../models/fcars');
-const { update } = require('../models/user');
 const UserProfile  = require('../models/userProfile');
 
 module.exports = {

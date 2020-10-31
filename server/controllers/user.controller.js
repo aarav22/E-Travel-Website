@@ -1,4 +1,4 @@
-let User = require('../models/users')
+let User = require('../models/userProfile')
 let FCar = require('../models/fcars')
 const {OAuth2Client} = require('google-auth-library')
 const client = new OAuth2Client(process.env.REACT_APP_GOOGLE_CLIENT_ID); 

@@ -23,8 +23,25 @@ app.use(bodyParser.urlencoded({ extended: true })); //  middleware for parsing b
 app.use(bodyParser.json()); // middleware for parsing json objects
 app.use(cors()); 
 
+// Setting controllers: 
+const user_controller = require('./controllers/user.controller');
+const admin_controller = require('./controllers/admin.controller');
+const fcar_controller = require('./controllers/fcars.controller');
+
 // APIs: 
-app.post('api/user_login')
+app.post('api/login', user_controller.user_login);
+app.post('/api/logout', user_controller.user_logout);
+
+app.post('/api/checkout', user_controller.on_payment);
+app.post('/api/post_review', user_controller.post_reviews)
+
+app.get('/api/fcars', fcar_controller.see_fcar);
+
+app.post('/api/fcars', admin_controller.create_fcars);
+app.put('/api/fcars', admin_controller.update_fcars);
+app.delete('/api/fcars', admin_controller.delete_fcars);
+
+
 
 const PORT = 5000;
 
@@ -32,7 +49,3 @@ app.listen(PORT, () => {
     console.log(`Backend is listening at localhost:${PORT}!`)
 })
 
-app.get('/hey', (req, res) => {
-    const {name} = req.query; 
-    res.status(200).json({success: "Success!", name: name}); 
-}); 
