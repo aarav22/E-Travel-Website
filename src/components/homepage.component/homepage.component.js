@@ -1,7 +1,7 @@
 import React from 'react'; 
 // import SearchBar from './searchbar/searchbar.component'
 import './homepage.component.css'
-import LinearGradient from 'react-native-linear-gradient'
+// import LinearGradient from 'react-native-linear-gradient'
 
 export default function Homepage(props) { 
     return ( 
