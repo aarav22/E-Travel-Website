@@ -14,8 +14,6 @@ function LoginHooks() {
     const dispatch = useDispatch(); 
     var isSignedIn = useSelector(state => state.user.isSignedIn); 
     var user = useSelector(state => state.user.curr_user);
-    // console.log("isSignedIn", isSignedIn);
-    // console.log("user: ", user);
 
     const onSuccess = (response) => {
         console.log('Login Success: currentUser:', response.profileObj);
