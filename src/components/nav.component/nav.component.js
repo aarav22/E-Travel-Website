@@ -1,12 +1,22 @@
 import React from "react";
 import "./nav.component.css";
 import SearchBar from '../homepage.component/searchbar/searchbar.component'
+import LoginHook from '../Authentication/login-hooks'
+import LogoutHook from '../Authentication/logout-hooks'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
+    var isSignedIn = useSelector(state => state.user.isSignedIn); 
+    var user = useSelector(state => state.user.curr_user);
+    var signInButton = <LoginHook />
+    if (isSignedIn) {
+        signInButton = <LogoutHook />
+    }
+
     return (
         <div className="navbar">
             <nav className="nav-nav-login">
-                <NavItemLogin />
+                {signInButton}
             </nav>
             <nav className="nav-nav-search">
                 <NavSearchBar />
@@ -15,17 +25,18 @@ const Navbar = () => {
     )
 }
 
-const NavItemLogin = () => {
-    return (
-        <li className="nav-item nav-login">
-            <button className="nav-login-button">
-                <i className='fa fa-user'></i>
-                <span className="nav-login-text">Login</span>
-            </button>
+// const NavItemLogin = () => {
+//     return (
+//         <li className="nav-item nav-login">
+//             <button className="nav-login-button">
+//                 <i className='fa fa-user'></i>
+//                 <LoginHook/>
+//                 <span className="nav-login-text">Login</span>
+//             </button>
             
-        </li>
-    )
-}
+//         </li>
+//     )
+// }
 
 const NavSearchBar = () => {
     return (

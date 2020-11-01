@@ -11,12 +11,13 @@ module.exports = {
             if (email_verified) {
                 User.findOne({email}).exec((err, user) => {
                     if(err) {
-                        return response.status(400).json({
+                        console.log("Error from login backend: ", err)
+                        return response.status(400).json({isSignedIn: false, user: null, msg: false, 
                             error: "Error from finding user in google login"
                         })
                     } else {
                         if (user) { 
-                            return res.status(200).json({msg: "user exists in db", user: user});
+                            return response.status(200).json({isSignedIn: true, msg: "user exists in db", user: user});
                         } else {
                             let new_user = new User({
                                 name: name,
@@ -25,11 +26,12 @@ module.exports = {
                             });
                             new_user.save((err, data) => {
                                 if(err) {
-                                    return response.status(400).json({msg: err}); 
+                                    console.log("Error from login backend: ", err)
+                                    return response.status(400).json({isSignedIn: false, msg: err, user: null}); 
                                 }
                                 response.status(200) 
                                         .json({
-                                            msg: true, user: new_user // replaced user with new_user
+                                            isSignedIn: true, msg: "user logged in", user: new_user // replaced user with new_user
                                         });           
                             })
                         }
@@ -44,9 +46,13 @@ module.exports = {
         const {userId} = req.body; 
         // console.log(userId, req.body); 
         User.findOne({ _id: userId }, (err, doc) => {
-            if (err) return res.json({ msg: false, error:err });
+            if (err) return res.json({ 
+                isSignedIn: false,
+                user: null, msg: false, error:err});
             return res.status(200).send({
-                msg: true
+                isSignedIn: false,
+                user: null,
+                msg: "User logged out!"
             });
         });
     },

@@ -10,13 +10,16 @@ const userProfileSchema = new Schema ({
         type: String, 
         required: true
     }, 
+    profile_picture: {
+        type: String
+    },
     contact_number: {
         type: Number, 
-        required: true
+        required: false
     },
     address: {
         type: Array, 
-        required: true
+        required: false
     }, 
     wishlist: {
         type: Array, 
@@ -24,7 +27,7 @@ const userProfileSchema = new Schema ({
     }, 
     cart: {
         type: Array,
-         default: []
+        default: []
         }, 
     ratings: {
         type: Array, 
