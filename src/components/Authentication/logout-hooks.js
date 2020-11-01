@@ -38,7 +38,7 @@ function LogoutHooks() {
     return (
         <li className="nav-item nav-login">
         <button  onClick={signOut} className="nav-login-button">
-        <img className="nav-profile-pic" src={user["profile_picture"]}></img>
+        <img className="nav-profile-pic" alt="profile" src={user["profile_picture"]}></img>
             {/* <i className='fa fa-user'></i> */}
             <span className="nav-login-text">Logout</span>
         </button>

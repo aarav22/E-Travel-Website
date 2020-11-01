@@ -1,5 +1,5 @@
 import React from 'react'; 
-// import SearchBar from './searchbar/searchbar.component'
+import SearchBar from './searchbar/searchbar.component'
 import './homepage.component.css'
 // import LinearGradient from 'react-native-linear-gradient'
 
@@ -8,7 +8,7 @@ export default function Homepage(props) {
         <div className="home-main">
 
             <div className="search-box">
-                {/* <SearchBar></SearchBar> */}
+                <SearchBar></SearchBar>
             </div>
 {/* 
         
