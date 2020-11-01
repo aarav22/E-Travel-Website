@@ -6,11 +6,23 @@
     border: none;
 }
 
-.nav-nav {
+.nav-nav-login {
     max-width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+.nav-nav-search{
+    max-width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10rem;
+    /* margin-top: 2rem;
+    padding-bottom: 70rem; */
+    background-color: rgb(230, 255, 71);
+    /* color: teal; */
 }
 
 .nav-item {
@@ -46,8 +58,19 @@
 
 .nav-login:hover {
     width: 6.5rem;
+    border:none
 }
 
 .nav-login:hover .nav-login-text {
     font-size: 1.5rem;
+}
+
+.search-box {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 0.5rem;
+    /* padding-bottom: 30px; */
+    margin-bottom: 100px;
+    /* color: turquoise;
+    background-color: violet; */
 }
