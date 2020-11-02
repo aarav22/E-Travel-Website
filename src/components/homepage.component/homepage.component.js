@@ -16,12 +16,12 @@ export default function Homepage(props) {
         console.log("Not Available");
     }
 
-    const API_Key = process.env.REACT_APP_API_KEY;
-    axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Vasant%Vihar&key=${API_Key}`)
-    .then(res => {
-        console.log("Response from google autocomplete: ", res); 
-    })
-    .catch(err => console.log("Error from autocomplete: ", err)); 
+    // const API_Key = process.env.REACT_APP_API_KEY;
+    // axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Vasant%Vihar&key=${API_Key}`)
+    // .then(res => {
+    //     console.log("Response from google autocomplete: ", res); 
+    // })
+    // .catch(err => console.log("Error from autocomplete: ", err)); 
 
     return ( 
         <div className="home-main">
