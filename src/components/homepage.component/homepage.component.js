@@ -1,11 +1,15 @@
-import React from 'react'; 
-import axios from 'axios'
-// import SearchBar from './searchbar/searchbar.component'
+import React, {useState} from 'react'; 
 import SearchBar from './searchbar/searchbar.component'
+import DatePicker from './datepicker.component/datepicker.component'
+import DateTimePicker from 'react-datetime-picker' // https://www.npmjs.com/package/react-datetime-picker
+import calendarIcon from '../../icons/calendar.svg'
 import './homepage.component.css'
-// import LinearGradient from 'react-native-linear-gradient'
 
 export default function Homepage(props) { 
+    const [value, onChangeDateTime] = useState(new Date());
+    var time = value ?value.toLocaleTimeString(): ""
+    console.log("value: ", time);
+
     if ("geolocation" in navigator) {
         console.log("Available");
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -16,48 +20,33 @@ export default function Homepage(props) {
         console.log("Not Available");
     }
 
-    // const API_Key = process.env.REACT_APP_API_KEY;
-    // axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Vasant%Vihar&key=${API_Key}`)
-    // .then(res => {
-    //     console.log("Response from google autocomplete: ", res); 
-    // })
-    // .catch(err => console.log("Error from autocomplete: ", err)); 
 
     return ( 
         <div className="home-main">
             
             <div className="search-box">
-                <SearchBar></SearchBar>
+                <SearchBar/>
             </div>
-{/* 
-        
-       <View>
-            <View>
-            <Text className=  'text'>
-                This is a gradiented text
-            </Text>
-            <Text className=  'text'>
-                This is a gradiented text
-            </Text>
-            <Text className=  'text'>
-                This is a gradiented text
-            </Text>
-            <Text style={styles.text}>
-                This is a gradiented text
-            </Text><Text style={styles.text}>
-                This is a gradiented text
-            </Text>
-            </View>
-            <LinearGradient className= 'gradient'
-                start={{ x: 0.0, y: 0.0 }}
-                end={{ x: 0.0, y: 1.0 }}
-                locations={[0.0, 1.0]}
-                colors={['#ffffff40', '#fffffff5']} //<-- last 2 chars from color control the opacity
-                useViewFrame={false}
-                style={styles.gradient}
-            />
-        </View> */}
-
-        </div>
+            {/* <DatePicker/> */}
+                    <DateTimePicker 
+                        amPmAriaLabel="Select AM/PM"
+                        calendarAriaLabel="Toggle calendar"
+                        clearAriaLabel="Clear value"
+                        dayAriaLabel="Day"
+                        hourAriaLabel="Hour"
+                        maxDetail="second"
+                        minuteAriaLabel="Minute"
+                        monthAriaLabel="Month"
+                        nativeInputAriaLabel="Date and time"
+                        onChange={onChangeDateTime}
+                        secondAriaLabel="Second"
+                        value={value}
+                        yearAriaLabel="Year"
+                        maxDetail="minute"
+                        calendarIcon={null}
+                        minDate= {new Date()}
+                        className="dateTime"
+                        />
+            </div>
     )
 }

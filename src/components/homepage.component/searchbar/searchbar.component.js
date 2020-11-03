@@ -20,20 +20,18 @@ export default function SearchBar(props) {
             .then(latLng => console.log('Success', latLng))
             .catch(error => console.error('Error', error));
     };
-    const API_Key = process.env.REACT_APP_API_KEY;
 
 
     return (
-            <div class="searchBox">
-            <button class="searchButton" href="#">
-            <Search />
+        <div>
             <PlacesAutocomplete
                 value={address}
                 onChange={handleChange}
                 onSelect={handleSelect}>
                 
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
+                    return (
+                    <div class="searchBox">
                         <input {...getInputProps({
                                 className: 'searchInput',
                                 placeholder: 'Enter Location ...',
@@ -41,21 +39,25 @@ export default function SearchBar(props) {
                             })}
                         />
 
-                        <div className="autocomplete-dropdown-container">
+                        <button class="searchButton" href="#">
+                            <Search />
+                        </button>
+
+                        <div className="autocomplete-container">
                             {loading && <div>Loading...</div>}
                             {suggestions.map(suggestion => {
                                 const className = suggestion.active
                                     ? 'suggestion-item--active'
                                     : 'suggestion-item';
                                 // inline style for demonstration purpose
-                                const style = suggestion.active
-                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                // const style = suggestion.active
+                                //     ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                //     : { backgroundColor: '#ffffff', cursor: 'pointer' };
                                 return (
                                     <div
                                         {...getSuggestionItemProps(suggestion, {
                                             className,
-                                            style,
+                                            //style,
                                         })}
                                     >
                                         <span>{suggestion.description}</span>
@@ -63,14 +65,11 @@ export default function SearchBar(props) {
                                 );
                             })}
                         </div>
-                    
-                )}
+                    </div>
+                    );
+                }}
             </PlacesAutocomplete>
-            
-            {/* <input class="searchInput" type="text" name="" placeholder="Search" /> */}
-            
-
-            </button>
         </div>
+        
     )
 }  

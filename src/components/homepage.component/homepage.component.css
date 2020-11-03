@@ -27,3 +27,11 @@
     right: 0;
     bottom: 0;
 }
+
+
+/* CSS for calendar and time:  */
+.dateTime {
+    background-color: whitesmoke;
+    font-size: large;
+    color: red;
+}
