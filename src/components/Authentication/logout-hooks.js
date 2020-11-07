@@ -21,7 +21,8 @@ function LogoutHooks() {
             url: "http://localhost:5000/api/logout",
             data: { userId: userId }
         }).then(res => {
-            dispatch(userSignedIn(res))
+            let userObject = {user: res.data.user, isSignedIn: res.data.isSignedIn}
+            dispatch(userSignedIn(userObject)); 
         }).catch(err => console.log("error from logout: ", err))
     };
 

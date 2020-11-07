@@ -56,6 +56,34 @@ module.exports = {
             });
         });
     },
+
+    update_contact(req, res) {
+        const {userId, contact} = req.body;
+        User.findOneAndUpdate({_id: userId}, {$set: {contact: contact}}).exec((err, user) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "Error from updating contact info"
+                })
+            }
+            return res.status(200).json({
+                user: user
+            })
+        }); 
+    },
+
+    update_address(req, res) {
+        const {userId, address} = req.body;
+        User.findOneAndUpdate({_id: userId}, {$set: {address: address}}, { new: true }).exec((err, user) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "Error from updating address info"
+                })
+            }
+            return res.status(200).json({
+                user: user
+            })
+        }); 
+    },
     
     on_payment(req, res) {
         let history = [];

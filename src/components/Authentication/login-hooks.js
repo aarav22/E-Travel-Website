@@ -16,7 +16,7 @@ function LoginHooks() {
     var user = useSelector(state => state.user.curr_user);
 
     const onSuccess = (response) => {
-        console.log('Login Success: currentUser:', response.profileObj);
+        // console.log('Login Success: currentUser:', response.profileObj);
         alert(
             `Logged in successfully welcome ${response.profileObj.name} . \n See console for full profile object.`
         );
@@ -26,7 +26,8 @@ function LoginHooks() {
             url: 'http://localhost:5000/api/login',
             data: { tokenId: response.tokenId }
         }).then(res => {
-            dispatch(userSignedIn(res)); 
+            let userObject = {user: res.data.user, isSignedIn: res.data.isSignedIn}
+            dispatch(userSignedIn(userObject)); 
             console.log(res);
             // console.log("Var inside: ", isSignedIn, res.data.user._id);
         })

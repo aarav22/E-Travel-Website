@@ -18,10 +18,10 @@ module.exports = {
 
     update_fcars(req, res) {
         const {id} = req.params; 
-        const { model, assistant, capacity, rate, pictures} = req.body;
+        const { modelCar, assistant, capacity, rate, pictures} = req.body;
         fcars.findById(id).exec((err, fcars) => {
             if(err) {console.log('Error from UpdateFcars Admin', err);}
-            fcars.model = model;
+            fcars.modelCar = model;
             fcars.assistant = assistant;
             fcars.capacity = capacity;
             fcars.rate = rate;

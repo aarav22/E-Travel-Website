@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const FCarsSchema = mongoose.Schema({
-    model: {
+    modelCar: {
         type: String,
         require: true
     },

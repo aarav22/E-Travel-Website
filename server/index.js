@@ -31,6 +31,9 @@ const fcar_controller = require('./controllers/fcars.controller');
 // APIs: 
 app.post('/api/login', user_controller.user_login);
 app.post('/api/logout', user_controller.user_logout);
+app.post('/api/update_adress', user_controller.update_address);
+app.post('/api/update_contact', user_controller.update_contact);
+
 
 app.post('/api/checkout', user_controller.on_payment);
 app.post('/api/post_review', user_controller.post_reviews)
@@ -49,4 +52,3 @@ app.listen(PORT, () => {
     console.log(`Backend is listening at localhost:${PORT}!`)
 })
 
- 

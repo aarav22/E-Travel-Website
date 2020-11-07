@@ -10,7 +10,7 @@ const usersSlice = createSlice({
     initialState,
     reducers: {
         userSignedIn(state, action) {
-            const {isSignedIn, user} = action.payload.data;
+            const {isSignedIn, user} = action.payload;
             state.isSignedIn = isSignedIn;
             state.curr_user = user; 
         }
