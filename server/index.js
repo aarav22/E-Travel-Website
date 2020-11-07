@@ -32,6 +32,7 @@ const fcar_controller = require('./controllers/fcars.controller');
 app.post('/api/login', user_controller.user_login);
 app.post('/api/logout', user_controller.user_logout);
 app.post('/api/update_adress', user_controller.update_address);
+app.post('/api/delete_adress', user_controller.delete_address)
 app.post('/api/update_contact', user_controller.update_contact);
 
 

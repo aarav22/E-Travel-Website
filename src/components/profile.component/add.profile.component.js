@@ -36,7 +36,21 @@ export default function Address() {
                 let userObject = {user: res.data.user, isSignedIn: true}
                 dispatch(userSignedIn(userObject)); 
             })
-            .catch(err => console.log("Update contact error: ", err));
+            .catch(err => console.log("Update address error: ", err));
+    }
+
+    function deleteAddress(addressName) {
+        console.log("Update: ", usrAdd); 
+        axios({
+            method: "POST",
+            url: `http://localhost:5000/api/delete_adress`,
+            data: { userId: user._id, name: addressName }
+        })
+            .then(res => {
+                let userObject = {user: res.data.user, isSignedIn: true}
+                dispatch(userSignedIn(userObject)); 
+            })
+            .catch(err => console.log("Delete address error: ", err));
     }
 
 
@@ -50,8 +64,8 @@ export default function Address() {
                             <div className="addr-bar">
                                 <div>{addr.name}</div>
                                 <div className="addr-btns">
-                                    <button className="addr-button"><i className="far fa-trash-alt"></i></button>
-                                    <button className="addr-button"><i className="fas fa-pen"></i></button>
+                                    <button className="addr-button" onClick={() => deleteAddress(addr.name)}><i className="far fa-trash-alt"></i></button>
+                                    {/* <button className="addr-button"><i className="fas fa-pen"></i></button> */}
                                 </div>
                             </div>
                             <div className="addr-addr">{addr.address}</div>
@@ -64,7 +78,9 @@ export default function Address() {
                             <div className="addr-bar-add">
                                 <input className="addr-title-add" placeholder="Title" onChange={(e) => {setnewAdd({...newAdd, name: e.target.value}); console.log(newAdd);}}></input>
                                 <div className="addr-btns-add">
-                                    <button className="addr-button-add" onClick={() => {setAdd(!address)}}><i className="far fa-trash-alt"></i></button>
+
+                                    <button className="addr-button-add" onClick={() => {setAdd(!address)}}><i className="far fa-trash-alt" ></i></button>
+
                                     <button className="addr-button-add"
                                         onClick={() => {setUsrAdd(usrAdd => [...usrAdd, newAdd]);   }}
                                     >✔</button>

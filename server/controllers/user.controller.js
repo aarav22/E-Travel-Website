@@ -76,7 +76,8 @@ module.exports = {
         User.findOneAndUpdate({_id: userId}, {$set: {address: address}}, { new: true }).exec((err, user) => {
             if (err) {
                 return res.status(400).json({
-                    error: "Error from updating address info"
+                    error: "Error from updating address info",
+                    errorMsg: err
                 })
             }
             return res.status(200).json({
@@ -84,6 +85,29 @@ module.exports = {
             })
         }); 
     },
+
+    delete_address(req,res) {
+        const {userId, name} = req.body;
+        User.findOneAndUpdate(
+            {_id: userId},
+            {
+                "$pull":
+                {"address": {name: name}}
+            },
+            { new: true },
+            (err, user) => {
+                if (err) {
+                    return res.status(400).json({
+                        error: "Error from deleting address",
+                        errorMsg: err
+                    }); 
+                }
+                return res.status(200).json({
+                    user: user
+                })
+            }
+        );
+    }, 
     
     on_payment(req, res) {
         let history = [];
