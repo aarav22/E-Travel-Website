@@ -69,7 +69,8 @@ export default function Address() {
                                         onClick={() => {setUsrAdd(usrAdd => [...usrAdd, newAdd]);   }}
                                     >✔</button>
                                     <button className="addr-button-something-else"
-                                        onClick={() => updateAddress() }
+                                        onClick={() => {updateAddress(); setAdd(!address)} }
+                                        style={{backgroundColor:"transparent", border:"none"}}
                                     >💾</button>
                                 </div>
                             </div>
