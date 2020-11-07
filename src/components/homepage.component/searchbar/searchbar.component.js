@@ -15,10 +15,13 @@ export default function SearchBar(props) {
     }
 
     var handleSelect = address => {
-        geocodeByAddress(address)
-            .then(results => getLatLng(results[0]))
+        setAddress(address); 
+        var res = geocodeByAddress(address)
+            .then(results => 
+                getLatLng(results[0]))
             .then(latLng => console.log('Success', latLng))
             .catch(error => console.error('Error', error));
+        console.log(res);
     };
 
 
