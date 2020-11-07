@@ -4,24 +4,29 @@ import { Route, Switch} from 'react-router-dom';
 
 
 // components: 
-import Homepage from './components/homepage.component/homepage.component'
-import NotFoundPage from './components/four-o-four.component/four-o-four.component'
+import Homepage from './components/homepage.component/homepage.component';
+import NotFoundPage from './components/four-o-four.component/four-o-four.component';
+import Navbar from "./components/nav.component/nav.component";
+import Address from "./components/profile.component/add.profile.component";
 
-import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Switch>
-        <Route exact
-            path="/" 
-            component={Homepage} 
-        />  
+        <Route
+          path="/" exact
+          component={Homepage}/>  
+
+        <Route 
+          path="/add"
+          component={Address}/>
 
         <Route 
           path="*" 
-          component={NotFoundPage}
-        />
+          component={NotFoundPage}/>
+
       </Switch>
     </div>
   );

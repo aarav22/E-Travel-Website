@@ -1,0 +1,37 @@
+/* .search-box {
+    display: flex;
+    justify-content: space-around;
+} */
+
+.home-main{
+    min-height: 100vh;
+    background-image: url(https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80);
+    background-position: 'center';
+    background-size: 'cover';
+    background-repeat: 'no-repeat';
+    background-color: rgba(76, 175, 80, 0.3);
+    /* background: linear-gradient(to right, #9D00FF 30%, rgba(0, 0, 0, 0.954) 75%)
+     */
+    
+}
+
+.text{
+    color: 'black';
+    font-size: 14;
+}
+
+.gradient{
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+/* CSS for calendar and time:  */
+.dateTime {
+    background-color: whitesmoke;
+    font-size: large;
+    color: red;
+}
