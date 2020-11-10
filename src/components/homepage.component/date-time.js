@@ -1,5 +1,5 @@
 import React from "react"
-// import DateTimePicker from 'react-datetime-picker' // https://www.npmjs.com/package/react-datetime-picker
+import DateTimePicker from 'react-datetime-picker' // https://www.npmjs.com/package/react-datetime-picker
 
 
 <DateTimePicker
@@ -12,12 +12,12 @@ import React from "react"
     minuteAriaLabel="Minute"
     monthAriaLabel="Month"
     nativeInputAriaLabel="Date and time"
-    onChange={onChangeDateTime}
+    // onChange={onChangeDateTime}
     secondAriaLabel="Second"
     value={value}
     yearAriaLabel="Year"
     maxDetail="minute"
     calendarIcon={null}
     minDate={new Date()}
-    className="dateTime"
+    className="dateTime" 
 />

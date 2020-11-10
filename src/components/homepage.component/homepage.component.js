@@ -8,18 +8,10 @@ import './homepage.component.css';
 // } from '@material-ui/pickers';
 
 
-export default function Homepage(props) { 
+export default function Homepage(props) {  
     const [selectedDate, handleDateChange] = useState(new Date());
 
-    if ("geolocation" in navigator) {
-        console.log("Available");
-        navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
-        });
-    } else {
-        console.log("Not Available");
-    }
+    
 
 
     return ( 
