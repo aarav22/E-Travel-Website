@@ -1,37 +1,100 @@
-/* .search-box {
-    display: flex;
-    justify-content: space-around;
-} */
-
 .home-main{
+    padding-left: 5rem;
     min-height: 100vh;
     background-image: url(https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80);
     background-position: 'center';
     background-size: 'cover';
     background-repeat: 'no-repeat';
     background-color: rgba(76, 175, 80, 0.3);
-    /* background: linear-gradient(to right, #9D00FF 30%, rgba(0, 0, 0, 0.954) 75%)
-     */
-    
+    display: grid;
+    grid-template-areas: 
+        "left right";
+    grid-template-columns: 40rem auto;
+    gap: 3rem;
 }
 
-.text{
-    color: 'black';
-    font-size: 14;
+home-left-pane {grid-area: left;}
+home-right-pane {grid-area: right;}
+
+.home-left-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
 
-.gradient{
-    position: 'absolute';
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.home-right-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.home-text {
+    background: -webkit-linear-gradient(#F3C4C4, #03E7E7);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+}
 
-/* CSS for calendar and time:  */
-.dateTime {
+.home-text-wrapper {
+    display: inline-flex;
+    filter: brightness(200%); 
+}
+
+.search-area {
     background-color: whitesmoke;
-    font-size: large;
-    color: red;
+    color: black;
+    padding: 1rem;
+    width: 30rem;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    color: inherit;
+    border-bottom: 1px solid black;
+    width: 25rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-ico {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.search-ico-svg {
+    height: 1.5rem;
+}
+
+.search-results {
+    padding: 0.5rem;
+}
+
+.suggestion-item {
+    min-height: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 26rem;
+    transition: all 0.15s ease-out;
+}
+
+.suggestion-item:hover {
+    transform: scale(1.1);
+    min-height: 3.5rem;
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+    cursor: pointer;
 }

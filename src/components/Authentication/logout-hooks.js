@@ -1,9 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+
+import { Link } from 'react-router-dom';
 import { useGoogleLogout } from 'react-google-login';
 import {userSignedIn} from './usersSlice'
 import { useDispatch, useSelector } from 'react-redux';
-import "./auth.css"
+
+import axios from 'axios';
 
 const clientId =
     process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -37,14 +39,22 @@ function LogoutHooks() {
     });
 
     return (
-        <li className="nav-item nav-login">
-        <button  onClick={signOut} className="nav-login-button">
-        <img className="nav-profile-pic" alt="profile" src={user["profile_picture"]}></img>
-            {/* <i className='fa fa-user'></i> */}
-            <span className="nav-login-text">Logout</span>
-        </button>
-        
-    </li>
+        <li className="nav-item nav-login logout has-dropdown">
+            <a className="nav-logout-button" href="#">
+                <img className="nav-profile-pic" alt="profile" src={user["profile_picture"]}></img>
+            </a>
+            <ul className="nav-dropdown">
+                <li className="nav-dropdown-item">
+                    <a id="profile" href="#">Profile</a>
+                </li>
+                <li className="nav-dropdown-item">
+                    <Link to="/add">Address</Link>
+                </li>
+                <li className="nav-dropdown-item">
+                    <a id="logout" onClick={signOut} href="#">Logout</a>
+                </li>
+            </ul>
+        </li>
     );
 }
 

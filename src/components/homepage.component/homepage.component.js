@@ -1,14 +1,15 @@
 import React, {useState} from 'react'; 
-import SearchBar from './searchbar/searchbar.component'
-import DatePicker from './datepicker.component/datepicker.component'
-import DateTimePicker from 'react-datetime-picker' // https://www.npmjs.com/package/react-datetime-picker
-import calendarIcon from '../../icons/calendar.svg'
-import './homepage.component.css'
+import Search from "./search"
+import DateFnsUtils from '@date-io/date-fns';
+import './homepage.component.css';
+// import {
+    // MuiPickersUtilsProvider,
+    // DateTimePicker
+// } from '@material-ui/pickers';
+
 
 export default function Homepage(props) { 
-    const [value, onChangeDateTime] = useState(new Date());
-    var time = value ?value.toLocaleTimeString(): ""
-    console.log("value: ", time);
+    const [selectedDate, handleDateChange] = useState(new Date());
 
     if ("geolocation" in navigator) {
         console.log("Available");
@@ -22,31 +23,21 @@ export default function Homepage(props) {
 
 
     return ( 
-        <div className="home-main">
-            
-            <div className="search-box">
-                <SearchBar/>
+        // <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <div className="home-main">
+                <div className="home-left-pane">
+                    <div className="home-text-wrapper">
+                        <span className="home-text">
+                            book a ride on one of our futuristic flying cars and let it transfer you to the world of 2081.
+                        </span>
+                    </div>
+                </div>
+                <div className="home-right-pane">
+                    <Search placeholder={"Enter Destination..."}/>
+                    <Search placeholder={"Enter Arrival..."}/>
+                    {/* <DateTimePicker value={selectedDate} onChange={handleDateChange} /> */}
+                </div>
             </div>
-            {/* <DatePicker/> */}
-                    <DateTimePicker 
-                        amPmAriaLabel="Select AM/PM"
-                        calendarAriaLabel="Toggle calendar"
-                        clearAriaLabel="Clear value"
-                        dayAriaLabel="Day"
-                        hourAriaLabel="Hour"
-                        maxDetail="second"
-                        minuteAriaLabel="Minute"
-                        monthAriaLabel="Month"
-                        nativeInputAriaLabel="Date and time"
-                        onChange={onChangeDateTime}
-                        secondAriaLabel="Second"
-                        value={value}
-                        yearAriaLabel="Year"
-                        maxDetail="minute"
-                        calendarIcon={null}
-                        minDate= {new Date()}
-                        className="dateTime"
-                        />
-            </div>
+        // </MuiPickersUtilsProvider>
     )
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import "./nav.component.css";
-// import SearchBar from '../homepage.component/searchbar/searchbar.component'
+import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 import LoginHook from '../Authentication/login-hooks'
 import LogoutHook from '../Authentication/logout-hooks'
-import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     var isSignedIn = useSelector(state => state.user.isSignedIn);
@@ -13,21 +14,22 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar">
-            <nav className="nav-nav-login">
+        <nav className="navbar">
+            <ul className="navbar-nav">
+                <li className="nav-item title">
+                    <Link to="/">
+                        <span style={{ "color": "#007FAF"}}>t</span>
+                        <span style={{ "color": "#007FAF" }}>r</span>
+                        <span style={{ "color": "#007FAF" }}>i</span>
+                        <span style={{ "color": "#F48F00" }}>v</span>
+                        <span style={{ "color": "#F48F00" }}>a</span>
+                        <span style={{ "color": "#C94A38" }}>g</span>
+                        <span style={{ "color": "#C94A38" }}>o</span>
+                    </Link>
+                </li>
                 {signInButton}
-            </nav>
-            <nav className="nav-nav-search">
-                <NavSearchBar />
-            </nav>
-        </div>
-    )
-}
-
-const NavSearchBar = () => {
-    return (
-        <div className="search-box">
-        </div>
+            </ul>
+        </nav>
     )
 }
 

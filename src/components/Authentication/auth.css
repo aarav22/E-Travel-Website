@@ -12,11 +12,7 @@
     transition: width var(--speed) ease-out;
 }
 
-.nav-profile-pic {
-    height: 2rem;
-    width: auto;
-    border-radius: 50%;
-}
+
 
 .nav-login-button {
     background-color: transparent;
