@@ -32,7 +32,7 @@ export default function Search(props) {
                     .then(res => {
                         let currentAddress = res.data.results[0].formatted_address
                         console.log(currentAddress);
-                        setAddress(currentAddress)
+                        setAddress(currentAddress);
                         }); 
             });
         } else {
@@ -91,5 +91,5 @@ export default function Search(props) {
             </PlacesAutocomplete>
         </div>
     )
-
+ 
 }
