@@ -1,6 +1,5 @@
 import React, {useState} from 'react'; 
 import Search from "./search"
-import DateFnsUtils from '@date-io/date-fns';
 import './homepage.component.css';
 // import {
     // MuiPickersUtilsProvider,

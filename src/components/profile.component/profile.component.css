@@ -1,8 +1,3 @@
-body {
-    background-color: rgb(202, 184, 184);
-}
-
-
 .addr-container {
     display: flex;
     gap: 1rem;

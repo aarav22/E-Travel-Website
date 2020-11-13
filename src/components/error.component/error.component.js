@@ -5,11 +5,11 @@
 */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-import "./error.component.css";
+// import "./error.component.css";
 
-export default function NotFoundPage(props) {
+export default function NotFoundPage() {
   return (
     <div>
       <h1>404: Page not found</h1>
