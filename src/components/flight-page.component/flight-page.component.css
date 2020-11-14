@@ -1,0 +1,37 @@
+.airline-img {
+  height: 40px;
+  width: auto;
+  fill: white;
+}
+
+.flight-card {
+  display: flex;
+  border: var(--border);
+  min-width: 35rem;
+  max-width: 40rem;
+}
+
+.flight-card-details {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.airline-details {
+  display: flex;
+}
+
+.flight-timings {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.line:before,
+.line:after {
+  background-color: white;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+}
