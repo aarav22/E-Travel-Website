@@ -1,7 +1,7 @@
 .navbar {
     height: var(--nav-size);
     width: 100%;
-    background-color: var(--bg);
+    background-color: #000000;
     padding: 0 1rem;
     border: none;
 }
@@ -47,6 +47,11 @@
     font-size: 1.5rem;
     display: flex;
     padding-top: 0.75rem;
+    margin-right: 1.5rem;
+}
+
+.nav-logout-button {
+  margin-right: 1.5rem;
 }
 
 .nav-login-text {
