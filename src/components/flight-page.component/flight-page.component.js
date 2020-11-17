@@ -60,7 +60,9 @@ const FlightPage = () => {
   return (
     <div className="flight-page-container">
       <div className="flight-page-topbar">
-        <h3> AMD to CCU </h3>
+        <input placeholder="destination"></input>
+        ↔
+        <input placeholder="arrival"></input>
         <div className="info">
           <h5>414 Results</h5>
           <button>Sort By</button>

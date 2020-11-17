@@ -1,5 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 import Search from "./search";
+
 import './homepage.component.css';
 
 
@@ -16,6 +19,11 @@ export default function Homepage() {
         </div>
       </div>
       <div className="home-right-pane">
+        <input className="destination" placeholder="destination"></input>
+        <input className="arrival" placeholder="arrival"></input>
+        <Link to="/flights">
+          <button className="search-button">Search</button>
+        </Link>
       </div>
     </div>
   )
