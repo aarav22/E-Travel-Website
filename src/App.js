@@ -9,6 +9,7 @@ import Navbar from "./components/nav.component/nav.component";
 import Address from "./components/profile.component/add.profile.component";
 import FlightPage from "./components/flight-page.component/flight-page.component";
 import HotelPage from "./components/hotel-page.component/hotel-page.component";
+import Booking from "./components/booking.component/booking.component";
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route path="/flights" component={FlightPage} />
 
         <Route path="/hotels" component={HotelPage} />
+
+        <Route path="/book" component={Booking} />
 
         <Route path="*" component={Error} />
       </Switch>
