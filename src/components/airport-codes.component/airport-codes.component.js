@@ -28,13 +28,13 @@ function AirportSearch() {
         includeScore: true
     });
 
-    const results = fuse.search(query);
+    var results = fuse.search(query);
     console.log(results)
     // const characterResults = query ? results.map(airport => airport.item) : airports;
 
-    function onSearch({ currentTarget }) {
-        updateQuery(currentTarget.value);
-    }
+    // function onSearch({ currentTarget }) {
+    //     updateQuery(currentTarget.value);
+    // }
 
     return (
         <>
