@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {flightItineary} from '../flight-page.component/flightsSlice'
-
+import AirportSearch from '../airport-codes.component/airport-codes.component'
 import Search from "./search";
+
 
 import './homepage.component.css';
 
@@ -19,6 +20,7 @@ export default function Homepage() {
 
     return (
         <div className="home-main">
+            <AirportSearch/>
             <div className="home-left-pane">
                 <div className="home-text-wrapper">
                     <span className="home-text">
@@ -28,8 +30,10 @@ export default function Homepage() {
                 </div>
             </div>
             <div className="home-right-pane">
+                <Search placeholder="destination"/>
                 <input className="destination" placeholder="Destination" onChange={(e) => {setDes(e.target.value)}}></input>
                 <input className="arrival" placeholder="Source" onChange={(e) => {setSource(e.target.value)}}></input>
+                <input className="datepicker" placeholder="Source" onChange={(e) => {setSource(e.target.value)}}></input>
                 <Link to="/flights">
                     <button className="search-button">Search</button>
                     {makeFlightState()}                    

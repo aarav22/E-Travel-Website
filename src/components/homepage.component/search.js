@@ -11,6 +11,9 @@ export default function Search(props) {
     var handleChange = (address) => {
         setAddress(address);
     };
+    const searchOptions = {
+        types: ['(airport)']
+    }; 
 
     var handleSelect = (address) => {
         setAddress(address);
@@ -48,6 +51,7 @@ export default function Search(props) {
                 onChange={handleChange}
                 onSelect={handleSelect}
                 shouldFetchSuggestions = {true}
+                searchOptions={searchOptions}
             >{
             ({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
                 return (
