@@ -33,9 +33,9 @@ export default function Homepage() {
                 <div className="line-8"></div>
             </div>
             <div className="home-content">
-                <AirportSearch className="destination" />
-                <AirportSearch className="destination" />
-                <AirportSearch className="destination" />
+                <AirportSearch placeholder="Your origin?" className="destination" />
+                <AirportSearch placeholder="Your destination?" className="destination" />
+                {/* <AirportSearch className="destination" /> */}
                 <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
                 <Link to="/flights">
                     <button className="search-button">Search</button>

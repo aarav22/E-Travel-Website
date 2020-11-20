@@ -4,9 +4,9 @@ import Fuse from 'fuse.js';
 
 import airports from './airports.json';
 
-function AirportSearch() {
+function AirportSearch(props) {
     const [query, updateQuery] = useState('');
-
+    const [placeholderText, updatePlaceholder] = useState(props.placeholderText);
     const fuse = new Fuse(airports, {
         shouldSort: true,
         threshold: 0.4,
@@ -16,10 +16,6 @@ function AirportSearch() {
                 name: "IATA",
                 weight: 0.5
             },
-            // {
-            //     name: "name",
-            //     weight: 0.1
-            // },
             {
                 name: "city",
                 weight: 0.6
@@ -29,23 +25,21 @@ function AirportSearch() {
     });
     const results = fuse.search(query);
 
-    // var results = fuse.search(query);
+
+    const clickCity = citySelected => {
+        console.log("City", citySelected.target.value)
+        updateQuery(citySelected.target.value);
+    }
+
+
     // console.log(results)
-    // // const characterResults = query ? results.map(airport => airport.item) : airports;
-
-    // // function onSearch({ currentTarget }) {
-    // //     updateQuery(currentTarget.value);
-    // // }
-
-
-    console.log(results)
 
 
     return (
         <div className="home-search-container">
             <form className="home-search-box">
                 <label>Search</label>
-                <input type="text" placeholder="Destination" value={query} onChange={(e) => { updateQuery(e.target.value) }} />
+                <input type="text" placeholder={placeholderText} value={query} onChange={(e) => { updateQuery(e.target.value) }} />
             </form>
             {
                 query.length >= 1 && (
@@ -53,14 +47,14 @@ function AirportSearch() {
                         {results.slice(0, 5).map(airport => {
                             const { name, IATA, city, country } = airport.item;
                             return (
-                                <div className="search-main-result">
+                                <button className="search-main-result" value={`${name} Airport, ${city}, ${country}, (${IATA})`} onClick={clickCity} >
                                     {`${name} Airport, ${city}, ${country}, (${IATA})`}
-                                </div>
+                                </button>
                             )
                         })
-                        } 
+                        }
                     </div>
-                )}
+                )} 
         </div>
     );
 }
