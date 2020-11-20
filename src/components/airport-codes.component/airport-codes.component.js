@@ -45,7 +45,7 @@ function AirportSearch() {
         <div className="home-search-container">
             <form className="home-search-box">
                 <label>Search</label>
-                <input type="text" value={query} onChange={(e) => { updateQuery(e.target.value) }} />
+                <input type="text" placeholder="Destination" value={query} onChange={(e) => { updateQuery(e.target.value) }} />
             </form>
             {
                 query.length >= 1 && (
@@ -58,7 +58,7 @@ function AirportSearch() {
                                 </div>
                             )
                         })
-                        }
+                        } 
                     </div>
                 )}
         </div>
