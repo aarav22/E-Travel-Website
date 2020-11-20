@@ -6,7 +6,9 @@ import airports from './airports.json';
 
 function AirportSearch(props) {
     const [query, updateQuery] = useState('');
-    const [placeholderText, updatePlaceholder] = useState(props.placeholderText);
+    const [value, setValue] = useState(); 
+    const [display, setDisplay] = useState(false);
+
     const fuse = new Fuse(airports, {
         shouldSort: true,
         threshold: 0.4,
@@ -27,19 +29,17 @@ function AirportSearch(props) {
 
 
     const clickCity = citySelected => {
-        console.log("City", citySelected.target.value)
-        updateQuery(citySelected.target.value);
+        setValue(citySelected.target.value);
     }
 
 
-    // console.log(results)
 
 
     return (
         <div className="home-search-container">
             <form className="home-search-box">
                 <label>Search</label>
-                <input type="text" placeholder={placeholderText} value={query} onChange={(e) => { updateQuery(e.target.value) }} />
+                <input className="home-search-input" type="text" placeholder={props.placeholder} value={value} onChange={(e) => { updateQuery(e.target.value); setValue(query) }} />
             </form>
             {
                 query.length >= 1 && (
