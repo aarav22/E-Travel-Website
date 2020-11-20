@@ -1,6 +1,5 @@
 .navbar {
     height: var(--nav-size);
-    width: 100%;
     background-color: transparent;
     padding: 0 1rem;
     border: none;

@@ -1,103 +1,59 @@
-.home-main{
-    padding-left: 5rem;
-    min-height: 100vh;
-/*    background-image: url(https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80);
-    background-position: 'center';
-    background-size: 'cover';
-    background-repeat: 'no-repeat'; */
-    background-color: #000000;
-    display: grid;
-    grid-template-areas: 
-        "left right";
-    grid-template-columns: 40rem auto;
-    gap: 3rem;
+.home-main {
+  min-height: 115vh;
+  display: flex;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/01/clouds-19.jpg?itok=Qfa5j6NW), url(https://www.aerotime.aero/aviation-blog/wp-content/uploads/2015/06/PSC0512_JT_116.jpg), url(https://cdn.cnn.com/cnnnext/dam/assets/160122120100-futuristic-plane-rendering-detachable-cabin.jpg), url(https://cff2.earth.com/uploads/2017/11/08174338/How-ice-forms-inside-of-clouds.jpg);
+  background-position: left top, left top, right top, left bottom, right bottom;
+  background-size: cover, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
 }
 
-home-left-pane {grid-area: left;}
-home-right-pane {grid-area: right;}
-
-.home-left-pane {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+.lines * {
+  position: absolute;
+  height: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  transform-origin: top left;
 }
 
-.home-right-pane {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80);
-    background-position: 'center';
-    background-size: 'cover';
+.line-1 {
+  width: 512px;
+  left: 392px;
+  top: 170px;
 }
 
-.home-text {
-    background: -webkit-linear-gradient(#F3C4C4, #03E7E7);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: white;
-    font-size: 4rem;
-    font-weight: bold;
+.line-2 {
+  width: 86.01px;
+  left: 904px;
+  top: 170px;
+  transform: rotate(-66.71deg);
 }
 
-.home-text-wrapper {
-    display: inline-flex;
-    filter: brightness(200%); 
-}
+.line-3 {
+width: 152.24px;left: 941px;top: 90px;transform: rotate(80.17deg);
+} 
 
-.search-area {
-    background-color: whitesmoke;
-    color: black;
-    padding: 1rem;
-    width: 30rem;
-}
+.line-4 {
+width: 98.86px;left: 965px;
+top: 240px;transform: rotate(-82.44deg);
+} 
 
-.search-bar {
-    display: flex;
-}
+.line-5 {
+width: 54.12px;left: 981px;
+top: 140px;transform: rotate(73.91deg);
+} 
 
-.search-input {
-    border: none;
-    background: transparent;
-    color: inherit;
-    border-bottom: 1px solid black;
-    width: 25rem;
-    font-size: 1rem;
-    outline: none;
-}
+.line-6 {
+width: 25.71px;left: 995px;
+top: 193px;transform: rotate(-76.5deg);
+} 
 
-.search-ico {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid black;
-}
+.line-7 {
+width: 248px;left: 1253px;
+top: 170px;transform: rotate(-179.78deg);
+} 
 
-.search-ico-svg {
-    height: 1.5rem;
-}
-
-.search-results {
-    padding: 0.5rem;
-}
-
-.suggestion-item {
-    min-height: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 26rem;
-    transition: all 0.15s ease-out;
-}
-
-.suggestion-item:hover {
-    transform: scale(1.1);
-    min-height: 3.5rem;
-    overflow: visible;
-    white-space: normal;
-    text-overflow: clip;
-    cursor: pointer;
-}
+.line-8 {
+  width: 0px;
+  height: 100%;
+  top: 169px;
+  left: 1251px;
+} 
