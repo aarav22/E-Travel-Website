@@ -46,9 +46,9 @@ function AirportSearch() {
             {results.slice(0, 5).map(airport => {
               const {name, IATA, city, country} = airport.item;
               return (
-                <div className="search-main-result">
+                <button className="search-main-result">
                   {`${name} Airport, ${city}, ${country}, (${IATA})`}
-                </div>
+                </button>
               )
             })
             }

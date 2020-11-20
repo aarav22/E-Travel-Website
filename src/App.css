@@ -1,7 +1,10 @@
-body {
+.container {
     background-color: rgb(0, 0, 0);
-    padding-top: 50px;
     position: relative;
-    padding-bottom: 5rem;
-    min-height: 100vh
+    min-height: 110vh;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/01/clouds-19.jpg?itok=Qfa5j6NW), url(https://www.aerotime.aero/aviation-blog/wp-content/uploads/2015/06/PSC0512_JT_116.jpg), url(https://cdn.cnn.com/cnnnext/dam/assets/160122120100-futuristic-plane-rendering-detachable-cabin.jpg), url(https://cff2.earth.com/uploads/2017/11/08174338/How-ice-forms-inside-of-clouds.jpg);
+    background-position: left top, left top, right top, left bottom, right bottom;
+    background-size: cover, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+    border: none;
 }
