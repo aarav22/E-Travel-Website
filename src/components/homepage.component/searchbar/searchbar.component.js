@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 
-import Search from '@material-ui/icons/FlightTakeoff';
+// import Search from '@material-ui/icons/FlightTakeoff';
 
 export default function SearchBar(props) {
     const [address, setAddress] = useState('');
@@ -43,7 +43,7 @@ export default function SearchBar(props) {
                         />
 
                         <button class="searchButton" href="#">
-                            <Search />
+                            {/* <Search /> */}
                         </button>
 
                         <div className="autocomplete-container">
