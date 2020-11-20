@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './airport-codes.component.css';
 import Fuse from 'fuse.js';
 
@@ -12,61 +12,56 @@ function AirportSearch() {
         threshold: 0.4,
         maxPatternLength: 32,
         keys: [
-        // {
-        //     name: "IATA",
-        //     weight: 0.3
-        // },
-        // {
-        //     name: "name",
-        //     weight: 0.1
-        // },
-        {
-            name: "city",
-            weight: 1
-        }
+            {
+                name: "IATA",
+                weight: 0.5
+            },
+            // {
+            //     name: "name",
+            //     weight: 0.1
+            // },
+            {
+                name: "city",
+                weight: 0.6
+            }
         ],
         includeScore: true
     });
+    const results = fuse.search(query);
 
-    var results = fuse.search(query);
+    // var results = fuse.search(query);
+    // console.log(results)
+    // // const characterResults = query ? results.map(airport => airport.item) : airports;
+
+    // // function onSearch({ currentTarget }) {
+    // //     updateQuery(currentTarget.value);
+    // // }
+
+
     console.log(results)
-    // const characterResults = query ? results.map(airport => airport.item) : airports;
 
-    // function onSearch({ currentTarget }) {
-    //     updateQuery(currentTarget.value);
-    // }
 
     return (
-        <>
-            <main className="container">
-                <ul className="characters">
-                    {results.map(airport => {
-                        const { name, IATA, city, country } = airport.item;
-                        return (
-                            <li key={city} className="character">
-                                <ul className="character-meta">
-                                    <li>
-                                        <strong>Name:</strong> {name}
-                                    </li>
-                                    <li>
-                                        <strong>IATA:</strong> {IATA}
-                                    </li>
-                                    <li>
-                                        <strong>city:</strong> {city}
-                                    </li>
-                                </ul>
-                            </li>
-                        )
-                    })}
-                </ul>
-                <aside>
-                    <form className="search">
-                        <label>Search</label>
-                        <input type="text" value={query} onChange={(e) => {updateQuery(e.target.value)}} />
-                    </form>
-                </aside>
-            </main>
-        </>
+        <div className="home-search-container">
+            <form className="home-search-box">
+                <label>Search</label>
+                <input type="text" value={query} onChange={(e) => { updateQuery(e.target.value) }} />
+            </form>
+            {
+                query.length >= 1 && (
+                    <div className="home-search-results">
+                        {results.slice(0, 5).map(airport => {
+                            const { name, IATA, city, country } = airport.item;
+                            return (
+                                <div className="search-main-result">
+                                    {`${name} Airport, ${city}, ${country}, (${IATA})`}
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+                )}
+        </div>
     );
 }
 
