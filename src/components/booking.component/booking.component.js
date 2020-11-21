@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from "react-router-dom";
 
 import "./booking.component.css";
 
@@ -59,6 +60,12 @@ const Booking = () => {
             Cancellation Fees Apply
             A penalty of upto ₹ 3,450 will be charged by the airline & by MMT based on how close to the departure date you cancel.
           </div>
+
+          <Link to='/successful'>
+            <button >
+              Buy!
+            </button>
+          </Link>
 
         </div>
       </div>

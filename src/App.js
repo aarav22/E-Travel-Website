@@ -10,6 +10,7 @@ import Address from "./components/profile.component/add.profile.component";
 import FlightPage from "./components/flight-page.component/flight-page.component";
 import HotelPage from "./components/hotel-page.component/hotel-page.component";
 import Booking from "./components/booking.component/booking.component";
+import Successful from "./components/successful.component/successful.component"
 
 import "./App.css";
 
@@ -28,6 +29,8 @@ function App() {
           <Route path="/hotels" component={HotelPage} />
 
           <Route path="/book" component={Booking} />
+
+          <Route path="/successful" component={Successful} />
 
           <Route path="*" component={Error} />
         </Switch>
