@@ -10,9 +10,10 @@ const flightSlice = createSlice({
     initialState,
     reducers: {
         flightItineary(state, action) {
-            const {source, destination} = action.payload;
+            const {source, destination, date} = action.payload;
             state.source = source;
             state.destination = destination; 
+            state.date = date; 
         }
     }
 });
