@@ -38,9 +38,9 @@ function AirportSearch(props) {
             {results.slice(0, 5).map(airport => {
               const {name, IATA, city, country} = airport.item;
               return (
-                <button className="search-main-result" onClick={(e) => {updateQuery(e.target.innerText); props.locationFunction(IATA)}} >
+                <li className="search-main-result" onClick={(e) => {updateQuery(e.target.innerText); props.locationFunction(IATA)}} >
                   {`${name} Airport, ${city}, ${country}, (${IATA})`}
-                </button>
+                </li>
               )
             })
             }

@@ -11,11 +11,30 @@
   width: 0rem;
 }
 
-.home-search-container:hover .home-search-input {
+.home-search-take:hover .home-search-input {
   width: 10rem;
   border-bottom: 1.5px solid white;
 }
 
-/* .home-search-results:hover .search-main-result{
-  color: white  
-} */
+.home-search-arr:hover .home-search-input {
+  width: 10rem;
+  border-bottom: 1.5px solid white;
+}
+
+.home-search-date {
+  width: 15rem;
+}
+
+.react-datepicker__input-container {
+  width: 10rem;
+}
+
+.react-datepicker__input-container input{
+  width: 00rem;
+  border-bottom: 1.5px solid white;
+}
+
+.home-search-date:hover input{
+  width: 10rem;
+}
+
