@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300&display=swap');
+
 .home-main {
   display: flex;
 }
@@ -51,4 +53,74 @@ top: 170px;transform: rotate(-179.78deg);
   height: calc(100% - 170px);
   top: 169px;
   left: 1251px;
-} 
+}
+
+.home-content {
+  display: flex;
+  gap: 3rem;
+  position: absolute;
+  top: 445px;
+  left: 58px;
+}
+
+.traveled {
+  position: absolute;
+  top: 111px;
+  left: 88px;
+}
+
+.traveled-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 6.0rem;
+  filter: brightness(2);
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.78);
+}
+
+.traveled-text {
+  font-style: normal;
+  font-weight: 100;
+  font-size: 20px;
+  font-family: 'Bebas Neue', cursive;
+  color: #757575;
+  display: flex;
+  align-items: center;
+}
+
+.home-search-input {
+  border: none;
+  background: transparent;
+  height: 3rem;
+  font-size: 1.00rem;
+  color: #757575;
+  padding-left: 0.5rem;
+}
+
+.home-search-take, 
+.home-search-arr,
+.home-search-date {
+  display: flex;
+}
+
+.search-take-icon,
+.search-arr-icon,
+.search-date-icon {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.07rem;
+}
+
+
+.react-datepicker__input-container * {
+  border: none;
+  border-bottom: 1.5px solid white;
+  background: transparent;
+  height: 3rem;
+  width: 6rem;
+  color: #757575;
+  font-size: 1.00rem;
+}
+
+.home-content {
+  display: flex;
+  gap: 6rem;
+}

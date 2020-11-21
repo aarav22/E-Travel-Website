@@ -2,3 +2,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.home-search-container {
+  width: 08rem;
+}
+
+.home-search-input {
+  width: 0rem;
+}
+
+.home-search-container:hover .home-search-input {
+  width: 10rem;
+  border-bottom: 1.5px solid white;
+}
