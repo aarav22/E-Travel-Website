@@ -11,6 +11,8 @@ import FlightPage from "./components/flight-page.component/flight-page.component
 import HotelPage from "./components/hotel-page.component/hotel-page.component";
 import Booking from "./components/booking.component/booking.component";
 import Successful from "./components/successful.component/successful.component"
+import Profile from "./components/profile.component/profile.component"
+
 
 import "./App.css";
 
@@ -31,6 +33,7 @@ function App() {
           <Route path="/book" component={Booking} />
 
           <Route path="/successful" component={Successful} />
+          <Route path="/profile" component={Profile} />
 
           <Route path="*" component={Error} />
         </Switch>
