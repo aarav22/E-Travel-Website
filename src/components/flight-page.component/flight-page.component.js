@@ -10,8 +10,13 @@ import "./flight-page.component.css";
 // const Amadeus = require('amadeus');
 const FlightPage = () => {
   const dispatch = useDispatch();
-  const source = useSelector(state => state.flight.source);
-  const destination = useSelector(state => state.flight.destination)
+  // const source = useSelector(state => state.flight.source);
+  // const destination = useSelector(state => state.flight.destination);
+  // const date = useSelector(state => state.flight.date);
+  // const returnDate = useSelector(state => state.flight.returnDate);
+  // const numAdults = useSelector(state => state.flight.numAdults);
+  const flightItineary =  useSelector(state => state.flight.userinfoObject);
+
 
   // For Pagination: 
   const [flights, setFlights] = useState([]);
@@ -31,13 +36,17 @@ const FlightPage = () => {
       const res = amadeusResponse.body;
       console.log(res.data)
       // await amadeus.shopping.flightOffersSearch.get({
-      //   originLocationCode: source,
-      //   destinationLocationCode: destination,
-      //   departureDate: '2020-12-01',
-      //   adults: '2'
-      // }).then(res => console.log(res)).catch(function (responseError) {
-      //   console.log(responseError, responseError.code);
-      // });
+      //   originLocationCode: flightItineary.source,
+      //   destinationLocationCode: flightItineary.destination,
+      //   departureDate: flightItineary.date,
+      //   adults: flightItineary.numAdults,
+      //   infants: flightItineary.numInfants,
+      //   currencyCode: "INR",
+      //   nonStop: isNonStop,
+      //   includedAirlineCodes: includedAirlineCodes
+      //   maxPrice: 0
+      // }).then(res => console.log(res)).catch(responseError => 
+      //   console.log(responseError, responseError.code));
       setFlights(res.data);
       setLoading(false);
     };
@@ -50,18 +59,6 @@ const FlightPage = () => {
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
-
-
-  // amadeus.shopping.flightOffersSearch.get({
-  //   originLocationCode: source,
-  //   destinationLocationCode: destination,
-  //   departureDate: '2020-12-01',
-  //   adults: '2'
-  // }).then(function (response) {
-  //   console.log(response);
-  // }).catch(function (responseError) {
-  //   console.log(responseError, responseError.code);
-  // });
 
   const saveFlightOffer = (offer) => {
     dispatch(flightOffer(offer))

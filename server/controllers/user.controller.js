@@ -111,13 +111,13 @@ module.exports = {
     
     on_payment(req, res) {
         let history = [];
-        let entity = req.body.cartData;
-        var fcar_id = entity._id; 
+        let flightOffer = req.body.flightOffer;
         history.push({  // Updating user history: 
             purchase_date: Date.now(),
-            fcar_name: entity.name,
-            fcar_id: entity._id,
-            fcar_price: entity.price,
+            duration: flightOffer.itenaries.segments
+            // : entity.name,
+            // fcar_id: entity._id,
+            // fcar_price: entity.price,
         })
 
         User.findOneAndUpdate(

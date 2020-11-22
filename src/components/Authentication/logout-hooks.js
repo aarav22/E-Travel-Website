@@ -45,7 +45,7 @@ function LogoutHooks() {
             </a>
             <ul className="nav-dropdown">
                 <li className="nav-dropdown-item">
-                    <a id="profile" href="#">Profile</a>
+                    <Link to='/profile'>Profile</Link>
                 </li>
                 <li className="nav-dropdown-item">
                     <Link to="/add">Address</Link>
