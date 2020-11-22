@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {flightItineary} from '../flight-page.component/flightsSlice'
@@ -14,6 +14,43 @@ export default function Homepage() {
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());
+  const [isOpenEco, setIsOpenEco] = useState(false);
+  const [isOpenOne, setIsOpenOne] = useState(false);
+
+
+  const ecoRef = useRef();
+  const oneRef = useRef();
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (!ecoRef.current?.contains(event.target)) {
+        setIsOpenEco(false)
+      }
+    }
+    window.addEventListener("click", handler)
+
+    return () => window.removeEventListener('click', handler)
+  }, [])
+
+
+  useEffect(() => {
+    const funcHandle = (event) => {
+      if (!oneRef.current?.contains(event.target)) {
+        setIsOpenOne(false)
+      }
+    }
+    window.addEventListener("click", funcHandle)
+    return () => window.removeEventListener("click", funcHandle)
+  }, [])
+
+
+  const handleClickEco = () => {
+    setIsOpenEco(!isOpenEco);
+  }
+
+  const handleClickOne = () => {
+    setIsOpenOne(!isOpenOne);
+  }
 
   const makeFlightState = () => {
     var month = startDate.getUTCMonth() + 1; //months from 1-12
@@ -66,6 +103,33 @@ export default function Homepage() {
       </div>
       <div className="home-content">
         <div className="home-dropdowns">
+          <div className="home-drop-eco" ref={ecoRef}>
+            <button className="drop-eco-btn" onClick={handleClickEco}>
+              😀
+            </button>
+            {
+              isOpenEco && (
+                <div className="drop-eco-down" >
+                  <p>Economy</p>
+                  <p>Finance</p>
+                </div>
+              )
+            }
+          </div>
+
+          <div className="home-drop-one" ref={oneRef}>
+            <button className="drop-one-btn" onClick={handleClickOne}>
+              😀
+            </button>
+            {
+              isOpenOne && (
+                <div className="drop-one-down">
+                  <p>One-Way</p>
+                  <p>Many-Way</p>
+                </div>
+              )
+            }
+          </div>
         </div>
         <div className="home-search-take">
           {/* <svg xmlns="http://www.w3.org/2000/svg" width="55" height="53" fill="none"><g filter="url(#filter0_d)"><path d="M28.06 26.979c.946-1.005 1.706-2.249 2.227-3.646.52-1.397.79-2.915.79-4.45 0-2.887-.935-5.655-2.6-7.696C26.813 9.147 24.555 8 22.201 8c-2.354 0-4.611 1.147-6.276 3.187-1.665 2.041-2.6 4.81-2.6 7.695 0 1.536.27 3.054.79 4.451.521 1.397 1.281 2.64 2.228 3.646-2.485 1.38-4.593 3.607-6.073 6.417-1.48 2.81-2.267 6.083-2.27 9.428 0 .577.187 1.13.52 1.538.333.409.784.638 1.255.638.47 0 .922-.23 1.255-.638.333-.408.52-.961.52-1.538 0-3.464 1.122-6.785 3.12-9.234 1.997-2.45 4.706-3.825 7.531-3.825 2.825 0 5.534 1.375 7.531 3.825 1.998 2.449 3.12 5.77 3.12 9.233 0 .578.187 1.131.52 1.54.333.408.784.637 1.255.637.47 0 .922-.23 1.255-.638.333-.408.52-.961.52-1.538-.002-3.345-.79-6.618-2.27-9.428-1.48-2.81-3.588-5.038-6.073-6.417zM22.2 25.412c-1.053 0-2.083-.383-2.959-1.1-.875-.718-1.558-1.738-1.96-2.93a7.91 7.91 0 01-.304-3.774c.205-1.266.713-2.43 1.457-3.343.745-.913 1.694-1.535 2.727-1.787a4.42 4.42 0 013.077.372c.973.494 1.805 1.331 2.39 2.405.585 1.074.897 2.336.897 3.627 0 1.732-.56 3.393-1.56 4.617-.998 1.225-2.353 1.913-3.765 1.913zm17.29.696c1.136-1.568 1.878-3.506 2.137-5.58a13.132 13.132 0 00-.678-6.107c-.702-1.914-1.84-3.538-3.276-4.677C36.237 8.605 34.563 8 32.852 8c-.47 0-.922.23-1.255.637-.333.409-.52.962-.52 1.54 0 .577.187 1.13.52 1.539.333.408.784.637 1.255.637 1.412 0 2.767.688 3.766 1.912.998 1.225 1.56 2.886 1.56 4.617a7.693 7.693 0 01-.718 3.255c-.467.99-1.138 1.81-1.945 2.382a2.016 2.016 0 00-.639.773c-.155.32-.241.683-.249 1.056-.007.37.062.735.202 1.062.14.328.345.606.597.81l.692.565.23.153c2.14 1.244 3.946 3.212 5.204 5.672 1.258 2.46 1.916 5.31 1.898 8.214 0 .577.186 1.13.52 1.538.332.409.784.638 1.255.638.47 0 .922-.23 1.255-.638.333-.408.52-.961.52-1.538.014-3.34-.668-6.63-1.982-9.555-1.315-2.926-3.217-5.39-5.527-7.16z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="8" x2="27.5" y2="45" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="0" y="0" width="55" height="53" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg> */}
