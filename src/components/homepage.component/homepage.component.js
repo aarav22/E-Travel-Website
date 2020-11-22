@@ -14,6 +14,9 @@ export default function Homepage() {
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());
+  const [returnDate, setEndDate] = useState(''); // Return date
+  const [isReturn, setIsReturn] = useState(false); // Return option selected
+  const [isOpenEco, setIsOpenEco] = useState(false);
   const [isOpenOne, setIsOpenOne] = useState(false);
   const [one, setOne] = useState("One-Way")
   const [econ, setEcon] = useState("Economy")
@@ -61,7 +64,7 @@ export default function Homepage() {
     var year = startDate.getUTCFullYear();
     const newDate = year + "-" + month + "-" + day;
 
-    const flightObject = {source: source, destination: destination, date: newDate, returnDate: null, numAdults: numAdults, numInfants: numInfants};
+    const flightObject = {source: source, destination: destination, date: newDate, returnDate: returnDate, numAdults: numAdults, numInfants: numInfants, isReturn: isReturn};
     dispatch(flightItineary(flightObject));
   }
 

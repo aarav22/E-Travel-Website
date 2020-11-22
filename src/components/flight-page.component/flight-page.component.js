@@ -17,6 +17,11 @@ const FlightPage = () => {
   // const numAdults = useSelector(state => state.flight.numAdults);
   const flightItineary =  useSelector(state => state.flight.userinfoObject);
 
+  // Filters:
+  const [maxPrice, setMaxPrice] = useState(''); // This will be an integer >= 0
+  const [excludedAirlineCodes, setExculdedFlights] = useState('') // this will be a string of exculded airline codes separated by comma
+  const [includedAirlineCodes, setIncludedFlights] = useState('') // this will be a string of included airline codes separated by comma
+  const [isNonStop, setNonStop] = useState(false); 
 
   // For Pagination: 
   const [flights, setFlights] = useState([]);
@@ -43,8 +48,9 @@ const FlightPage = () => {
       //   infants: flightItineary.numInfants,
       //   currencyCode: "INR",
       //   nonStop: isNonStop,
-      //   includedAirlineCodes: includedAirlineCodes
-      //   maxPrice: 0
+      //   includedAirlineCodes: includedAirlineCodes,
+      //   excludedAirlineCodes: excludedAirlineCodes,
+      //   maxPrice:maxPrice, 
       // }).then(res => console.log(res)).catch(responseError => 
       //   console.log(responseError, responseError.code));
       setFlights(res.data);
