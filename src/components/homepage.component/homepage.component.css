@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300&family=Saira+Semi+Condensed&display=swap');
+
 
 .home-main {
   display: flex;
@@ -121,4 +122,24 @@ top: 170px;transform: rotate(-179.78deg);
 .home-content {
   display: flex;
   gap: 6rem;
+}
+
+.drop-one-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-size: 1.25rem;
+}
+
+.home-drop-one {
+  position: absolute;
+  left: 58px;
+  top: 351px;
+}
+
+
+.chevron-down-icon {
+  padding-top: 19px;
 }
