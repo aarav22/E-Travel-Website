@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
 const initialState = {
-    source: '',
-    destination: '', 
-    date: '',
+    userinfoObject: '', 
+    // source: '',
+    // destination: '', 
+    // date: '',
+    // returnDate: '',
+    // numAdults: 0,
+    // numChildren: 0,
     flightOffer:'', 
 
     // Traveller details:
@@ -17,10 +21,15 @@ const flightSlice = createSlice({
     initialState,
     reducers: {
         flightItineary(state, action) {
-            const {source, destination, date} = action.payload;
-            state.source = source;
-            state.destination = destination; 
-            state.date = date; 
+            const userinfoObject = action.payload;
+            state.userinfoObject = userinfoObject;
+            // const {source, destination, date, returnDate, numAdults, numChildren} = action.payload;
+            // state.source = source;
+            // state.destination = destination; 
+            // state.date = date; 
+            // state.returnDate = returnDate;
+            // state.numAdults = numAdults;
+            // state.numChildren = numChildren;
         },
 
         flightOffer(state, action) {
