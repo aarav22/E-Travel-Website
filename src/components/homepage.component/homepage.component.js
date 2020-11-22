@@ -16,7 +16,7 @@ export default function Homepage() {
   const [startDate, setStartDate] = useState(new Date());
   const [returnDate, setEndDate] = useState(''); // Return date
   const [isReturn, setIsReturn] = useState(false); // Return option selected
-  const [isOpenEco, setIsOpenEco] = useState(false);
+  // const [isOpenEco, setIsOpenEco] = useState(false);
   const [isOpenOne, setIsOpenOne] = useState(false);
   const [one, setOne] = useState("One-Way")
   const [econ, setEcon] = useState("Economy")
