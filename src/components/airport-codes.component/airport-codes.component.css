@@ -9,6 +9,7 @@
 
 .home-search-input {
   width: 0rem;
+  transition: width var(--speed) ease-out;
 }
 
 .home-search-take:hover .home-search-input {
@@ -30,11 +31,16 @@
 }
 
 .react-datepicker__input-container input{
-  width: 00rem;
-  border-bottom: 1.5px solid white;
+  width: 0;
+  border-bottom: none;
+  transition: all var(--speed) ease-out;
 }
 
 .home-search-date:hover input{
   width: 10rem;
+  border-bottom: 1.5px solid white;
 }
 
+.visible .home-search-input{
+  width: 10rem;
+}
