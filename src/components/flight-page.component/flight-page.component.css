@@ -1,19 +1,44 @@
-.airline-img {
-  height: 40px;
-  width: auto;
-  fill: white;
+.flight-page-container {
+  display: grid;
+  grid-template-areas: 
+    "topbar topbar "
+    "sidebar contain"
+    "pagi pagi";
+  gap: 1rem;
+  grid-template-columns: 20rem auto;
+}
+
+.flight-page-topbar {grid-area: topbar;}
+.flight-page-filters {grid-area: sidebar;}
+.flight-page-flights {grid-area: contain;}
+
+.flight-page-topbar input {
+  border: none;
+  background: transparent;
+  color: white; 
+}
+
+.flight-page-flights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .flight-card {
   display: flex;
-  border: var(--border);
   min-width: 35rem;
   max-width: 40rem;
+  height: 5rem;
+  gap: 3rem;
+  justify-content: space-around;
+  background: black;
+  font-size: 1.20rem;
 }
 
 .flight-card-details {
   display: flex;
-  gap: 0.5rem;
+  gap: 2.5rem;
+  align-items: center;
 }
 
 .airline-details {
@@ -22,16 +47,21 @@
 
 .flight-timings {
   display: flex;
-  gap: 0.5rem;
+  gap: 1.5rem;
 }
 
-.line:before,
-.line:after {
-  background-color: white;
-  content: "";
-  display: inline-block;
-  height: 1px;
-  position: relative;
-  vertical-align: middle;
-  width: 20px;
+.flight-page-topbar{
+  display: flex;
 }
+
+.timing-dur {
+  height: 2rem;
+  border-bottom: var(--border);
+}
+
+.flight-timing-dep, 
+.flight-timing-arr {
+  height: 4rem;
+}
+
+
