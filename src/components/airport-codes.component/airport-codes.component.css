@@ -41,6 +41,7 @@
   border-bottom: 1.5px solid white;
 }
 
-.visible .home-search-input{
+.something .home-search-input{
   width: 10rem;
+  border-bottom: 1.5px solid white;
 }

@@ -4,10 +4,10 @@ import Fuse from 'fuse.js';
 
 import airports from './airports.json';
 
-function AirportSearch(props) {
+const AirportSearch = (props) => {
   const [query, updateQuery] = useState('');
-  const [value, setValue] = useState();
-  const [display, setDisplay] = useState(false);
+  const [some, changeSome] = useState(false);
+  const [val, updateVal] = useState(props.placeholder)
 
   const fuse = new Fuse(airports, {
     shouldSort: true,
@@ -25,12 +25,15 @@ function AirportSearch(props) {
     ],
     includeScore: true
   });
+
+
   const results = fuse.search(query);
 
+
   return (
-    <div className={`home-search-container ${query.length >= 1 ? "visible" : ""}`}>
+    <div className={`home-search-container ${val.length >= 1 ? "visible" : ""} ${some ? "something" : ""}`}>
       <form className="home-search-box">
-        <input className="home-search-input" type="text" placeholder={props.placeholder} value={query} onChange={(e) => {updateQuery(e.target.value); setValue(query)}} />
+        <input className="home-search-input" type="text" placeholder={val} value={query} onChange={(e) => {updateQuery(e.target.value);}} />
       </form>
       {
         query.length >= 1 && (
@@ -38,7 +41,7 @@ function AirportSearch(props) {
             {results.slice(0, 5).map(airport => {
               const {name, IATA, city, country} = airport.item;
               return (
-                <li className="search-main-result" onClick={(e) => {updateQuery(e.target.innerText); props.locationFunction(IATA)}} >
+                <li className="search-main-result" onClick={(e) => {changeSome(true); updateQuery(""); updateVal(e.target.innerText); props.locationFunction(IATA)}} >
                   {`${name} Airport, ${city}, ${country}, (${IATA})`}
                 </li>
               )
