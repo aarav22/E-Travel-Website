@@ -6,7 +6,8 @@ import amadeusResponse from '../../testing_data/amadeusResponse.json'
 import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
 import InputSlider from './slider-input'
-import { Checkbox } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+
 import "./flight-page.component.css";
 
 // const Amadeus = require('amadeus');
@@ -38,6 +39,7 @@ const FlightPage = (props) => {
 
   const [airlinesObject, setAirlinesObject] = useState(null);
   const [airlinesList, setAirlinesList] = useState([]);
+  const [bookingStatus, setBookingStatus] = useState('Book');
   
 
   // const amadeus = new Amadeus({
@@ -112,6 +114,13 @@ const FlightPage = (props) => {
     console.log(tempMaxPrice);
   }
 
+  const bookingStatusHandler = () => {
+    if(bookingStatus === "Book") {
+      setBookingStatus("Cancel");
+    } else {
+      setBookingStatus("Book");
+    }
+  }
   return (
     <div className="flight-page-container">
       <div className="flight-page-topbar">
@@ -173,7 +182,8 @@ const FlightPage = (props) => {
       <div className="flight-page-flights"> {
         currentFlights.map((flight) => {
           return (
-            <Link className="flight-card" key={flight.id} onClick={saveFlightOffer(flight)} to="/book">
+            
+              <div className="flight-card" key={flight.id} onClick={saveFlightOffer(flight)} >
               <div className="flight-card-details">
                 <div className="airline-details">
                   <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
@@ -189,21 +199,22 @@ const FlightPage = (props) => {
                       <div className="timing-arr">{"22:35"}</div>
                       <p>{"BOM"}</p>
                     </div>
+                    <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" component="span">{bookingStatus}</Button>
                   </div>
                 </div>
               </div>
               <div className="flight-card-price">
                 <div className="flight-rating">{`$${flight.price.total}`}</div>
               </div>
-            </Link>
+              </div>
           )
         })
       }
       </div>
-      {props.location.isRoundTrip && (<button className="flight-page-continue-btn">
+      {props.location.isRoundTrip && (<Link to="/book"><button className="flight-page-continue-btn">
         Continue
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
-      </button>)}
+      </button></Link>)}
       {!props.location.isRoundTrip && (<button className="flight-page-continue-btn">
         Confirm
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
