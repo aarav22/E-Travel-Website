@@ -182,7 +182,6 @@ const FlightPage = (props) => {
       <div className="flight-page-flights"> {
         currentFlights.map((flight) => {
           return (
-            
               <div className="flight-card" key={flight.id} onClick={saveFlightOffer(flight)} >
               <div className="flight-card-details">
                 <div className="airline-details">
@@ -199,7 +198,7 @@ const FlightPage = (props) => {
                       <div className="timing-arr">{"22:35"}</div>
                       <p>{"BOM"}</p>
                     </div>
-                    <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" component="span">{bookingStatus}</Button>
+                    <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" >{bookingStatus}</Button>
                   </div>
                 </div>
               </div>
@@ -215,10 +214,10 @@ const FlightPage = (props) => {
         Continue
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
       </button></Link>)}
-      {!props.location.isRoundTrip && (<button className="flight-page-continue-btn">
+      {!props.location.isRoundTrip && (<Link to="/book"><button className="flight-page-continue-btn">
         Confirm
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
-      </button>)}
+      </button></Link>)}
       <PaginationComponent
         postsPerPage={postsPerPage}
         totalPosts={flights.length}
