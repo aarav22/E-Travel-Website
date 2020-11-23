@@ -11,12 +11,12 @@ import './homepage.component.css';
 
 export default function Homepage() {
   const dispatch = useDispatch();
+  const numBookings = useSelector(state => state.flight.numBookings); 
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [returnDate, setEndDate] = useState(''); // Return date
   const [isReturn, setIsReturn] = useState(false); // Return option selected
-  // const [isOpenEco, setIsOpenEco] = useState(false);
   const [isOpenOne, setIsOpenOne] = useState(false);
   const [one, setOne] = useState("One-Way")
   const [econ, setEcon] = useState("Economy")
@@ -63,8 +63,16 @@ export default function Homepage() {
     var day = startDate.getUTCDate();
     var year = startDate.getUTCFullYear();
     const newDate = year + "-" + month + "-" + day;
+    
+    var newReturnDate = returnDate;
+    if (returnDate) {
+      month = returnDate.getUTCMonth() + 1; //months from 1-12
+      day = returnDate.getUTCDate();
+      year = returnDate.getUTCFullYear();
+      newReturnDate = year + "-" + month + "-" + day;
+    }
 
-    const flightObject = {source: source, destination: destination, date: newDate, returnDate: returnDate, numAdults: numAdults, numInfants: numInfants, isReturn: isReturn};
+    const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way"?true:false, airfareType: econ};
     dispatch(flightItineary(flightObject));
   }
 
@@ -101,10 +109,10 @@ export default function Homepage() {
       </div>
       <div className="traveled">
         <div className="traveled-num">
-          {"000000"}
+          {numBookings}
         </div>
         <div className="traveled-text">
-          PEOPLE HAVE TRAVELED WITH US ✈
+          PEOPLE OPTED US AS THEIR TRAVEL MATES ✈
           </div>
       </div>
       <div className="home-drop-eco" >
@@ -150,6 +158,15 @@ export default function Homepage() {
           <svg className="search-date-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
           <DatePicker minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={startDate} onChange={date => setStartDate(date)} />
         </div>
+
+        {one=="Round-Trip" && 
+        (
+        <div className="home-search-date">
+          <svg className="search-date-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
+          <DatePicker minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={returnDate} onChange={date => setEndDate(date)} />
+        </div>
+        )
+        }
 
         <div className="home-search-passengers">
           <svg className="passengers-icon" viewBox="0 0 60 60 " xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><g filter="url(#filter0_d)"><path d="M48.41 53.211a7.193 7.193 0 003.9-1.295 6.965 6.965 0 002.507-3.197 6.791 6.791 0 00.269-4.02 6.885 6.885 0 00-2.06-3.483l-6.668-6.103 4.478-14.76c.112-.392.112-.807.002-1.2a2.237 2.237 0 00-.629-1.03l-5.602-5.17a2.311 2.311 0 00-.953-.518 2.349 2.349 0 00-2.072.436c-.285.23-.509.524-.653.856l-5.013 11.828-6.17-5.647 1.849-3.911a2.208 2.208 0 00-.432-2.597l-4.292-3.842a2.325 2.325 0 00-1.642-.6 2.325 2.325 0 00-1.598.708L9.2 24.757a2.225 2.225 0 00-.615 1.608c.02.594.28 1.156.721 1.563l4.204 3.934c.352.326.802.535 1.283.596.481.06.97-.03 1.397-.257l3.865-2.065 6.17 5.647-11.728 5.681a2.29 2.29 0 00-.83.695 2.205 2.205 0 00-.307 2.052c.12.34.323.648.591.896l5.6 5.126c.307.275.685.464 1.093.545a2.35 2.35 0 001.224-.082l14.753-5.354 6.711 6.012a7.025 7.025 0 002.347 1.429c.872.318 1.8.464 2.73.428zm-1.943-5.158l-7.689-7.037a2.313 2.313 0 00-1.092-.546 2.347 2.347 0 00-1.224.083l-14.73 5.353-2.136-1.955 11.706-5.68c.332-.162.62-.399.838-.692a2.203 2.203 0 00.312-2.07 2.242 2.242 0 00-.605-.903l-9.87-8.946a2.317 2.317 0 00-1.271-.588c-.477-.06-.961.026-1.385.248l-3.8 1.973-1.329-1.216L25.398 14.38l1.24 1.287-1.849 3.91a2.207 2.207 0 00-.161 1.37c.094.46.333.881.684 1.202l9.87 8.991c.27.25.6.431.958.53a2.348 2.348 0 002.09-.439c.286-.233.51-.53.654-.867l5.01-11.895 2.136 1.955L41.55 35.16a2.204 2.204 0 00-.002 1.2c.11.394.328.75.629 1.03l7.688 7.038c.242.216.437.478.574.769a2.362 2.362 0 01-.459 2.672 2.302 2.302 0 01-.776.57c-.297.134-.62.205-.947.207a2.485 2.485 0 01-.957-.12 2.447 2.447 0 01-.834-.473z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="54.749" y1="30.488" x2="8.775" y2="32.019" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x=".026" y="0" width="63.473" height="62.507" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>

@@ -143,3 +143,8 @@ top: 170px;transform: rotate(-179.78deg);
 .chevron-down-icon {
   padding-top: 19px;
 }
+.search-button {
+  position: absolute;
+  left: 58px;
+  top: 351px;
+}
