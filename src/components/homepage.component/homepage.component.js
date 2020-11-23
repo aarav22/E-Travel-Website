@@ -22,6 +22,7 @@ export default function Homepage() {
   const [econ, setEcon] = useState("Economy")
   const [numAdults, setAdults] = useState(1);
   const [numInfants, setInfants] = useState(0);
+  const [isOpenEco, setIsOpenEco] = useState(false)
 
   const ecoRef = useRef();
   const oneRef = useRef();
