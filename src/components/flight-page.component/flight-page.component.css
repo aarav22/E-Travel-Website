@@ -103,3 +103,8 @@
 fieldset {
   border: none;
 }
+
+.flight-page-continue {
+  color: white;
+  height: 2rem;
+}
