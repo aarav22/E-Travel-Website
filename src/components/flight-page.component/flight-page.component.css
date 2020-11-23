@@ -104,7 +104,55 @@ fieldset {
   border: none;
 }
 
-.flight-page-continue {
+/* .flight-page-continue {
   color: white;
   height: 2rem;
+} */
+
+.flight-page-continue-btn {
+  position: absolute;
+  width: 180px;
+  height: 74px;
+  left: 1200px;
+  top: 680px;
+  background: rgba(0, 0, 0, 0.65);
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: -webkit-linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
 }
+
+
+
+/* Rectangle 23
+
+
+
+
+/* CONTINUE to book the return flight */
+
+/* position: absolute;
+width: 243px;
+height: 74px;
+left: 1156px;
+top: 745px;
+
+font-family: Bebas Neue;
+font-style: normal;
+font-weight: normal;
+font-size: 48px;
+line-height: 58px;
+display: flex;
+align-items: center;
+text-align: center;
+
+/* xx 
+color: linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%); */

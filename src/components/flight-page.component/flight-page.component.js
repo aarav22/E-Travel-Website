@@ -5,22 +5,26 @@ import {useDispatch, useSelector} from 'react-redux';
 import amadeusResponse from '../../testing_data/amadeusResponse.json'
 import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
-
+import InputSlider from './slider-input'
+import { Checkbox } from '@material-ui/core';
 import "./flight-page.component.css";
 
 // const Amadeus = require('amadeus');
 const FlightPage = (props) => {
   const dispatch = useDispatch();
-  // const source = useSelector(state => state.flight.source);
-  // const destination = useSelector(state => state.flight.destination);
-  // const date = useSelector(state => state.flight.date);
-  // const returnDate = useSelector(state => state.flight.returnDate);
-  // const numAdults = useSelector(state => state.flight.numAdults);
+  const source = useSelector(state => state.flight.source);
+  const destination = useSelector(state => state.flight.destination);
+  const date = useSelector(state => state.flight.date);
+  const returnDate = useSelector(state => state.flight.returnDate);
+  const numAdults = useSelector(state => state.flight.numAdults);
   const flightItineary = useSelector(state => state.flight.userinfoObject);
 
   // Filters:
   const [maxPrice, setMaxPrice] = useState(''); // This will be an integer >= 0
-  const [excludedAirlineCodes, setExculdedFlights] = useState('') // this will be a string of exculded airline codes separated by comma
+  const [tempMaxPrice, setTempMaxPrice] = useState(''); //storing until user hits go
+  
+
+  const [excludedAirlineCodes, setExcludedFlights] = useState('') // this will be a string of exculded airline codes separated by comma
   const [includedAirlineCodes, setIncludedFlights] = useState('') // this will be a string of included airline codes separated by comma
   const [isNonStop, setNonStop] = useState(false);
   const [clickOnly, setClickOnly] = useState(false);
@@ -32,19 +36,36 @@ const FlightPage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
-  const airlinesList = [
-    "air-india", "indigo", "kingfisher", "vistara"
-  ]
+  const [airlinesObject, setAirlinesObject] = useState(null);
+  const [airlinesList, setAirlinesList] = useState([]);
+  
 
   // const amadeus = new Amadeus({
   //   clientId: `${process.env.REACT_APP_AMADEUS_API}`,
   //   clientSecret: `${process.env.REACT_APP_AMADEUS_SECRET}`
   // });
 
+  const includedFlightsHandler = (flightCode) => {
+    if (includedAirlineCodes) {
+      setIncludedFlights(includedAirlineCodes + "," + flightCode);
+    } else {
+      setIncludedFlights(flightCode)
+    }
+  }
+
+  const excludedFlightsHandler = (flightCode) => {
+    if (excludedAirlineCodes) {
+      setExcludedFlights(excludedAirlineCodes + "," + flightCode);
+    } else {
+      setExcludedFlights(flightCode)
+    }
+  }
+
   useEffect(() => {
     const fetchFlights = async () => {
       setLoading(true);
-      const res = amadeusResponse.body;
+      // console.log(amadeusResponse.body)
+      const res = amadeusResponse;
       console.log(res.data)
       // await amadeus.shopping.flightOffersSearch.get({
       //   originLocationCode: flightItineary.source,
@@ -59,11 +80,21 @@ const FlightPage = (props) => {
       //   maxPrice:maxPrice, 
       // }).then(res => console.log(res)).catch(responseError => 
       //   console.log(responseError, responseError.code));
+      setAirlinesObject(res.dictionaries.carriers);
       setFlights(res.data);
       setLoading(false);
     };
     fetchFlights();
   }, [flights]);
+
+  useEffect(() => {
+    let newList = [];
+    if (airlinesObject) {
+        Object.keys(airlinesObject).forEach((key, i) => {
+          newList.push(key); 
+      })
+      setAirlinesList(newList);
+    } }, [airlinesObject]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -75,24 +106,30 @@ const FlightPage = (props) => {
   const saveFlightOffer = (offer) => {
     dispatch(flightOffer(offer))
   }
+
+  const maxPriceHandler = (tempMaxPriceParam) => {
+    setTempMaxPrice(tempMaxPriceParam); 
+    console.log(tempMaxPrice);
+  }
+
   return (
     <div className="flight-page-container">
       <div className="flight-page-topbar">
         <div className="locs">
           <div className="departure">
-            DEL
+            {source?source:"DEL"}
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="47" fill="none"><g filter="url(#filter0_d)"><path d="M39.069 25.458l-4.838 5.073 2.644 2.76L46.25 23.5l-9.375-9.792-2.644 2.762 4.838 5.072H8.75v3.916h30.319z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="13.708" x2="27.5" y2="33.292" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="-3" y="-8" width="61" height="63" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
           <div className="arrival">
-            BOM
+            {destination?destination:"Bom"}
           </div>
         </div>
       </div>
 
-      <form className="flight-page-filters">
+      <div className="flight-page-filters">
         <div className="filter-max-price">
-          <input className="" type="number" placeholder="Maximum Price"></input>
-          <button className="" type="submit">GO</button>
+          <InputSlider maxPriceHandler={maxPriceHandler}/>
+          <button className="" onClick={() => setMaxPrice(tempMaxPrice)}>GO</button> 
         </div>
 
         <div className="filter-only">
@@ -100,11 +137,12 @@ const FlightPage = (props) => {
           <div className="only-filters">
             <fieldset>
               {
-                clickOnly && airlinesList.map((airline) => {
+                clickOnly && airlinesList && 
+                airlinesList.map((airline) => {
                   return (
-                    <div className="only-filter-fields">
-                      <input key={airline} type="checkbox" id={`${airline}-only`} name="only" value={airline} />
-                      <label for={`${airline}-only`}>{airline}</label>
+                    <div className="except-filter-fields">
+                      <input key={airline} type="checkbox" id={airline} name="except" value={airline} onChange={(e) => includedFlightsHandler(e.target.value)}/>
+                      <label for={airline}>{airline}</label>
                     </div>
                   )
                 })
@@ -117,10 +155,11 @@ const FlightPage = (props) => {
           <div className="except-filters">
             <fieldset>
               {
-                clickExcept && airlinesList.map((airline) => {
+                clickExcept && airlinesList &&
+                airlinesList.map((airline) => {
                   return (
                     <div className="except-filter-fields">
-                      <input key={airline} type="checkbox" id={airline} name="except" value={airline} />
+                      <input key={airline} type="checkbox" id={airline} name="except" value={airline} onChange={(e) => excludedFlightsHandler(e.target.value)}/>
                       <label for={airline}>{airline}</label>
                     </div>
                   )
@@ -129,7 +168,7 @@ const FlightPage = (props) => {
             </fieldset>
           </div>
         </div>
-      </form>
+      </div>
 
       <div className="flight-page-flights"> {
         currentFlights.map((flight) => {
@@ -161,7 +200,8 @@ const FlightPage = (props) => {
         })
       }
       </div>
-      {props.location.isRoundTrip && (<button className="flight-page-continue">
+      {props.location.isRoundTrip && (<button className="flight-page-continue-btn">
+        Continue
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
       </button>)}
       <PaginationComponent
