@@ -23,11 +23,11 @@
 }
 
 .home-search-date {
-  width: 10rem;
+  width: 05rem;
 }
 
 .react-datepicker__input-container {
-  width: 10rem;
+  width: 05rem;
 }
 
 .react-datepicker__input-container input{
@@ -44,4 +44,12 @@
 .something .home-search-input{
   width: 10rem;
   border-bottom: 1.5px solid white;
+}
+
+.flight-page-continue {
+  position: absolute;
+  top: 600px;
+  left: 1300px;
+  background-color: transparent;
+  border: none;
 }

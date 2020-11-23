@@ -29,7 +29,7 @@ const AirportSearch = (props) => {
 
   const results = fuse.search(query);
 
-
+  console.log(props)
   return (
     <div className={`home-search-container ${val.length >= 1 ? "visible" : ""} ${some ? "something" : ""}`}>
       <form className="home-search-box">
