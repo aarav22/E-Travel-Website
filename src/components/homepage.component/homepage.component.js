@@ -11,6 +11,7 @@ import './homepage.component.css';
 
 export default function Homepage() {
   const dispatch = useDispatch();
+  const numBookings = useSelector(state => state.flight.numBookings); 
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());
@@ -63,8 +64,16 @@ export default function Homepage() {
     var day = startDate.getUTCDate();
     var year = startDate.getUTCFullYear();
     const newDate = year + "-" + month + "-" + day;
+    
+    var newReturnDate = returnDate;
+    if (returnDate) {
+      month = returnDate.getUTCMonth() + 1; //months from 1-12
+      day = returnDate.getUTCDate();
+      year = returnDate.getUTCFullYear();
+      newReturnDate = year + "-" + month + "-" + day;
+    }
 
-    const flightObject = {source: source, destination: destination, date: newDate, returnDate: returnDate, numAdults: numAdults, numInfants: numInfants, isReturn: isReturn};
+    const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way"?true:false, airfareType: econ};
     dispatch(flightItineary(flightObject));
   }
 
@@ -101,10 +110,10 @@ export default function Homepage() {
       </div>
       <div className="traveled">
         <div className="traveled-num">
-          {"000000"}
+          {numBookings}
         </div>
         <div className="traveled-text">
-          PEOPLE HAVE TRAVELED WITH US ✈
+          PEOPLE OPTED US AS THEIR TRAVEL MATES ✈
           </div>
       </div>
       <div className="home-drop-eco" >
@@ -150,6 +159,15 @@ export default function Homepage() {
           <svg className="search-date-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
           <DatePicker minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={startDate} onChange={date => setStartDate(date)} />
         </div>
+
+        {one=="Round-Trip" && 
+        (
+        <div className="home-search-date">
+          <svg className="search-date-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
+          <DatePicker minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={returnDate} onChange={date => setEndDate(date)} />
+        </div>
+        )
+        }
 
         <div className="home-search-passengers">
           <button className="search-pas-btn" onClick={() => setOpenPeps(!isOpenPeps)}>
