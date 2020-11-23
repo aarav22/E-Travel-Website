@@ -1,0 +1,14 @@
+.MuiPagination-ul *{
+    padding: 1rem;
+    /* padding-top: 4rem; */
+}
+
+.MuiPagination-ul button {
+    color: white;
+    /* padding-top: 4rem; */
+}
+
+.component-main {
+    /* padding-top: 1; */
+    /* position: fixed; */
+}

@@ -3,8 +3,10 @@ import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import amadeusResponse from '../../testing_data/amadeusResponse.json'
-import Pagination from '../pagination.component/pagination.component';
+import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
+import {Pagination} from '@material-ui/lab';
+
 import "./flight-page.component.css";
 
 // const Amadeus = require('amadeus');
@@ -122,7 +124,7 @@ const FlightPage = () => {
           )
         })
       }
-        <Pagination
+        <PaginationComponent
           postsPerPage={postsPerPage}
           totalPosts={flights.length}
           paginate={paginate} />
