@@ -6,13 +6,19 @@ import amadeusResponse from '../../testing_data/amadeusResponse.json'
 import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
 import InputSlider from './slider-input'
-import {RadioGroup, FormControlLabel, Radio, FormControl, Button} from '@material-ui/core';
+import {RadioGroup, FormControlLabel, Radio, FormControl, Button, makeStyles} from '@material-ui/core';
 
 import "./flight-page.component.css";
 
+const useStyles = makeStyles({
+  radio: {
+    color: "white"
+  }
+});
 // const Amadeus = require('amadeus');
 const FlightPage = (props) => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const source = useSelector(state => state.flight.source);
   const destination = useSelector(state => state.flight.destination);
   const date = useSelector(state => state.flight.date);
@@ -182,7 +188,7 @@ const FlightPage = (props) => {
 
       <div >
         <FormControl component="fieldset">
-          <RadioGroup name="flighSomething" className="flight-page-flights">
+          <RadioGroup name="flighSomething" className="save-flight-offer">
             {
               currentFlights.map((flight) => {
                 return (
@@ -203,7 +209,7 @@ const FlightPage = (props) => {
                             <p>{"BOM"}</p>
                           </div>
                           <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" >{bookingStatus}</Button>
-                          <FormControlLabel value={flight.id} control={<Radio />} />
+                          <FormControlLabel value={flight.id} control={<Radio className={classes.radio}/>} />
                         </div>
                       </div>
                     </div>
