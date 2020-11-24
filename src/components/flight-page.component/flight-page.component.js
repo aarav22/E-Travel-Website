@@ -180,9 +180,9 @@ const FlightPage = (props) => {
         </div>
       </div>
 
-      <div >
-        <FormControl component="fieldset">
-          <RadioGroup name="flighSomething" className="flight-page-flights">
+      <div className="flight-page-flights">
+        <FormControl component="fieldset" >
+          <RadioGroup name="flighSomething" className="flight-page-left">
             {
               currentFlights.map((flight) => {
                 return (
@@ -208,7 +208,7 @@ const FlightPage = (props) => {
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating">{`$${flight.price.total}`}</div>
+                      <div className="flight-rating">{`₹${flight.price.total}`}</div>
                     </div>
                   </div>
                 )
