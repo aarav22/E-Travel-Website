@@ -232,8 +232,6 @@ export default function Homepage() {
               </div>
             )
           }
-          {/*  <input placeholder="Number of Adults?" onChange={(e) => {setAdults(e.target.value)}} /> */}
-          {/*  <input placeholder="Number of Children?" onChange={(e) => {setInfants(e.target.value)}} /> */}
         </div>
 
         <Link to={{

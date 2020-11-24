@@ -92,3 +92,11 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+.logo {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top:0px;
+    left: 2px;
+}
