@@ -163,3 +163,37 @@ top: 170px;transform: rotate(-179.78deg);
   font-family: Saira Semi Condensed,sans-serif;
   font-weight: 600;
 }
+
+
+.search-button {
+  position: absolute;
+  width: 213px;
+  height: 71px;
+  left: 400px;
+  top: 200px;
+
+  font-family: Saira SemiCondensed;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 85px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.78);
+  background-color: transparent;
+  /* neon1 */
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.78);
+}
+
+.search-icon {
+  position: absolute;
+left: 140px;
+top: 3px;
+
+
+/* background: linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%); */
+/* neon1 */
+/* box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.78); */
+}

@@ -1,15 +1,24 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {flightItineary} from '../flight-page.component/flightsSlice'
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { flightItineary } from '../flight-page.component/flightsSlice'
 import AirportSearch from '../airport-codes.component/airport-codes.component'
 import DatePicker from "react-datepicker";
+import { Input } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import "react-datepicker/dist/react-datepicker.css";
 import './homepage.component.css';
 
-
+const useStyles = makeStyles({
+  input: {
+    width: 80,
+    color: "white"
+  }
+});
 export default function Homepage() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const numBookings = useSelector(state => state.flight.numBookings);
   const [destination, setDes] = useState('');
@@ -59,6 +68,14 @@ export default function Homepage() {
     setIsOpenOne(!isOpenOne);
   }
 
+  const handleNumAdultChange = (event) => {
+    setAdults(event.target.value === '' ? '' : Number(event.target.value));
+  }
+
+  const handleNumInfantsChange = (event) => {
+    setInfants(event.target.value === '' ? '' : Number(event.target.value));
+  }
+
   const makeFlightState = () => {
     var month = startDate.getUTCMonth() + 1; //months from 1-12
     var day = startDate.getUTCDate();
@@ -73,7 +90,7 @@ export default function Homepage() {
       newReturnDate = year + "-" + month + "-" + day;
     }
 
-    const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ};
+    const flightObject = { source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ };
     dispatch(flightItineary(flightObject));
   }
 
@@ -87,6 +104,7 @@ export default function Homepage() {
   const dateFunction = () => {
 
   }
+
   function addMonths(date, months) {
     var d = date.getDate();
     date.setMonth(date.getMonth() + +months);
@@ -177,11 +195,39 @@ export default function Homepage() {
             isOpenPeps && (
               <div className="search-per-drop">
                 <div className="per-drop-adults">
-                  Something
+                  <Input
+                    className={classes.input}
+                    value={numAdults}
+                    margin="dense"
+                    placeholder="Adults"
+                    onChange={handleNumAdultChange}
+                    // onBlur={handleBlur}
+                    inputProps={{
+                      step: 1,
+                      min: 1,
+                      max: 5,
+                      type: 'number',
+                      'aria-labelledby': 'input-slider',
+                    }}
+                  />
                 </div>
                 <div className="per-drop-child"></div>
                 <div>
-                  Otherthing
+                  <Input
+                    className={classes.input}
+                    value={numInfants}
+                    margin="dense"
+                    placeholder="Infants"
+                    onChange={handleNumInfantsChange}
+                    // onBlur={handleBlur}
+                    inputProps={{
+                      step: 1,
+                      min: 1,
+                      max: numAdults,
+                      type: 'number',
+                      'aria-labelledby': 'input-slider',
+                    }}
+                  />
                 </div>
               </div>
             )
@@ -194,7 +240,31 @@ export default function Homepage() {
           pathname: "/flights",
           isRoundTrip: one === "Round-Trip" ? true : false
         }}>
-          <button className="search-button">Search</button>
+          <button className="search-button">Search
+          <svg className="search-icon" width="62" height="61" viewBox="0 0 62 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g filter="url(#filter0_d)">
+                <path d="M50.0805 53L34.2501 37.5119C27.2079 42.4094 17.504 41.2115 11.9264 34.7561C6.34892 28.3007 6.75846 18.7414 12.8686 12.7652C18.9771 6.78631 28.7503 6.38396 35.3508 11.8396C41.9513 17.2953 43.1766 26.7886 38.1696 33.6779L54 49.1659L50.0833 52.9973L50.0805 53ZM24.6188 13.4209C19.3661 13.4197 14.8344 17.0265 13.7674 22.0576C12.7003 27.0886 15.3912 32.1612 20.2109 34.2042C25.0306 36.2471 30.6543 34.6989 33.6773 30.4969C36.7003 26.2949 36.2917 20.5941 32.6989 16.8458L34.3747 18.4716L32.4856 16.6291L32.4523 16.5966C30.3798 14.5567 27.5589 13.4131 24.6188 13.4209Z" fill="url(#paint0_linear)" />
+              </g>
+              <defs>
+                <filter id="filter0_d" x="0" y="0" width="62" height="61" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+                </filter>
+                <linearGradient id="paint0_linear" x1="31" y1="8" x2="31" y2="53" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.223958" stop-color="#98A1F3" stop-opacity="0.93" />
+                  <stop offset="0.770833" stop-color="#03E7E7" stop-opacity="0.85" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+
+          </button>
+
           {makeFlightState()}
         </Link>
       </div>
