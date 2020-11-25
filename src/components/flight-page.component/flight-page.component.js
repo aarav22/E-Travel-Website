@@ -186,9 +186,10 @@ const FlightPage = (props) => {
         </div>
       </div>
 
-      <div >
-        <FormControl component="fieldset">
-          <RadioGroup name="flighSomething" className="save-flight-offer">
+
+      <div className="flight-page-flights">
+        <FormControl component="fieldset" >
+          <RadioGroup name="flighSomething" className="flight-page-left">
             {
               currentFlights.map((flight) => {
                 return (
@@ -208,13 +209,12 @@ const FlightPage = (props) => {
                             <div className="timing-arr">{"22:35"}</div>
                             <p>{"BOM"}</p>
                           </div>
-                          <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" >{bookingStatus}</Button>
-                          <FormControlLabel value={flight.id} control={<Radio className={classes.radio}/>} />
+                          <FormControlLabel value={flight.id} control={<Radio className={classes.radio} />} />
                         </div>
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating">{`$${flight.price.total}`}</div>
+                      <div className="flight-rating">{`₹${flight.price.total}`}</div>
                     </div>
                   </div>
                 )
@@ -222,6 +222,44 @@ const FlightPage = (props) => {
             }
           </RadioGroup>
         </FormControl>
+
+        {props.location.isRoundTrip && (
+          <FormControl component="fieldset" >
+            <RadioGroup name="flighSomething" className="flight-page-right">
+              {
+                currentFlights.map((flight) => {
+                  return (
+                    <div className="flight-card" key={flight.id} onClick={saveFlightOffer(flight)} >
+                      <div className="flight-card-details">
+                        <div className="airline-details">
+                          <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                        </div>
+                        <div className="flight-details">
+                          <div className="flight-timings">
+                            <div className="flight-timing-dep">
+                              <div className="timing-dep">{"21:00"}</div>
+                              <p>{"DEL"}</p>
+                            </div>
+                            <div className="timing-dur">1h 35 mins</div>
+                            <div className="flight-timing-arr">
+                              <div className="timing-arr">{"22:35"}</div>
+                              <p>{"BOM"}</p>
+                            </div>
+                            <FormControlLabel value={flight.id} control={<Radio className={classes.radio} />} />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flight-card-price">
+                        <div className="flight-rating">{`₹${flight.price.total}`}</div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </RadioGroup>
+          </FormControl>)
+        }
+
       </div>
       {props.location.isRoundTrip && (<Link to="/book"><button className="flight-page-continue-btn">
         Continue
