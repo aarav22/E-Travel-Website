@@ -6,13 +6,19 @@ import amadeusResponse from '../../testing_data/amadeusResponse.json'
 import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
 import InputSlider from './slider-input'
-import {RadioGroup, FormControlLabel, Radio, FormControl, Button} from '@material-ui/core';
+import {RadioGroup, FormControlLabel, Radio, FormControl, Button, makeStyles} from '@material-ui/core';
 
 import "./flight-page.component.css";
 
+const useStyles = makeStyles({
+  radio: {
+    color: "white"
+  }
+});
 // const Amadeus = require('amadeus');
 const FlightPage = (props) => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const source = useSelector(state => state.flight.source);
   const destination = useSelector(state => state.flight.destination);
   const date = useSelector(state => state.flight.date);
@@ -180,6 +186,7 @@ const FlightPage = (props) => {
         </div>
       </div>
 
+
       <div className="flight-page-flights">
         <FormControl component="fieldset" >
           <RadioGroup name="flighSomething" className="flight-page-left">
@@ -202,8 +209,7 @@ const FlightPage = (props) => {
                             <div className="timing-arr">{"22:35"}</div>
                             <p>{"BOM"}</p>
                           </div>
-                          <Button onClick={() => bookingStatusHandler()} variant="contained" color="primary" >{bookingStatus}</Button>
-                          <FormControlLabel value={flight.id} control={<Radio />} />
+                          <FormControlLabel value={flight.id} control={<Radio className={classes.radio} />} />
                         </div>
                       </div>
                     </div>
@@ -216,6 +222,44 @@ const FlightPage = (props) => {
             }
           </RadioGroup>
         </FormControl>
+
+        {props.location.isRoundTrip && (
+          <FormControl component="fieldset" >
+            <RadioGroup name="flighSomething" className="flight-page-right">
+              {
+                currentFlights.map((flight) => {
+                  return (
+                    <div className="flight-card" key={flight.id} onClick={saveFlightOffer(flight)} >
+                      <div className="flight-card-details">
+                        <div className="airline-details">
+                          <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                        </div>
+                        <div className="flight-details">
+                          <div className="flight-timings">
+                            <div className="flight-timing-dep">
+                              <div className="timing-dep">{"21:00"}</div>
+                              <p>{"DEL"}</p>
+                            </div>
+                            <div className="timing-dur">1h 35 mins</div>
+                            <div className="flight-timing-arr">
+                              <div className="timing-arr">{"22:35"}</div>
+                              <p>{"BOM"}</p>
+                            </div>
+                            <FormControlLabel value={flight.id} control={<Radio className={classes.radio} />} />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flight-card-price">
+                        <div className="flight-rating">{`₹${flight.price.total}`}</div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </RadioGroup>
+          </FormControl>)
+        }
+
       </div>
       {props.location.isRoundTrip && (<Link to="/book"><button className="flight-page-continue-btn">
         Continue
