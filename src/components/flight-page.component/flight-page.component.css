@@ -15,6 +15,12 @@
 
 .flight-page-flights {
   display: flex;
+
+}
+
+.flight-page-left, 
+.flight-page-right {
+  display: flex;
   flex-direction: column;
   gap: 1rem;
   min-height: 41rem;
@@ -38,18 +44,18 @@
 
 .flight-card {
   display: flex;
-  min-width: 35rem;
   max-width: 40rem;
+  padding: 0 0.5rem;
   height: 5rem;
-  gap: 3rem;
-  justify-content: space-around;
+  gap: 0rem;
+  justify-content: space-evenly;
   background: black;
   font-size: 1.20rem;
 }
 
 .flight-card-details {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
