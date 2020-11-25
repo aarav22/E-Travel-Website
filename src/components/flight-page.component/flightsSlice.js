@@ -8,7 +8,8 @@ const initialState = {
     // returnDate: '',
     // numAdults: 0,
     // numChildren: 0,
-    flightOffer:'', 
+    singleFlightOffer:'', 
+    returnFlightOffer:'',
     numBookings: 2789002,
 
     // Traveller details:
@@ -34,8 +35,9 @@ const flightSlice = createSlice({
         },
 
         flightOffer(state, action) {
-            const offer = action.payload;
-            state.flightOffer = offer; 
+            const {offer, returnOffer} = action.payload;
+            state.singleFlightOffer = offer; 
+            state.returnFlightOffer = returnOffer;
         }, 
 
         numBooking(state, action) {
