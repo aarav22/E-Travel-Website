@@ -33,6 +33,7 @@ function App() {
           <Route path="/book" component={Booking} />
 
           <Route path="/successful" component={Successful} />
+
           <Route path="/profile" component={Profile} />
 
           <Route path="*" component={Error} />

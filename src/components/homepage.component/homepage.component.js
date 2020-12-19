@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { flightItineary } from '../flight-page.component/flightsSlice'
+import React, {useState, useRef, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {flightItineary} from '../flight-page.component/flightsSlice'
 import AirportSearch from '../airport-codes.component/airport-codes.component'
 import DatePicker from "react-datepicker";
-import { Input } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {Input} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -90,7 +90,7 @@ export default function Homepage() {
       newReturnDate = year + "-" + month + "-" + day;
     }
 
-    const flightObject = { source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ };
+    const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ};
     dispatch(flightItineary(flightObject));
   }
 
@@ -116,7 +116,7 @@ export default function Homepage() {
 
   return (
     <div className="home-main">
-      <div className="lines">
+      <div className="lines hide-on-small-only">
         <div className="line-1"></div>
         <div className="line-2"></div>
         <div className="line-3"></div>
