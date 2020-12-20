@@ -234,6 +234,8 @@ export default function Homepage() {
           }
         </div>
 
+        {/* <Link to="/successful"><button className="btn">Successful</button></Link> */}
+
         <Link to={{
           pathname: "/flights",
           isRoundTrip: one === "Round-Trip" ? true : false
