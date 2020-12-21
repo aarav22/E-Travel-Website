@@ -46,6 +46,13 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=%REACT_APP_API_KEY%"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var drop_elems = document.querySelectorAll('.dropdown-trigger');
+      var drop_instances = M.Dropdown.init(drop_elems);
+      var modat_instances = M.Modal.init(document.querySelectorAll(".modal"));
+    });
+  </script>
 </body>
 
 </html>

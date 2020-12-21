@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300&family=Saira+Semi+Condensed&display=swap');
+
+
+.lines * {
+  position: absolute;
+  height: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  transform-origin: top left;
+
+}
+
+.line-1 {
+  width: 490px;
+  left: 414px;
+  top: 170px;
+}
+
+.line-2 {
+  width: 86.01px;
+  left: 904px;
+  top: 170px;
+  transform: rotate(-66.71deg);
+}
+
+.line-3 {
+width: 152.24px;left: 941px;top: 90px;transform: rotate(80.17deg);
+} 
+
+.line-4 {
+width: 98.86px;left: 965px;
+top: 240px;transform: rotate(-82.44deg);
+} 
+
+.line-5 {
+width: 54.12px;left: 981px;
+top: 140px;transform: rotate(73.91deg);
+} 
+
+.line-6 {
+width: 25.71px;left: 995px;
+top: 193px;transform: rotate(-76.5deg);
+} 
+
+.line-7 {
+width: 248px;left: 1253px;
+top: 170px;transform: rotate(-179.78deg);
+} 
+
+.line-8 {
+  width: 0px;
+  height: calc(100% - 170px);
+  top: 169px;
+  left: 1251px;
+}
+
+.traveled-text {
+  font-style: normal;
+  font-weight: 100;
+  font-size: 20px;
+  font-family: 'Bebas Neue', cursive;
+  color: #757575;
+}
+
+.traveled-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 6.0rem;
+  filter: brightness(2);
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.78);
+}
+
+.search-take-icon,
+.search-arr-icon,
+.search-date-icon,
+.search-per-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.traveled {
+  position: absolute;
+  top: 111px;
+  left: 88px;
+}
+ 
+.traveled-small {
+  padding-top: 5rem;
+}
+
+.home-content {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.home-drop {
+  display: flex;
+  position: absolute;
+  gap: 1rem;
+  top: 331px;
+  left: 88px
+}
+
+.home-drop-small {
+  display: flex;  
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.drop-one-down *,
+.drop-eco-down * {
+  cursor: pointer;
+}
+
+.drop-one-down *:hover,
+.drop-eco-down *:hover {
+  background-color: blue;
+}
+
+.search-button, 
+.search-pas-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.search-date-icon {
+  width: 4rem;
+  height: 4rem;
+  padding-top: 15px;
+}
+
+.search-per-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.home-search-date {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.home-search-take,
+.home-search-arr {
+  display: flex;
+  gap: 1.00rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .home-content {
+    position: absolute;
+    top: 405px;
+    left: 88px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start; 
+  }
+
+  .home-search-arr,
+  .home-search-take,
+  .home-search-date {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .home-search-date {
+    width: 10rem;
+    padding-top: 0;
+  }
+
+  .search-take-icon,
+  .search-arr-icon,
+  .search-date-icon,
+  .search-per-icon {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.07rem;
+  }
+
+  .search-btn {
+    align-self: flex-start;
+    justify-self: center;
+  }
+
+  .search-date-icon {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .search-button {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+

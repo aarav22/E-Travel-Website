@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './airport-codes.component.css';
+// import './airport-codes.component.css';
 import Fuse from 'fuse.js';
 
 import airports from './airports.json';
@@ -40,7 +40,7 @@ const AirportSearch = (props) => {
             {results.slice(0, 5).map(airport => {
               const {name, IATA, city, country} = airport.item;
               return (
-                <li className="search-main-result" onClick={(e) => {changeSome(true); updateQuery(""); updateVal(e.target.innerText); props.locationFunction(IATA)}} >
+                <li className="search-main-result truncate" onClick={(e) => {changeSome(true); updateQuery(""); updateVal(e.target.innerText); props.locationFunction(IATA)}} >
                   {`${name} Airport, ${city}, ${country}, (${IATA})`}
                 </li>
               )

@@ -100,3 +100,14 @@
     top:0px;
     left: 2px;
 }
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #0D1417;
+  }
+
+  .navbar-nav {
+    background-color: #0D1417;
+  }
+}
+

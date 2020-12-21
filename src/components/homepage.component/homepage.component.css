@@ -58,8 +58,6 @@ top: 170px;transform: rotate(-179.78deg);
 }
 
 .home-content {
-  display: flex;
-  gap: 3rem;
   position: absolute;
   top: 485px;
   left: 58px;
@@ -164,7 +162,6 @@ top: 170px;transform: rotate(-179.78deg);
   font-family: Saira Semi Condensed,sans-serif;
   font-weight: 600;
 }
-
 
 .search-button {
   position: absolute;
