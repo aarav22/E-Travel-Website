@@ -1,0 +1,80 @@
+.flight-page-container {
+  display: grid;
+  grid-template-areas: 
+    "side top"
+    "side content"
+    "pagi pagi";
+  gap: 1rem;
+  grid-template-columns: 20rem auto;
+}
+
+.flight-page-topbar {grid-area: top;}
+.flight-page-filters {grid-area: side;}
+.flight-page-component {grid-area: pagi;}
+.flight-page-flights {grid-area: content;}
+
+.flight-page-flights {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.flight-page-topbar {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.locs {
+  display: flex;
+  align-items: center;
+}
+
+.flight-card {
+  display: flex;
+  gap: 1.5rem;
+  background-color: black;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  width: 55rem;
+  height: 7rem;
+  align-self: flex-start;
+}
+
+.split {
+  width: 35rem;
+}
+
+.flight-page-left,
+.flight-page-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+
+.flight-timings {
+  display: flex;
+  gap: 1rem;
+}
+
+.timing-dur {
+  height: 1.45rem;
+  width: 7rem;
+  justify-self: center;
+  border-bottom: 1px solid white;
+}
+
+.flight-page-filters {
+  border-right: 1px solid rgb(200, 200, 200);
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+  padding-left: 2rem;
+}
+
+.filter-click {
+  cursor: pointer;
+}
