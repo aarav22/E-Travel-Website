@@ -1,17 +1,18 @@
 .flight-page-container {
   display: grid;
   grid-template-areas: 
-    "side top"
-    "side content"
-    "pagi pagi";
+  "side top top"
+  "side content content"
+  "side pagi continue";
   gap: 1rem;
-  grid-template-columns: 20rem auto;
+  grid-template-columns: 20rem auto auto;
 }
 
 .flight-page-topbar {grid-area: top;}
 .flight-page-filters {grid-area: side;}
-.flight-page-component {grid-area: pagi;}
+.flight-page-pagi {grid-area: pagi;}
 .flight-page-flights {grid-area: content;}
+.flight-page-continue-btn {grid-area: continue;}
 
 .flight-page-flights {
   display: flex;
@@ -36,7 +37,7 @@
   padding: 1rem;
   align-items: center;
   justify-content: space-around;
-  width: 55rem;
+  width: 60rem;
   height: 7rem;
   align-self: flex-start;
 }
@@ -77,4 +78,31 @@
 
 .filter-click {
   cursor: pointer;
+}
+
+.flight-page-pagi {
+  display: flex;
+  justify-content: center;
+}
+
+.flight-page-continue-btn {
+  align-self: flex-end;
+  justify-self: center;
+  padding-bottom: 3rem;
+}
+
+.flight-page-continue-button {
+  background-color: black;
+  color: linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%);
+  font-family: Bebas Neue;
+  width: 9rem;
+  font-size: 1.80rem;
+  height: 4rem;
+  color: blue; /* Fallback solid color */
+    -webkit-text-fill-color: transparent; /* Webkit Disable Fallback */
+
+/* Text color gradient properties */
+  background: -webkit-linear-gradient(pink, darkblue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

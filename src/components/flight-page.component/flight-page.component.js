@@ -315,17 +315,20 @@ const FlightPage = (props) => {
         Continue
         <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
       </button></Link>)} */}
+      <div className="flight-page-pagi">
 
+        <PaginationComponent
+          postsPerPage={postsPerPage}
+          totalPosts={flights.length}
+          paginate={paginate} />
+      </div>
       {
-        (<Link to="/book"><button className="flight-page-continue-btn" onClick={() => saveFlightOffer()}>
-          Confirm
-        <svg className="flight-page-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
-        </button></Link>)
+        (<Link className="flight-page-continue-btn" to="/book">
+          <button className="flight-page-continue-button" onClick={() => saveFlightOffer()}>
+            CONTINUE <i class="fas fa-angle-double-right"></i> 
+          </button>
+        </Link>)
       }
-      <PaginationComponent
-        postsPerPage={postsPerPage}
-        totalPosts={flights.length}
-        paginate={paginate} />
     </div >
   )
 }

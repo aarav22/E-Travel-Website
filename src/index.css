@@ -17,6 +17,10 @@ body {
   background-size: cover, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
 }
 
+input {
+  color: currentColor;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

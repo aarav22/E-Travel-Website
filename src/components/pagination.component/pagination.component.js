@@ -13,7 +13,7 @@ const PaginationComponent = ({postsPerPage, totalPosts, paginate}) => {
     <div className="pagination-component">
       {/* <Pagination count={10} color="primary" /> */}
 
-      <Pagination className="z-depth-0 pagi transparent" count={pageNumbers} onChange={(e, page) => {console.log(page); paginate(page)}} size="large" variant="outlined" shape="rounded" siblingCount={pageNumbers} boundaryCount={pageNumbers} showLastButton={true} showFirstButton={true} />
+      <Pagination className="z-depth-0 pagi transparent" count={pageNumbers} onChange={(e, page) => {console.log(page); paginate(page)}} size="large" variant="outlined" shape="rounded" siblingCount={pageNumbers} boundaryCount={pageNumbers} />
 
 
       {/* <ul className='pagination'>
