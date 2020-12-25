@@ -40,11 +40,10 @@ function App() {
 
           <Route path="/landing" component={Landing} />
 
-          <Route path="/footer" component={Footer} />
-
           <Route path="*" component={Error} />
         </Switch>
       </div>
+      <Footer />
     </div>
   );
 }

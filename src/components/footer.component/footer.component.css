@@ -1,10 +1,21 @@
-/* body {
+ .footer {
     display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+    position: absolute;
+    width: 1440px;
+    height: 42px;
+    left: 0px;
+    top: 857px;
+    background-color: #000000;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-top: 0.75rem;
+    margin-top: 60px;
+    /* margin-bottom: 10px;
+    padding-bottom: 2rem; */
+}
 
-  main {
-    flex: 1 0 auto;
-  } */
-    
+.usefulVarName {
+    font-size: 1.0rem;
+    color: #ffffff;
+    font-family: 'Saira Semi Condensed'
+}   
