@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="containe">
+      <div className="containe" style={{minHeight: "83vh"}}>
         <Switch>
           <Route path="/" exact component={Homepage} />
 
