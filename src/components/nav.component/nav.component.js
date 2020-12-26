@@ -14,7 +14,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
+    <nav className="navbar black">
       <ul className="navbar-nav">
         <li className="nav-item title">
           <Link style={{fontWeight: "bolder", fontSize: "3rem", color: "#EE82EE"}} to="/">
