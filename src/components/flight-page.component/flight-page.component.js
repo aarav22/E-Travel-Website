@@ -249,22 +249,22 @@ const FlightPage = (props) => {
                 return (
                   <div className={`${props.location.isRoundTrip ? "flight-card split" : "flight-card"}`} key={flight.id} >
                     <div className="airline-details">
-                      <p className="airline-provider">Vistara</p>
-                      <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                      <p className="airline-provider vistara ">Air India</p>
+                      <p className="airline-name vistara">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                     </div>
                     <div className="flight-timings">
                       <div className="flight-timing-dep">
-                        <div className="timing-dep">{"21:00"}</div>
-                        <p>{"DEL"}</p>
+                        <div className="timing-dep time">{"21:00"}</div>
+                        <p className="vistara">{"DEL"}</p>
                       </div>
-                      <div className="timing-dur">1h 35 mins</div>
+                      <div className="timing-dur duration">1h 35 mins</div>
                       <div className="flight-timing-arr">
-                        <div className="timing-arr">{"22:35"}</div>
-                        <p>{"BOM"}</p>
+                        <div className="timing-arr time">{"22:35"}</div>
+                        <p className="vistara">{"BOM"}</p>
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating">{`₹${flight.price.total}`}</div>
+                      <div className="flight-rating price">{`INR ₹ ${flight.price.total}`}</div>
                     </div>
                     <FormControlLabel value={flight.id} control={<Radio className={classes.radio} onChange={(e) => {setSingleFlightOffer(flight); setRadioSingle(e.target.value)}} />} />
                   </div>

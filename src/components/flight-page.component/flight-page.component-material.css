@@ -107,6 +107,58 @@
   
   }
 
+.vistara{
+
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 28px;
+/* or 125% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.05em;
+
+color: #FFFFFF;
+}
+
+.time{
+  
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  
+  color: #FFFFFF;
+   
+}
+
+.duration{
+
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+}
+
+.price{
+  font-family: Saira SemiCondensed;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+display: flex;
+align-items: center;
+letter-spacing: -0.04em;
+}
+
 .flight-page-continue-button {
   background-color: black;
   color: linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%);
