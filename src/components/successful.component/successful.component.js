@@ -14,7 +14,7 @@ export default function Successful() {
         method: "POST",
         url: 'http://localhost:5000/api/checkout',
         data: { flightOffer:  flightOffer}
-    }).then(res => {
+    }).then(resz => {
         console.log(res);
         // console.log("Var inside: ", isSignedIn, res.data.user._id);
     })

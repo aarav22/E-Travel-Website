@@ -33,8 +33,9 @@ export default function Profile(props) {
         <div className="profile-main">
             {console.log("hello from profile", props.user)}
             <div className="profile-navigation">
+            
                 <img 
-                    className="profile-img" 
+                    className="profile-img" class="circle responsive-img" 
                     src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png" }
                     alt="profile pic" 
                     style={{"width": "150px"}} />

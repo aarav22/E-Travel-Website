@@ -1,0 +1,19 @@
+.over-title{
+    position: absolute;
+width: 200px;
+height: 70px;
+left: 200px;
+top: 50px;
+
+font-family: Saira SemiCondensed;
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 76px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+}

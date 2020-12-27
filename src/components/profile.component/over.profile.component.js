@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
+import "./x.css"
 
 
 const data = {
@@ -30,7 +31,7 @@ export default function Overview(props) {
     return(
         <div className="over-sec">
             { console.log("hello from over.profile", props.user) }
-            <h3 className="over-title">Account Overview</h3>
+            <h3 className="over-title">My Account</h3>
             <table className="over-info">
                 <tbody>
                     <tr className="over-table-row">
