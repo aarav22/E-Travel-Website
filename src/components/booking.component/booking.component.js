@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 import "./booking.component.css";
 
-
 const Booking = () => {
 
   return (
@@ -54,22 +53,22 @@ const Booking = () => {
             <table>
               <tr>
                 <td>Base Fare</td>
-                <td className="order-price">{2000 + "₹"}</td>
+                <td className="order-price">{"₹" + 2000}</td>
               </tr>
               <tr>
                 <td>Surcharges</td>
-                <td className="order-price">{500 + "₹"}</td>
+                <td className="order-price">{"₹" + 500}</td>
               </tr>
               <tr>
                 <td>Total Amount</td>
-                <td className="order-price">{2500 + "₹"}</td>
+                <td className="order-price">{"₹" + 2500}</td>
               </tr>
             </table>
           </div>
           <div className="booking-coupon">
             Cancellation & Date change charges
             Cancellation Fees Apply
-            A penalty of upto ₹ 3,450 will be charged by the airline & by MMT based on how close to the departure date you cancel.
+            A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.
           </div>
 
           <Link to='/successful'>
