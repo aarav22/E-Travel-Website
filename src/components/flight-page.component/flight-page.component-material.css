@@ -91,6 +91,22 @@
   padding-bottom: 3rem;
 }
 
+.bomdel {
+
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3rem;
+  /* or 163% */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+  
+  color: #FFFFFF;
+  
+  }
+
 .flight-page-continue-button {
   background-color: black;
   color: linear-gradient(180deg, rgba(152, 161, 243, 0.93) 22.4%, rgba(3, 231, 231, 0.85) 77.08%);
