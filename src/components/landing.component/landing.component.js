@@ -1,4 +1,5 @@
 import './landing.component.css';
+import Image from '../../icons/image1.png'
 
 const Landing=()=>{
 
@@ -34,7 +35,7 @@ const Landing=()=>{
         <div>
           <div class="row valign-wrapper">
             <div class="col s2">
-              <img src="icons/image1.png" alt="" class="circle responsive-img"/> 
+              <img src={Image} alt="neon building" class="responsive-img"/> 
             </div>
           </div>
         </div>
