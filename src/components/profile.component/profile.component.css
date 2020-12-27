@@ -1,104 +1,11 @@
-.addr-container {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+.profile-main {
+  display: grid;
+  grid-template-areas:
+  "top top"
+  "profile content";
+  grid-template-columns: 20rem auto;
 }
 
-.addr-content {
-    padding: 0.5rem;
-    width: auto;
-    height: auto;
-    border: 1px solid #868686;
-    border-radius: 5px;
-}
-
-.addr-content-add {
-    padding: 0.5rem;
-    width: auto;
-    height: auto;
-    border: 1px solid #868686;
-    border-radius: 5px;
-}
-
-.addr-title {
-    margin-bottom: 5rem;
-}
-
-.addr-bar {
-    display: flex;
-    font-size: 2rem;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-bottom: 0.1rem;
-    border-bottom: 1px solid #2c2c2c;
-}
-
-.addr-bar-add {
-    display: flex;
-    font-size: 2rem;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-bottom: 0.1rem;
-    border-bottom: 1px solid #2c2c2c;
-}
-
-.addr-btns {
-    font-size: 1rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.addr-btns-add {
-    font-size: 1rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.addr-button {
-    border: none;
-    background-color: transparent;
-    color: inherit;
-}
-
-.addr-addr {
-    padding-top: 1rem;
-    max-width: 15rem;
-    word-wrap: break-word;
-}
-
-.addr-button-add {
-    border: none;
-    background-color: transparent;
-    color: inherit;
-}
-
-.addr-title-add {
-    background-color: transparent;
-    max-width: 15rem;
-    border: none;
-    color: #868686;
-}
-
-.addr-addr-add {
-    padding-top: 1rem;
-    max-width: 15rem;
-    word-wrap: break-word;
-    background-color: transparent;
-    color: inherit;
-    border: none;
-}
-
-.add-more {
-    height: 5rem;
-    width: auto;
-    background-color: transparent;
-    border: none;
-}
-
-.add-more-sign {
-    fill: #868686;
-}
+.profile-title {grid-area: top;}
+.profile-navigation {grid-area: profile;}
+.content-main {grid-area: content-main;}

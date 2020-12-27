@@ -130,7 +130,6 @@ export default function Homepage() {
         <div className="line-7"></div>
         <div className="line-8"></div>
       </div>
-
       <div className="traveled hide-on-med-and-down">
         <div className="traveled-num">
           {numBookings}
