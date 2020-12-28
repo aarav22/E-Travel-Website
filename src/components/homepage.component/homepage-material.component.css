@@ -114,11 +114,6 @@ top: 170px;transform: rotate(-179.78deg);
   cursor: pointer;
 }
 
-.drop-one-down *:hover,
-.drop-eco-down *:hover {
-  background-color: blue;
-}
-
 .search-button, 
 .search-pas-btn {
   background-color: transparent;

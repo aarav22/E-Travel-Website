@@ -13,7 +13,7 @@ import "./homepage-material.component.css"
 
 const useStyles = makeStyles({
   input: {
-    color: "white"
+    color: "black"
   }
 });
 
@@ -169,10 +169,10 @@ export default function Homepage() {
             {`${econ}`}<svg className="chevron-down-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9" /></svg>
           </button>
           <ul id="drop-eco" className="dropdown-content drop-eco-down center-align">
-            <li className="centerAlign" onClick={() => setEcon("Economy")}>Economy</li>
-            <li className="centerAlign" onClick={() => setEcon("Premium Economy")}>Premium Economy</li>
-            <li className="centerAlign" onClick={() => setEcon("Business")}>Business</li>
-            <li className="centerAlign" onClick={() => setEcon("First")}>First</li>
+            <li onClick={() => setEcon("Economy")}><a className="black-text">Economy</a></li>
+            <li onClick={() => setEcon("Premium")}><a className="black-text">Premium</a></li>
+            <li onClick={() => setEcon("Business")}><a className="black-text">Business</a></li>
+            <li onClick={() => setEcon("First")}><a className="black-text">First</a></li>
           </ul>
         </div>
 
@@ -181,8 +181,8 @@ export default function Homepage() {
             {`${one}`}<svg className="chevron-down-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9" /></svg>
           </button>
           <ul id="drop-one" className="dropdown-content drop-one-down center-align">
-            <li className="center-align" onClick={() => setOne("One-Way")}>One-Way</li>
-            <li className="center-align" onClick={() => setOne("Round-Trip")}>Round-Trip</li>
+            <li onClick={() => setOne("One-Way")}><a className="black-text">One-Way</a></li>
+            <li onClick={() => setOne("Round-Trip")}><a className="black-text">Round-Trip</a></li>
           </ul>
         </div>
       </div>
@@ -231,14 +231,15 @@ export default function Homepage() {
         </div>
 
         <div className="home-search-date">
-          <svg className="search-date-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
+          {/* <svg className="search-date-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg> */}
+          <svg className="search-date-icon" viewBox="2 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M46.222 51H12.778C10.139 51 8 49.075 8 46.7V16.6c0-2.375 2.14-4.3 4.778-4.3h4.778V8h4.777v4.3h14.334V8h4.777v4.3h4.778c2.639 0 4.778 1.925 4.778 4.3v30.1c0 2.375-2.14 4.3-4.778 4.3zM12.778 25.2v21.5h33.444V25.2H12.778zm0-8.6v4.3h33.444v-4.3H12.778zm28.666 25.8h-4.777v-4.3h4.777v4.3zm-9.555 0H27.11v-4.3h4.778v4.3zm-9.556 0h-4.777v-4.3h4.777v4.3zm19.111-8.6h-4.777v-4.3h4.777v4.3zm-9.555 0H27.11v-4.3h4.778v4.3zm-9.556 0h-4.777v-4.3h4.777v4.3z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="29.5" y1="8" x2="29.5" y2="51" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="0" y="0" width="59" height="59" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
           <DatePicker className="date-search" minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={startDate} onChange={date => setStartDate(date)} />
         </div>
 
         {one === "Round-Trip" &&
           (
             <div className="home-search-date">
-              <svg className="search-date-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="34" height="39" fill="none"><path d="M29.583 38.333H3.698C1.656 38.333 0 36.617 0 34.5V7.667C0 5.55 1.656 3.833 3.698 3.833h3.698V0h3.698v3.833h11.093V0h3.698v3.833h3.698c2.042 0 3.698 1.717 3.698 3.834V34.5c0 2.117-1.656 3.833-3.698 3.833zm-25.885-23V34.5h25.885V15.333H3.698zm0-7.666V11.5h25.885V7.667H3.698zm22.187 23h-3.698v-3.834h3.698v3.834zm-7.396 0h-3.697v-3.834h3.697v3.834zm-7.395 0H7.396v-3.834h3.698v3.834zM25.885 23h-3.698v-3.833h3.698V23zm-7.396 0h-3.697v-3.833h3.697V23zm-7.395 0H7.396v-3.833h3.698V23z" fill="url(#paint0_linear)" /><defs><linearGradient id="paint0_linear" x1="16.64" y1="0" x2="16.64" y2="38.333" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient></defs></svg>
+              <svg className="search-date-icon" viewBox="2 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d)"><path d="M46.222 51H12.778C10.139 51 8 49.075 8 46.7V16.6c0-2.375 2.14-4.3 4.778-4.3h4.778V8h4.777v4.3h14.334V8h4.777v4.3h4.778c2.639 0 4.778 1.925 4.778 4.3v30.1c0 2.375-2.14 4.3-4.778 4.3zM12.778 25.2v21.5h33.444V25.2H12.778zm0-8.6v4.3h33.444v-4.3H12.778zm28.666 25.8h-4.777v-4.3h4.777v4.3zm-9.555 0H27.11v-4.3h4.778v4.3zm-9.556 0h-4.777v-4.3h4.777v4.3zm19.111-8.6h-4.777v-4.3h4.777v4.3zm-9.555 0H27.11v-4.3h4.778v4.3zm-9.556 0h-4.777v-4.3h4.777v4.3z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="29.5" y1="8" x2="29.5" y2="51" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="0" y="0" width="59" height="59" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
               <DatePicker minDate={new Date()} maxDate={addMonths(new Date(), 2)} dateFormat="yyyy-MM-dd" selected={returnDate} onChange={date => setEndDate(date)} />
             </div>
           )
@@ -247,9 +248,9 @@ export default function Homepage() {
           <button className="search-pas-btn modal-trigger" data-target="modal-pas">
             <svg className="search-per-icon" xmlns="http://wvww.w3.org/2000/svg" viewBox="0 0 60 60" fill="none"><g filter="url(#filter0_d)"><path d="M31.66 29.03c1.117-1.113 2.013-2.491 2.627-4.04.614-1.547.932-3.23.932-4.931 0-3.198-1.103-6.266-3.066-8.527C30.189 9.27 27.526 8 24.75 8s-5.44 1.27-7.402 3.532c-1.964 2.261-3.067 5.329-3.067 8.527 0 1.702.318 3.384.932 4.932.614 1.548 1.51 2.926 2.628 4.04-2.931 1.528-5.418 3.997-7.163 7.11C8.933 39.256 8.003 42.883 8 46.589c0 .64.22 1.253.613 1.706.393.452.925.706 1.48.706.556 0 1.089-.254 1.481-.706a2.61 2.61 0 00.614-1.706c0-3.838 1.323-7.518 3.679-10.232 2.356-2.714 5.551-4.238 8.883-4.238 3.332 0 6.527 1.524 8.883 4.238 2.356 2.714 3.68 6.394 3.68 10.232 0 .64.22 1.253.613 1.706.392.452.925.706 1.48.706.556 0 1.088-.254 1.48-.706a2.61 2.61 0 00.614-1.706c-.003-3.706-.933-7.333-2.678-10.446-1.745-3.114-4.232-5.583-7.163-7.111zm-6.91-1.736c-1.242 0-2.457-.424-3.49-1.22-1.033-.794-1.838-1.924-2.313-3.246a8.261 8.261 0 01-.357-4.18c.242-1.404.84-2.693 1.718-3.705.879-1.012 1.998-1.701 3.217-1.98a5.516 5.516 0 013.629.411c1.148.548 2.128 1.475 2.819 2.665a8.038 8.038 0 011.058 4.02c0 1.919-.662 3.76-1.84 5.116-1.177 1.357-2.775 2.12-4.441 2.12zm20.393.772c1.34-1.738 2.215-3.885 2.52-6.183a13.728 13.728 0 00-.8-6.768c-.827-2.12-2.168-3.92-3.863-5.182C41.306 8.67 39.33 7.999 37.312 8c-.555 0-1.087.254-1.48.706a2.61 2.61 0 00-.613 1.706c0 .64.22 1.253.613 1.705.393.452.925.706 1.48.706 1.666 0 3.264.763 4.442 2.12 1.178 1.357 1.84 3.197 1.84 5.116a8.095 8.095 0 01-.846 3.606c-.551 1.097-1.342 2.007-2.295 2.64-.31.207-.57.501-.753.856a2.69 2.69 0 00-.294 1.17c-.008.41.073.815.238 1.178.165.363.407.671.705.896l.816.627.272.17c2.524 1.378 4.653 3.559 6.137 6.285s2.26 5.884 2.238 9.101c0 .64.22 1.253.614 1.706.392.452.925.706 1.48.706.555 0 1.088-.254 1.48-.706A2.61 2.61 0 0054 46.588c.017-3.7-.788-7.345-2.338-10.587s-3.794-5.974-6.519-7.935z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="31" y1="8" x2="31" y2="49" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="0" y="0" width="62" height="57" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
           </button>
-          <div className="modal black white-text" id="modal-pas">
+          <div className="modal black-text" id="modal-pas">
             <div className="modal-content">
-              <h6 className="white-text">Number of Adults</h6>
+              <h6 className="black-text">Number of Adults</h6>
               <div className="per-drop-adults">
                 <Input
                   className={classes.input}
@@ -268,7 +269,7 @@ export default function Homepage() {
                 />
               </div>
 
-              <h6 className="white-text">Number of Children</h6>
+              <h6 className="black-text">Number of Children</h6>
               <Input
                 className={classes.input}
                 value={numInfants}
