@@ -13,7 +13,7 @@ const Booking = () => {
 
       <div className="booking-main">
         <div className="book-main-left">
-          <div className="book-top">ITINERARY</div>
+          <div className="book-top sub-header">ITINERARY</div>
           <div className="book-mid">
             <div className="mook-mid-left">
               <span className="img"></span>
