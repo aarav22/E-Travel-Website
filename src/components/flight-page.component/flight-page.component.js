@@ -168,12 +168,12 @@ const FlightPage = (props) => {
     <div className="flight-page-container">
       <div className="flight-page-topbar">
         <div className="locs">
-          <div className="departure">
+          <div className="departure bomdel">
             {source ? source : "DEL"}
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="47" fill="none"><g filter="url(#filter0_d)"><path d="M39.069 25.458l-4.838 5.073 2.644 2.76L46.25 23.5l-9.375-9.792-2.644 2.762 4.838 5.072H8.75v3.916h30.319z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="13.708" x2="27.5" y2="33.292" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="-3" y="-8" width="61" height="63" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
-          <div className="arrival">
-            {destination ? destination : "Bom"}
+          <div className="arrival bomdel">
+            {destination ? destination : "BOM"}
           </div>
         </div>
         {
@@ -249,22 +249,22 @@ const FlightPage = (props) => {
                 return (
                   <div className={`${props.location.isRoundTrip ? "flight-card split" : "flight-card"}`} key={flight.id} >
                     <div className="airline-details">
-                      <p className="airline-provider">Vistara</p>
-                      <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                      <p className="airline-provider vistara ">Air India</p>
+                      <p className="airline-name vistara">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                     </div>
                     <div className="flight-timings">
                       <div className="flight-timing-dep">
-                        <div className="timing-dep">{"21:00"}</div>
-                        <p>{"DEL"}</p>
+                        <div className="timing-dep time">{"21:00"}</div>
+                        <p className="vistara">{"DEL"}</p>
                       </div>
-                      <div className="timing-dur">1h 35 mins</div>
+                      <div className="timing-dur duration">1h 35 mins</div>
                       <div className="flight-timing-arr">
-                        <div className="timing-arr">{"22:35"}</div>
-                        <p>{"BOM"}</p>
+                        <div className="timing-arr time">{"22:35"}</div>
+                        <p className="vistara">{"BOM"}</p>
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating">{`₹${flight.price.total}`}</div>
+                      <div className="flight-rating price">{`INR ₹ ${flight.price.total}`}</div>
                     </div>
                     <FormControlLabel value={flight.id} control={<Radio className={classes.radio} onChange={(e) => {setSingleFlightOffer(flight); setRadioSingle(e.target.value)}} />} />
                   </div>

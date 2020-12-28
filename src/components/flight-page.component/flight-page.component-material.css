@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed&display=swap');
+
 .flight-page-container {
   display: grid;
   grid-template-areas: 
@@ -89,6 +91,74 @@
   align-self: flex-end;
   justify-self: center;
   padding-bottom: 3rem;
+}
+
+.bomdel {
+
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3rem;
+  /* or 163% */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+  
+  color: #FFFFFF;
+  
+  }
+
+.vistara{
+
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 28px;
+/* or 125% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.05em;
+
+color: #FFFFFF;
+}
+
+.time{
+  
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  
+  color: #FFFFFF;
+   
+}
+
+.duration{
+
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+}
+
+.price{
+  font-family: Saira SemiCondensed;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+display: flex;
+align-items: center;
+letter-spacing: -0.04em;
 }
 
 .flight-page-continue-button {
