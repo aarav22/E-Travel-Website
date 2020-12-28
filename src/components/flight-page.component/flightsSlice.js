@@ -35,9 +35,9 @@ const flightSlice = createSlice({
         },
 
         flightOffer(state, action) {
-            const {offer, returnOffer} = action.payload;
-            state.singleFlightOffer = offer; 
-            state.returnFlightOffer = returnOffer;
+            const offer = action.payload;
+            state.singleFlightOffer = offer.singleFlightOffer; 
+            state.returnFlightOffer = offer.returnFlightOffer;
         }, 
 
         numBooking(state, action) {

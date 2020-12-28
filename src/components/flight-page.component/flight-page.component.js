@@ -16,7 +16,8 @@ const useStyles = makeStyles({
     color: "white"
   }
 });
-// const Amadeus = require('amadeus');
+
+const Amadeus = require('amadeus');
 const FlightPage = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -28,12 +29,12 @@ const FlightPage = (props) => {
   const flightItineary = useSelector(state => state.flight.userinfoObject);
 
   // Filters:
-  const [maxPrice, setMaxPrice] = useState(''); // This will be an integer >= 0
-  const [tempMaxPrice, setTempMaxPrice] = useState(''); //storing until user hits go
+  const [maxPrice, setMaxPrice] = useState(1000000); // This will be an integer >= 0
+  const [tempMaxPrice, setTempMaxPrice] = useState(0); //storing until user hits go
 
 
-  const [excludedAirlineCodes, setExcludedFlights] = useState('') // this will be a string of exculded airline codes separated by comma
-  const [includedAirlineCodes, setIncludedFlights] = useState('') // this will be a string of included airline codes separated by comma
+  const [excludedAirlineCodes, setExcludedFlights] = useState() // this will be a string of exculded airline codes separated by comma
+  const [includedAirlineCodes, setIncludedFlights] = useState() // this will be a string of included airline codes separated by comma
   const [isNonStop, setNonStop] = useState(false);
   const [clickOnly, setClickOnly] = useState(false);
   const [clickExcept, setClickExcept] = useState(false);
@@ -55,11 +56,17 @@ const FlightPage = (props) => {
   const [valRadioReturn, setRadioReturn] = useState('');
 
 
-  // const amadeus = new Amadeus({
-  //   clientId: `${process.env.REACT_APP_AMADEUS_API}`,
-  //   clientSecret: `${process.env.REACT_APP_AMADEUS_SECRET}`
-  // });
+  const amadeus = new Amadeus({
+    clientId: `${process.env.REACT_APP_AMADEUS_API}`,
+    clientSecret: `${process.env.REACT_APP_AMADEUS_SECRET}`
+  });
 
+  const convertTime = (date) => {
+    var newDate = new Date(date);
+    var time = newDate.toLocaleTimeString();
+    return time;
+  }
+  
   const includedFlightsHandler = (flightCode) => {
     if (includedAirlineCodes) {
       setIncludedFlights(includedAirlineCodes + "," + flightCode);
@@ -75,60 +82,52 @@ const FlightPage = (props) => {
       setExcludedFlights(flightCode)
     }
   }
-
   useEffect(() => {
     const fetchFlights = async () => {
       setLoading(true);
       // console.log(amadeusResponse.body)
-      const res = amadeusResponse;
-      console.log(res.data)
-      // await amadeus.shopping.flightOffersSearch.get({
-      //   originLocationCode: flightItineary.source,
-      //   destinationLocationCode: flightItineary.destination,
-      //   departureDate: flightItineary.date,
-      //   adults: flightItineary.numAdults,
-      //   infants: flightItineary.numInfants,
-      //   currencyCode: "INR",
-      //   nonStop: isNonStop,
-      //   includedAirlineCodes: includedAirlineCodes,
-      //   excludedAirlineCodes: excludedAirlineCodes,
-      //   maxPrice:maxPrice, 
-      // }).then(res => console.log(res)).catch(responseError => 
-      //   console.log(responseError, responseError.code));
-      setAirlinesObject(res.dictionaries.carriers);
-      setFlights(res.data);
-      setLoading(false);
+      // amadeusResponse;
+      // console.log(res.data)
+      const res = await amadeus.shopping.flightOffersSearch.get({
+        originLocationCode: flightItineary.source,
+        destinationLocationCode: flightItineary.destination,
+        departureDate: flightItineary.date,
+        adults: flightItineary.numAdults,
+        infants: flightItineary.numInfants,
+        currencyCode: "INR",
+        nonStop: isNonStop,
+        includedAirlineCodes: includedAirlineCodes,
+        excludedAirlineCodes: excludedAirlineCodes,
+        maxPrice:maxPrice, 
+      }).then(res => {console.log(res); setFlights(res.result.data); setAirlinesObject(res.result.dictionaries.carriers);}).catch(responseError => 
+        console.log(responseError, responseError.code));
     };
     fetchFlights();
-  }, [flights]);
 
-
-  useEffect(() => {
     if (props.location.isRoundTrip) {
       const fetchReturnFlights = async () => {
         setLoading(true);
-        // console.log(amadeusResponse.body)
-        const res = amadeusResponse;
-        console.log(res.data)
-        // await amadeus.shopping.flightOffersSearch.get({
-        //   originLocationCode: flightItineary.destination,
-        //   destinationLocationCode: flightItineary.source,
-        //   departureDate: flightItineary.returnDate,
-        //   adults: flightItineary.numAdults,
-        //   infants: flightItineary.numInfants,
-        //   currencyCode: "INR",
-        //   nonStop: isNonStop,
-        //   includedAirlineCodes: includedAirlineCodes,
-        //   excludedAirlineCodes: excludedAirlineCodes,
-        //   maxPrice:maxPrice, 
-        // }).then(res => console.log(res)).catch(responseError => 
-        //   console.log(responseError, responseError.code));
-        setReturnFlights(res.data);
+        // amadeusResponse;
+        // console.log(res.data)
+        const res = await amadeus.shopping.flightOffersSearch.get({
+          originLocationCode: flightItineary.destination,
+          destinationLocationCode: flightItineary.source,
+          departureDate: flightItineary.returnDate,
+          adults: flightItineary.numAdults,
+          infants: flightItineary.numInfants,
+          currencyCode: "INR",
+          nonStop: isNonStop,
+          includedAirlineCodes: includedAirlineCodes,
+          excludedAirlineCodes: excludedAirlineCodes,
+          maxPrice:maxPrice, 
+        }).then(res => {console.log(res);  setReturnFlights(res.result.data);}).catch(responseError => 
+          console.log(responseError, responseError.code));
         setLoading(false);
       };
       fetchReturnFlights();
     }
-  }, [returnFlights]);
+  }, [maxPrice, includedAirlineCodes, excludedAirlineCodes]);
+
 
   useEffect(() => {
     let newList = [];
@@ -140,7 +139,7 @@ const FlightPage = (props) => {
     }
   }, [airlinesObject]);
 
-
+  // This code is for pagination: 
   // For single trip: 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -254,13 +253,13 @@ const FlightPage = (props) => {
                     </div>
                     <div className="flight-timings">
                       <div className="flight-timing-dep">
-                        <div className="timing-dep time">{"21:00"}</div>
-                        <p className="vistara">{"DEL"}</p>
+                        <div className="timing-dep time">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
+                        <p className="vistara">{flightItineary.source}</p>
                       </div>
-                      <div className="timing-dur duration">1h 35 mins</div>
+                      <div className="timing-dur duration">{flight.itineraries[0].duration}</div>
                       <div className="flight-timing-arr">
-                        <div className="timing-arr time">{"22:35"}</div>
-                        <p className="vistara">{"BOM"}</p>
+                        <div className="timing-arr time">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
+                        <p className="vistara">{flightItineary.destination}</p>
                       </div>
                     </div>
                     <div className="flight-card-price">
@@ -288,13 +287,13 @@ const FlightPage = (props) => {
                       </div>
                       <div className="flight-timings">
                         <div className="flight-timing-dep">
-                          <div className="timing-dep">{"21:00"}</div>
-                          <p>{"DEL"}</p>
+                          <div className="timing-dep">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
+                          <p>{flightItineary.destination}</p>
                         </div>
-                        <div className="timing-dur">1h 35 mins</div>
+                        <div className="timing-dur">{flight.itineraries[0].duration}</div>
                         <div className="flight-timing-arr">
-                          <div className="timing-arr">{"22:35"}</div>
-                          <p>{"BOM"}</p>
+                          <div className="timing-arr">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
+                          <p>{flightItineary.source}</p>
                         </div>
                       </div>
                       <div className="flight-card-price">

@@ -1,9 +1,30 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import "./booking.component.css";
 
 const Booking = () => {
+  const dispatch = useDispatch();
+  const convertTime = (date) => {
+    var newDate = new Date(date);
+    var time = newDate.toLocaleTimeString();
+    return time;
+  }
+
+  const convertDate = (date) => {
+    var newDate = new Date(date);
+    newDate = newDate.toLocaleDateString();
+    return newDate;
+  }
+  const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
+  const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
+  const numBooking = useSelector(state => state.flight.numBookings);
+  var isReturn = false;
+  if (returnFlightOffer) {
+    isReturn = true;
+  }
 
   return (
     <div className="booking-container">
@@ -17,24 +38,22 @@ const Booking = () => {
           <div className="book-mid">
             <div className="mook-mid-left">
               <span className="img"></span>
-              <h6>Vistara</h6>
+              <h6>{singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
               <p>AI-803</p>
             </div>
             <div className="book-mid-right">
               <div className="book-mid-dep">
-                <div className="mid-time">17:35</div>
-                <div className="mid-date">Fri, 20 Nov 20</div>
-                <div className="mid-dep">New Delhi</div>
-                <div className="mid-port">Indira Gandhi International Airport</div>
-                <div className="mid-term">Terminal 3</div>
+                <div className="mid-time">{convertTime(singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+                <div className="mid-date">{convertDate(singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+                <div className="mid-dep">{singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
+                <div className="mid-term">{singleFlightOffer.itineraries[0].segments[0].departure.terminal}</div>
               </div>
               <div className="book-mid-time"><p>1h 35mins</p></div>
               <div className="book-mid-arr">
-                <div className="mid-time">08:20</div>
-                <div className="mid-date">Fri, 20 Nov 20</div>
-                <div className="mid-dep">Bengaluru</div>
-                <div className="mid-port">Bengaluru International Airport</div>
-                <div className="mid-term">Terminal 5</div>
+                <div className="mid-time">{convertTime(singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+                <div className="mid-date">{convertDate(singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+                <div className="mid-dep">{singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
+                <div className="mid-term">{singleFlightOffer.itineraries[0].segments[0].arrival.terminal}</div>
               </div>
             </div>
           </div>
@@ -43,7 +62,7 @@ const Booking = () => {
             <p>➡ Certify your health status through the Aarogya Setu app or the self-declaration form at the airport.</p>
             <p>➡ Remember to web check-in before arriving at the airport; carry a printed or soft copy of the boarding pass.</p>
             <p>➡ Please reach at least 2 hours prior to flight departure.</p>
-            <p>➡ Wear a f✳cking mask.</p>
+            <p>➡ Please wear a kfcuing mask.</p>
             <p>➡ PPE kits will be provided and are compulsory to be used.</p>
           </div>
         </div>
@@ -53,7 +72,7 @@ const Booking = () => {
             <table>
               <tr>
                 <td>Base Fare</td>
-                <td className="order-price">{"₹" + 2000}</td>
+                <td className="order-price">{"₹" + singleFlightOffer.price.total}</td>
               </tr>
               <tr>
                 <td>Surcharges</td>
@@ -61,7 +80,7 @@ const Booking = () => {
               </tr>
               <tr>
                 <td>Total Amount</td>
-                <td className="order-price">{"₹" + 2500}</td>
+                <td className="order-price">{"₹" + (singleFlightOffer.price.total + 500)}</td>
               </tr>
             </table>
           </div>
