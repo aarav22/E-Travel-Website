@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios'
 import {Link} from "react-router-dom";
 import "./successful.component.css"
+import M from "materialize-css";
 
 const Amadeus = require('amadeus');
 
@@ -34,7 +35,9 @@ export default function Successful() {
 
   // Hotel recommendations
   // Safe Places: Check our safe places feature, enter your location and we'll tell you how safe it is!
-
+  useEffect(() => {
+    M.Collapsible.init(document.querySelectorAll((".collapsible")))
+  }, [])
   return (
     <div className="successful-container">
       <div className="tick-image">

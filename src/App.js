@@ -14,6 +14,7 @@ import Successful from "./components/successful.component/successful.component"
 import Profile from "./components/profile.component/profile.component"
 import Landing from "./components/landing.component/landing.component"
 import Footer from "./components/footer.component/footer.component"
+import Traveller from "./components/traveler.component/traveler.component.js"
 
 
 import "./App.css";
@@ -39,6 +40,8 @@ function App() {
           <Route path="/profile" component={Profile} />
 
           <Route path="/landing" component={Landing} />
+
+          <Route path="/traveller" component={Traveller} />
 
           <Route path="*" component={Error} />
         </Switch>
