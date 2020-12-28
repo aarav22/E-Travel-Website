@@ -84,7 +84,16 @@ export default function Homepage() {
     var month = startDate.getUTCMonth() + 1; //months from 1-12
     var day = startDate.getUTCDate();
     var year = startDate.getUTCFullYear();
-    const newDate = year + "-" + month + "-" + day;
+    var newDate = year + "-" + month + "-" + day;
+    if (month < 10 || day < 10) {
+      if (month < 10 && day < 10) {
+        newDate =  year + "-" + "0" + month + "-" + "0" + day;
+      } else if (day < 10) {
+        newDate =  year + "-" + month + "-" + "0" + day;
+      } else if (month < 10) {
+        newDate =  year + "-" + "0" + month + "-" + day;
+      }
+    } 
 
     var newReturnDate = returnDate;
     if (returnDate) {
@@ -92,6 +101,16 @@ export default function Homepage() {
       day = returnDate.getUTCDate();
       year = returnDate.getUTCFullYear();
       newReturnDate = year + "-" + month + "-" + day;
+      if (month < 10 || day < 10) {
+        if (month < 10 && day < 10) {
+          newReturnDate =  year + "-" + "0" + month + "-" + "0" + day;
+        } else if (day < 10) {
+          newReturnDate =  year + "-" + month + "-" + "0" + day;
+        } else if (month < 10) {
+          newReturnDate =  year + "-" + "0" + month + "-" + day;
+        }
+        
+      } 
     }
 
     const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ};
@@ -103,10 +122,6 @@ export default function Homepage() {
   }
   const updateSource = (source) => {
     setSource(source);
-  }
-
-  const dateFunction = () => {
-
   }
 
   function addMonths(date, months) {
@@ -275,53 +290,7 @@ export default function Homepage() {
           </div>
         </div>
 
-        {/*<div className="home-search-passengers">
-          <button className="search-pas-btn" onClick={() => setOpenPeps(!isOpenPeps)}>
-            <svg className="search-per-icon" xmlns="http://wvww.w3.org/2000/svg" viewBox="0 0 60 60" fill="none"><g filter="url(#filter0_d)"><path d="M31.66 29.03c1.117-1.113 2.013-2.491 2.627-4.04.614-1.547.932-3.23.932-4.931 0-3.198-1.103-6.266-3.066-8.527C30.189 9.27 27.526 8 24.75 8s-5.44 1.27-7.402 3.532c-1.964 2.261-3.067 5.329-3.067 8.527 0 1.702.318 3.384.932 4.932.614 1.548 1.51 2.926 2.628 4.04-2.931 1.528-5.418 3.997-7.163 7.11C8.933 39.256 8.003 42.883 8 46.589c0 .64.22 1.253.613 1.706.393.452.925.706 1.48.706.556 0 1.089-.254 1.481-.706a2.61 2.61 0 00.614-1.706c0-3.838 1.323-7.518 3.679-10.232 2.356-2.714 5.551-4.238 8.883-4.238 3.332 0 6.527 1.524 8.883 4.238 2.356 2.714 3.68 6.394 3.68 10.232 0 .64.22 1.253.613 1.706.392.452.925.706 1.48.706.556 0 1.088-.254 1.48-.706a2.61 2.61 0 00.614-1.706c-.003-3.706-.933-7.333-2.678-10.446-1.745-3.114-4.232-5.583-7.163-7.111zm-6.91-1.736c-1.242 0-2.457-.424-3.49-1.22-1.033-.794-1.838-1.924-2.313-3.246a8.261 8.261 0 01-.357-4.18c.242-1.404.84-2.693 1.718-3.705.879-1.012 1.998-1.701 3.217-1.98a5.516 5.516 0 013.629.411c1.148.548 2.128 1.475 2.819 2.665a8.038 8.038 0 011.058 4.02c0 1.919-.662 3.76-1.84 5.116-1.177 1.357-2.775 2.12-4.441 2.12zm20.393.772c1.34-1.738 2.215-3.885 2.52-6.183a13.728 13.728 0 00-.8-6.768c-.827-2.12-2.168-3.92-3.863-5.182C41.306 8.67 39.33 7.999 37.312 8c-.555 0-1.087.254-1.48.706a2.61 2.61 0 00-.613 1.706c0 .64.22 1.253.613 1.705.393.452.925.706 1.48.706 1.666 0 3.264.763 4.442 2.12 1.178 1.357 1.84 3.197 1.84 5.116a8.095 8.095 0 01-.846 3.606c-.551 1.097-1.342 2.007-2.295 2.64-.31.207-.57.501-.753.856a2.69 2.69 0 00-.294 1.17c-.008.41.073.815.238 1.178.165.363.407.671.705.896l.816.627.272.17c2.524 1.378 4.653 3.559 6.137 6.285s2.26 5.884 2.238 9.101c0 .64.22 1.253.614 1.706.392.452.925.706 1.48.706.555 0 1.088-.254 1.48-.706A2.61 2.61 0 0054 46.588c.017-3.7-.788-7.345-2.338-10.587s-3.794-5.974-6.519-7.935z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="31" y1="8" x2="31" y2="49" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="0" y="0" width="62" height="57" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
-          </button>
-          {
-            isOpenPeps && (
-              <div className="search-per-drop">
-                <div className="per-drop-adults">
-                  <Input
-                    className={classes.input}
-                    value={numAdults}
-                    margin="dense"
-                    placeholder="Adults"
-                    onChange={handleNumAdultChange}
-                    // onBlur={handleBlur}
-                    inputProps={{
-                      step: 1,
-                      min: 1,
-                      max: 5,
-                      type: 'number',
-                      'aria-labelledby': 'input-slider',
-                    }}
-                  />
-                </div>
-                <div className="per-drop-child"></div>
-                <div>
-                  <Input
-                    className={classes.input}
-                    value={numInfants}
-                    margin="dense"
-                    placeholder="Infants"
-                    onChange={handleNumInfantsChange}
-                    // onBlur={handleBlur}
-                    inputProps={{
-                      step: 1,
-                      min: 1,
-                      max: numAdults,
-                      type: 'number',
-                      'aria-labelledby': 'input-slider',
-                    }}
-                  />
-                </div>
-              </div>
-            )
-          }
-        </div>*/}
-
+        
         <Link
           className="search-btn"
           to={{
