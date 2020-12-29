@@ -87,6 +87,8 @@ const BoardingPass = (props) => {
 export default function Successful(props) {
   const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
   const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
+  const travellerInfo = useSelector(state => state.flight.travellers); 
+
   const user = useSelector(state => state.user.curr_user);
   console.log("User:", user)
   var isReturn = false;
@@ -102,7 +104,7 @@ export default function Successful(props) {
   axios({
     method: "POST",
     url: 'http://localhost:5000/api/checkout',
-    data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id }  
+    data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id, travellerInfo: travellerInfo}  
   }).then(res => {
     console.log(res);
     // console.log("Var inside: ", isSignedIn, res.data.user._id);

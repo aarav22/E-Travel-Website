@@ -113,11 +113,13 @@ module.exports = {
         let history = [];
         let singleFlightOffer = req.body.singleFlightOffer;
         let returnFlightOffer = req.body.returnFlightOffer;
+        let travellerInfo = req.body.travellerInfo;
 
         history.push({  // Updating user's past purchases: 
             purchase_date: Date.now(),
             singleFlightOffer: singleFlightOffer,
-            returnFlightOffer: returnFlightOffer
+            returnFlightOffer: returnFlightOffer,
+            travellerInfo: travellerInfo
         })
 
         User.findOneAndUpdate(
