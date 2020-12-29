@@ -41,9 +41,10 @@ app.post('/api/post_review', user_controller.post_reviews)
 
 app.get('/api/fcars', fcar_controller.see_fcar);
 
-app.post('/api/fcars', admin_controller.create_fcars);
-app.put('/api/fcars', admin_controller.update_fcars);
-app.delete('/api/fcars', admin_controller.delete_fcars);
+app.get('/api/num_bookings', admin_controller.get_num_bookings)
+// app.post('/api/fcars', admin_controller.create_fcars);
+// app.put('/api/fcars', admin_controller.update_fcars);
+// app.delete('/api/fcars', admin_controller.delete_fcars);
 
 
 

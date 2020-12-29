@@ -1,0 +1,146 @@
+.booking-container {
+  display: flex; 
+  flex-direction: column;
+  padding: 0rem 5rem;
+  gap: 5rem;
+}
+
+.booking-title {
+  align-self: flex-start;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+  padding-top: 1rem;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.sub-header{
+font-family: 'Bebas Neue', cursive;
+font-style: normal;
+font-weight: normal;
+font-size: 158px;
+line-height: 58px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
+}
+
+.book-top {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.booking-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.book-main-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-right: 4rem;
+}
+
+.book-main-right {
+  flex: 1;
+  padding-left: 4rem;
+  border-left: 2px solid #8D96E2;
+}
+
+.book-mid {
+  display: flex;
+  border: 2.5px solid #8D96E2;
+  background-color: rgba(0, 0, 0, 0.65);
+  gap: 4rem;
+  padding: 1.5rem;
+}
+
+.book-mid-right {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.book-mid-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-mid-time p {
+  border-bottom: 1px solid #ffffff;
+}
+
+.mid-time {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 47px;
+}
+
+.mid-date {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.mid-dep,
+.mid-port {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.mid-term {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.book-mid-dep, 
+.book-mid-arr {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.book-bottom p:first-child {
+  font-weight: bolder;
+}
+
+.book-main-right {
+  display: flex;
+  gap: 3rem; 
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.order-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.order-price {
+  text-align: right;
+}
+
+.order-details {
+  border: 2.5px solid #8D96E2;
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.booking-button {
+  align-self: flex-end;
+}

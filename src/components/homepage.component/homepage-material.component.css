@@ -114,11 +114,6 @@ top: 170px;transform: rotate(-179.78deg);
   cursor: pointer;
 }
 
-.drop-one-down *:hover,
-.drop-eco-down *:hover {
-  background-color: blue;
-}
-
 .search-button, 
 .search-pas-btn {
   background-color: transparent;
@@ -158,16 +153,16 @@ top: 170px;transform: rotate(-179.78deg);
     align-items: flex-start; 
   }
 
+  .centerAlign {
+    padding: auto;
+  }
+
   .home-search-arr,
   .home-search-take,
   .home-search-date {
     display: flex;
     gap: 1rem;
-  }
-
-  .home-search-date {
-    width: 10rem;
-    padding-top: 0;
+    padding: 0;
   }
 
   .search-take-icon,
@@ -184,14 +179,29 @@ top: 170px;transform: rotate(-179.78deg);
     justify-self: center;
   }
 
-  .search-date-icon {
-    width: 5rem;
-    height: 5rem;
-  }
-
   .search-button {
     width: 3rem;
     height: 3rem;
   }
+
+  .home-search-container {
+    width: 15rem;
+  }
+
+  .home-search-results {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+
+  .search-main-result:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .react-datepicker__input-container {
+    width: 7rem;
+  }
+
 }
 

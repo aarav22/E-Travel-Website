@@ -20,6 +20,8 @@
     "express": "^4.17.1",
     "fuse.js": "^6.4.3",
     "google-auth-library": "^6.1.3",
+    "jspdf": "^2.2.0",
+    "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.29.1",
     "mongoose": "^5.10.11",
     "nodemon": "^2.0.6",
@@ -32,6 +34,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-to-pdf": "0.0.13",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

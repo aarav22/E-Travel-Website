@@ -35,17 +35,22 @@ const flightSlice = createSlice({
         },
 
         flightOffer(state, action) {
-            const {offer, returnOffer} = action.payload;
-            state.singleFlightOffer = offer; 
-            state.returnFlightOffer = returnOffer;
+            const offer = action.payload;
+            state.singleFlightOffer = offer.singleFlightOffer; 
+            state.returnFlightOffer = offer.returnFlightOffer;
         }, 
 
         numBooking(state, action) {
             const numBookings = action.payload;
             state.numBookings = numBookings;
+        },
+
+        travellersInfo(state, action) {
+            const travellerInfo = action.payload;
+            state.travellers = travellerInfo;
         }
+        
     }
 });
-export const { flightItineary, flightOffer, numBooking } = flightSlice.actions;
-// export const selectUser = state => state.user.isSignedIn;
+export const { flightItineary, flightOffer, numBooking, travellersInfo } = flightSlice.actions;
 export default flightSlice.reducer; 
