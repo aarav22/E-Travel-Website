@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {Link} from "react-router-dom";
 import Pdf from "react-to-pdf";
@@ -29,7 +29,6 @@ const BoardingPass = (props) => {
             <div className="mook-mid-left">
               <span className="img"></span>
               <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
-              <p>AI-803</p>
             </div>
             <div className="book-mid-right">
               <div className="book-mid-dep">
@@ -38,7 +37,7 @@ const BoardingPass = (props) => {
                 <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
                 <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
               </div>
-              <div className="book-mid-time"><p>1h 35mins</p></div>
+              {/* <div className="book-mid-time"><p>1h 35mins</p></div> */}
               <div className="book-mid-arr">
                 <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
                 <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
@@ -61,7 +60,7 @@ const BoardingPass = (props) => {
                   <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
                   <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
                 </div>
-                <div className="book-mid-time"><p>1h 35mins</p></div>
+                {/* <div className="book-mid-time"><p>1h 35mins</p></div> */}
                 <div className="book-mid-arr">
                   <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
                   <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
@@ -96,11 +95,6 @@ export default function Successful(props) {
     isReturn = true;
   }
 
-  // const source = useSelector(state => state.flight.source);
-  // const destination = useSelector(state => state.flight.destination);
-  // const flightOffer = useSelector(state => state.flight.flightOffer);
-
-  // Save in prev bookings: 
   axios({
     method: "POST",
     url: 'http://localhost:5000/api/checkout',
@@ -135,7 +129,7 @@ export default function Successful(props) {
 
       <div className="booking-ref">
         <p>Booking Ref: FRA-BE-19283102</p>
-        <p>Print your boarding pass here</p>
+        {/* <p>Print your boarding pass here</p> */}
       </div>
 
       
@@ -147,10 +141,6 @@ export default function Successful(props) {
         <BoardingPass singleFlightOffer={singleFlightOffer} returnFlightOffer={returnFlightOffer} isReturn={isReturn}/>
       </div>
 
-      <div  >
-        <p>Boarding Pass: </p>
-
-      </div>
 
       <Link to="/" className="go-home btn btn-large transparent waves-effect waves-light">
         <i class="fas fa-home"></i>   Go Home
