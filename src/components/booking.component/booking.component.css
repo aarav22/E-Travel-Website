@@ -37,7 +37,7 @@ color: #FFFFFF;
 
 .booking-main {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -111,7 +111,6 @@ color: #FFFFFF;
   display: flex;
   flex-direction: column;
 }
-
 
 .book-bottom p:first-child {
   font-weight: bolder;

@@ -33,14 +33,14 @@ const BoardingPass = (props) => {
             <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
+            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
           </div>
           <div className="book-mid-time"><p>1h 35mins</p></div>
           <div className="book-mid-arr">
             <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal : "NA"}`}</div>
+            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
           </div>
         </div>
       </div>
@@ -57,14 +57,14 @@ const BoardingPass = (props) => {
               <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
               <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
               <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
-              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal ? props.returnFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
+              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal ? props.returnFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
             </div>
             <div className="book-mid-time"><p>1h 35mins</p></div>
             <div className="book-mid-arr">
               <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
               <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
               <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal : "NA"}`}</div>
+              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
             </div>
           </div>
         </div>
@@ -119,6 +119,7 @@ const DisplayReview = () => {
               </tbody>
             </table>
           </div>
+          
           <div className="booking-cancel-message">
             <h6>COUPONS</h6>
             <FormControl component="fieldset">
@@ -129,6 +130,7 @@ const DisplayReview = () => {
               </RadioGroup>
             </FormControl>
           </div>
+
           <div className="booking-coupon">
             Cancellation & Date change charges
             Cancellation Fees Apply
