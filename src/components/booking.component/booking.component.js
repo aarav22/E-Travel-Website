@@ -5,6 +5,7 @@ import jsPDF from 'jspdf'
 import FinalComponent from '../successful.component/successful.component'
 
 const ref = React.createRef();
+import {useDispatch, useSelector} from 'react-redux';
 
 
 import "./booking.component.css";
@@ -42,7 +43,7 @@ const Booking = () => {
       <div ref={ref} className="booking-main">
         <div className="book-main-left">
           <div className="book-top">ITINERARY</div>
-          <div className="book-mid">
+          <div className="book-mid up">
             <div className="mook-mid-left">
               <span className="img"></span>
               <h6>{singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
@@ -53,17 +54,41 @@ const Booking = () => {
                 <div className="mid-time">{convertTime(singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
                 <div className="mid-date">{convertDate(singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
                 <div className="mid-dep">{singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-                <div className="mid-term">{singleFlightOffer.itineraries[0].segments[0].departure.terminal}</div>
+                <div className="mid-term">{`Terminal: ${singleFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
               </div>
               <div className="book-mid-time"><p>1h 35mins</p></div>
               <div className="book-mid-arr">
                 <div className="mid-time">{convertTime(singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
                 <div className="mid-date">{convertDate(singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
                 <div className="mid-dep">{singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-                <div className="mid-term">{singleFlightOffer.itineraries[0].segments[0].arrival.terminal}</div>
+                <div className="mid-term">{`Terminal: ${singleFlightOffer.itineraries[0].segments[0].arrival.terminal}`}</div>
               </div>
             </div>
           </div>
+          {isReturn && (
+
+            <div className="book-mid down">
+              <div className="mook-mid-left">
+                <span className="img"></span>
+                <h6>{singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
+              </div>
+              <div className="book-mid-right">
+                <div className="book-mid-dep">
+                  <div className="mid-time">{convertTime(returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+                  <div className="mid-date">{convertDate(returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+                  <div className="mid-dep">{returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
+                  <div className="mid-term">{`Terminal: ${returnFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
+                </div>
+                <div className="book-mid-time"><p>1h 35mins</p></div>
+                <div className="book-mid-arr">
+                  <div className="mid-time">{convertTime(returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+                  <div className="mid-date">{convertDate(returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+                  <div className="mid-dep">{returnFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
+                  <div className="mid-term">{`Terminal: ${returnFlightOffer.itineraries[0].segments[0].arrival.terminal}`}</div>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="book-bottom">
             <p>Mandatory check-list for passengers (in lieu of COVID-19):</p>
             <p>➡ Certify your health status through the Aarogya Setu app or the self-declaration form at the airport.</p>
@@ -97,7 +122,7 @@ const Booking = () => {
             A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.
           </div>
 
-          <Link to='/successful'>
+          <Link to='/traveller'>
             <button >
               Ka-Ching!
             </button>

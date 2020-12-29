@@ -1,0 +1,21 @@
+.traveler-title {
+font-family: "Saira Semi Condensed";
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+}
+
+.traveler-container {
+  margin: 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.traveler {
+  display: flex;
+  gap: 2rem;
+  width: 60rem;
+  padding: 0 0rem 0 3rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
