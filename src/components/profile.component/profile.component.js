@@ -26,28 +26,27 @@ export default function Profile(props) {
     },
   ]
 
-  return (
-    <div className="profile-main">
-      <div className="profile-title">
-        My Account
-      </div>
-      <div className="profile-navigation">
-        <img
-          className="circle profile-img"
-          src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png"}
-          alt="profile pic"
-          style={{"width": "150px"}} />
-        {
-          tabs.map((tab, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(tab.name)}
-              className={`profile-nav-button ${(tab.name === current) ? "profile-tab-active" : ""}`}>
-              {tab.label}
-            </button>
-          ))
-        }
-      </div>
+    return(
+        <div className="profile-main">
+            {console.log("hello from profile", props.user)}
+            <div className="profile-navigation">
+            
+                <img 
+                    className="profile-img" class="circle responsive-img" 
+                    src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png" }
+                    alt="profile pic" 
+                    style={{"width": "150px"}} />
+                {
+                    tabs.map((tab, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setCurrent(tab.name)}
+                            className={`profile-nav-button ${(tab.name === current) ? "profile-tab-active": ""}`}>
+                            {tab.label}
+                        </button>
+                    ))
+                }
+            </div>
 
       {
         tabs.map((tab, i) => {
