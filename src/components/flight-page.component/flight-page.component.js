@@ -66,7 +66,7 @@ const FlightPage = (props) => {
     var time = newDate.toLocaleTimeString();
     return time;
   }
-  
+
   const includedFlightsHandler = (flightCode) => {
     if (includedAirlineCodes) {
       setIncludedFlights(includedAirlineCodes + "," + flightCode);
@@ -98,8 +98,8 @@ const FlightPage = (props) => {
         nonStop: isNonStop,
         includedAirlineCodes: includedAirlineCodes,
         excludedAirlineCodes: excludedAirlineCodes,
-        maxPrice:maxPrice, 
-      }).then(res => {console.log(res); setFlights(res.result.data); setAirlinesObject(res.result.dictionaries.carriers);}).catch(responseError => 
+        maxPrice: maxPrice,
+      }).then(res => {console.log(res); setFlights(res.result.data); setAirlinesObject(res.result.dictionaries.carriers);}).catch(responseError =>
         console.log(responseError, responseError.code));
     };
     fetchFlights();
@@ -119,8 +119,8 @@ const FlightPage = (props) => {
           nonStop: isNonStop,
           includedAirlineCodes: includedAirlineCodes,
           excludedAirlineCodes: excludedAirlineCodes,
-          maxPrice:maxPrice, 
-        }).then(res => {console.log(res);  setReturnFlights(res.result.data);}).catch(responseError => 
+          maxPrice: maxPrice,
+        }).then(res => {console.log(res); setReturnFlights(res.result.data);}).catch(responseError =>
           console.log(responseError, responseError.code));
         setLoading(false);
       };
@@ -324,7 +324,7 @@ const FlightPage = (props) => {
       {
         (<Link className="flight-page-continue-btn" to="/book">
           <button className="flight-page-continue-button" onClick={() => saveFlightOffer()}>
-            CONTINUE <i class="fas fa-angle-double-right"></i> 
+            CONTINUE <i class="fas fa-angle-double-right"></i>
           </button>
         </Link>)
       }
