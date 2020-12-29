@@ -28,6 +28,10 @@ const FCarsSchema = mongoose.Schema({
     review: {
         type: Array,
         default: []
+    },
+    numSold: {
+        type: Number,
+        default: 0
     }
 });
 

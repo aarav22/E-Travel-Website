@@ -87,24 +87,26 @@ const BoardingPass = (props) => {
 export default function Successful(props) {
   const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
   const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
+  const user = useSelector(state => state.user.curr_user);
+  console.log("User:", user)
   var isReturn = false;
   if (returnFlightOffer) {
     isReturn = true;
   }
 
-  const source = useSelector(state => state.flight.source);
-  const destination = useSelector(state => state.flight.destination);
-  const flightOffer = useSelector(state => state.flight.flightOffer);
+  // const source = useSelector(state => state.flight.source);
+  // const destination = useSelector(state => state.flight.destination);
+  // const flightOffer = useSelector(state => state.flight.flightOffer);
 
   // Save in prev bookings: 
   axios({
     method: "POST",
     url: 'http://localhost:5000/api/checkout',
-    data: {flightOffer: flightOffer}
+    data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id }  
   }).then(res => {
     console.log(res);
     // console.log("Var inside: ", isSignedIn, res.data.user._id);
-  })
+  }) 
     .catch(err => console.log("Error from checkout", err));
 
   // const amadeus = new Amadeus({

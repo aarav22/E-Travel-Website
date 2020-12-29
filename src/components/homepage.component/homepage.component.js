@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import {Input} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import M from "materialize-css";
+import axios from 'axios';
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./homepage-material.component.css"
@@ -20,7 +21,21 @@ const useStyles = makeStyles({
 export default function Homepage() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const numBookings = useSelector(state => state.flight.numBookings);
+  const [numBookings, setNumBookings] = useState("Loading");
+  axios.get('http://localhost:5000/api/num_bookings')
+    .then(res => {
+      console.log(res); 
+      setNumBookings(res.data.numBookings);
+    })
+    .catch(err => console.log(err));
+
+    useEffect(() => {
+    }, [numBookings]);
+  
+
+  // useSelector(state => state.flight.numBookings);
+
+  
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());

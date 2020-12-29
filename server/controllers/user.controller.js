@@ -111,39 +111,26 @@ module.exports = {
     
     on_payment(req, res) {
         let history = [];
-        let flightOffer = req.body.flightOffer;
-        history.push({  // Updating user history: 
+        let singleFlightOffer = req.body.singleFlightOffer;
+        let returnFlightOffer = req.body.returnFlightOffer;
+
+        history.push({  // Updating user's past purchases: 
             purchase_date: Date.now(),
-            duration: flightOffer.itenaries.segments
-            // : entity.name,
-            // fcar_id: entity._id,
-            // fcar_price: entity.price,
+            singleFlightOffer: singleFlightOffer,
+            returnFlightOffer: returnFlightOffer
         })
 
         User.findOneAndUpdate(
-            { _id: req.user._id },
+            { _id: req.body.userId },
             { $push: { history: history }, $set: { cart: [] } },
             { new: true },
             (err, user) => {
                 if (err) return res.json({ success: false, err });
-                FCar.update(
-                    {_id: fcar_id}, {
-                        $inc: {
-                            "sold": 1
-                        }
-                    },
-                    {new: true}, 
-                    (err) => {
-                        if (err) return res.json({ msg: false, err })
-                        res.status(200).json({
-                            msg: true,
-                        })
-                    }
-                )
+                return res.status(200).json({success: true});
             });   
     },
 
-    post_reviews(req, res) {
+    post_reviews(req, res) { 
         const {userId, fcarId, review} = req.body;
         User.findOneAndUpdate(
             { _id: userId }, {
