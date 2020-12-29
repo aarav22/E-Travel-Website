@@ -1,6 +1,9 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 import "./traveler.component.css"
+import "../booking.component/booking.component.css";
+
 
 
 const Traveller = () => {
@@ -82,7 +85,9 @@ const Traveller = () => {
         </form>
       </div>
       <div className="continue-btn">
-        <button className="btn-large transparent waves-effect traveler-continue">CONTINUE</button>
+        <Link to='/successful'>
+          <button className="btn-large transparent waves-effect traveler-continue">CONTINUE</button>
+        </Link> 
       </div>
     </div>
   )
