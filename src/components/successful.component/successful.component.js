@@ -7,7 +7,7 @@ import M from "materialize-css";
 
 const Amadeus = require('amadeus');
 
-export default function Successful() {
+export default function Successful(props) {
   const source = useSelector(state => state.flight.source);
   const destination = useSelector(state => state.flight.destination);
   const flightOffer = useSelector(state => state.flight.flightOffer);
@@ -47,6 +47,7 @@ export default function Successful() {
         <p>Booking Ref: FRA-BE-19283102-MHAKSA-DELIVERY-ORDER</p>
         <p>Print your boarding pass here</p>
       </div>
+      <button onClick={props.pdf}>Generate Pdf</button>
       <Link to="/" className="go-home btn btn-large transparent waves-effect waves-light">
         <i class="fas fa-home"></i>   Go Home
       </Link>

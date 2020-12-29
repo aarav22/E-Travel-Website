@@ -1,6 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import jsPDF from 'jspdf'
+import FinalComponent from '../successful.component/successful.component'
+
+const ref = React.createRef();
 
 
 import "./booking.component.css";
@@ -27,12 +31,15 @@ const Booking = () => {
   }
 
   return (
+    
+
     <div className="booking-container">
+
       <div className="booking-title">
         Review Your Booking
       </div>
 
-      <div className="booking-main">
+      <div ref={ref} className="booking-main">
         <div className="book-main-left">
           <div className="book-top">ITINERARY</div>
           <div className="book-mid">
