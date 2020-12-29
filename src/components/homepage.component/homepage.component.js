@@ -24,18 +24,18 @@ export default function Homepage() {
   const [numBookings, setNumBookings] = useState("Loading");
   axios.get('http://localhost:5000/api/num_bookings')
     .then(res => {
-      console.log(res); 
+      console.log(res);
       setNumBookings(res.data.numBookings);
     })
     .catch(err => console.log(err));
 
-    useEffect(() => {
-    }, [numBookings]);
-  
+  useEffect(() => {
+  }, [numBookings]);
+
 
   // useSelector(state => state.flight.numBookings);
 
-  
+
   const [destination, setDes] = useState('');
   const [source, setSource] = useState('');
   const [startDate, setStartDate] = useState(new Date());
@@ -102,13 +102,13 @@ export default function Homepage() {
     var newDate = year + "-" + month + "-" + day;
     if (month < 10 || day < 10) {
       if (month < 10 && day < 10) {
-        newDate =  year + "-" + "0" + month + "-" + "0" + day;
+        newDate = year + "-" + "0" + month + "-" + "0" + day;
       } else if (day < 10) {
-        newDate =  year + "-" + month + "-" + "0" + day;
+        newDate = year + "-" + month + "-" + "0" + day;
       } else if (month < 10) {
-        newDate =  year + "-" + "0" + month + "-" + day;
+        newDate = year + "-" + "0" + month + "-" + day;
       }
-    } 
+    }
 
     var newReturnDate = returnDate;
     if (returnDate) {
@@ -118,14 +118,14 @@ export default function Homepage() {
       newReturnDate = year + "-" + month + "-" + day;
       if (month < 10 || day < 10) {
         if (month < 10 && day < 10) {
-          newReturnDate =  year + "-" + "0" + month + "-" + "0" + day;
+          newReturnDate = year + "-" + "0" + month + "-" + "0" + day;
         } else if (day < 10) {
-          newReturnDate =  year + "-" + month + "-" + "0" + day;
+          newReturnDate = year + "-" + month + "-" + "0" + day;
         } else if (month < 10) {
-          newReturnDate =  year + "-" + "0" + month + "-" + day;
+          newReturnDate = year + "-" + "0" + month + "-" + day;
         }
-        
-      } 
+
+      }
     }
 
     const flightObject = {source: source, destination: destination, date: newDate, returnDate: newReturnDate, numAdults: numAdults, numInfants: numInfants, isReturn: one !== "One-Way" ? true : false, airfareType: econ};
@@ -306,7 +306,7 @@ export default function Homepage() {
           </div>
         </div>
 
-        
+
         <Link
           className="search-btn"
           to={{
@@ -319,6 +319,8 @@ export default function Homepage() {
 
           {makeFlightState()}
         </Link>
+      </div>
+      <div className="arrow bounce">
       </div>
     </div>
   )
