@@ -128,6 +128,14 @@ module.exports = {
             { new: true },
             (err, user) => {
                 if (err) return res.json({ success: false, err });
+                FCar.findOneAndUpdate(
+                    {_id: "5fbf3d7421e5ae4a0450191a"},
+                    {$inc: {numSold: 1}},
+                    { new: true },
+                    (err, fcar) => {
+                        if (err) return res.status(400).json({success:false, err})
+                    }
+                );
                 return res.status(200).json({success: true});
             });   
     },
