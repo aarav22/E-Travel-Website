@@ -75,8 +75,8 @@ const BoardingPass = (props) => {
         <p>➡ Certify your health status through the Aarogya Setu app or the self-declaration form at the airport.</p>
         <p>➡ Remember to web check-in before arriving at the airport; carry a printed or soft copy of the boarding pass.</p>
         <p>➡ Please reach at least 2 hours prior to flight departure.</p>
-        <p>➡ Please wear a kfcuing mask.</p>
-        <p>➡ PPE kits will be provided and are compulsory to be used.</p>
+        <p>➡ Please wear a robber's mask.</p>
+        <p>➡ PPE kits will be provided and are compulsorily to be used.</p>
       </div>
     </div>
   );
@@ -116,8 +116,12 @@ const DisplayReview = () => {
                   <td className="order-price">{"₹" + 500}</td>
                 </tr>
                 <tr>
+                  <td>Discount</td>
+                  <td className="order-price">{"₹" + discount}</td>
+                </tr>
+                <tr>
                   <td>Total Amount</td>
-                  <td className="order-price">{"₹" + (singleFlightOffer.price.total + 500)}</td>
+                  <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + 500 - discount)}</td>
                 </tr>
               </tbody>
             </table>
