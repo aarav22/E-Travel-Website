@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import FinalComponent from '../successful.component/successful.component'
 import {FormControl, FormControlLabel, RadioGroup, Radio} from "@material-ui/core";
@@ -85,6 +86,8 @@ const BoardingPass = (props) => {
 
 
 const DisplayReview = () => {
+  const [discount, setDiscount] = useState(0);
+  const [valRadioSingle, setRadioSingle] = useState('')
   const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
   const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
   var isReturn = false;
@@ -123,12 +126,12 @@ const DisplayReview = () => {
           <div className="booking-cancel-message">
             <h6>COUPONS</h6>
             <FormControl component="fieldset">
-              <RadioGroup name="coupon" value="booking-coupon">
-                <FormControlLabel value="cs1208" control={<Radio />} label="CS-1208 - Something clever" />
-                <FormControlLabel value="cs1216" control={<Radio />} label="CS-1216 - Something clever" />
-                <FormControlLabel value="cs1202" control={<Radio />} label="CS-1202 - Something clever" />
-              </RadioGroup>
-            </FormControl>
+              <RadioGroup name="coupon" value={valRadioSingle}>
+                <FormControlLabel value="cs1208" control={<Radio onChange={(e) => {setDiscount(1208); setRadioSingle(e.target.value);}}/>} label="CS-1208 - That okay?" />
+                <FormControlLabel value="cs1216" control={<Radio onChange={(e) => {setDiscount(1216); setRadioSingle(e.target.value);}}/>} label="CS-1216 - Correct..but not exactly" />
+                <FormControlLabel value="cs1202" control={<Radio onChange={(e) => {setDiscount(1202); setRadioSingle(e.target.value);}}/>} label="CS-1202 - best professor" />
+              </RadioGroup> 
+            </FormControl>  
           </div>
 
           <div className="booking-coupon">
