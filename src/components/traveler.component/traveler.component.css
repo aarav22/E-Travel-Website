@@ -19,3 +19,15 @@ font-size: 48px;
   padding: 0 0rem 0 3rem;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.adult{
+font-family: 'Bebas Neue', cursive;
+font-style: normal;
+font-weight: normal;
+font-size: 40px;
+line-height: 48px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
+
+}
