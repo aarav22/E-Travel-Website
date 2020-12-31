@@ -28,8 +28,8 @@ const Traveller = () => {
   const [cGender, setCGender] = useState("");
   const [cID, setCID] = useState("");
 
-  const [mobile, setMobile] = useState(+91 - 22112211)
-  const [email, setEmail] = useState("flights@wright.com")
+  const [mobile, setMobile] = useState()
+  const [email, setEmail] = useState("")
 
 
 
