@@ -5,6 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
+// import "./flight-page.component.css";
+import "./flight-page.component-material.css";
+
 const useStyles = makeStyles({
   root: {
     width: 220,
@@ -40,10 +43,12 @@ export default function InputSlider(props) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} filtername>
+      <div className="filtername">
       <Typography id="input-slider" gutterBottom>
-        Max Price
+        Price
             </Typography>
+      </div>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <svg className="rupee-symbol" width="24px" height="24px" viewBox="0 0 24 24">
