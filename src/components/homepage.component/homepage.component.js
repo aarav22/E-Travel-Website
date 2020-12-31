@@ -7,7 +7,6 @@ import DatePicker from "react-datepicker";
 import {Input} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import M from "materialize-css";
-import {Carousel} from "react-bootstrap";
 import axios from 'axios';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -345,7 +344,7 @@ export default function Homepage() {
             <p className="white-text">This is your fourth panel</p>
           </div>
         </div>
-        <a className="btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
+        <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
       </section>
     </div>
   )

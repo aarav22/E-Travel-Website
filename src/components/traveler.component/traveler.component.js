@@ -28,21 +28,21 @@ const Traveller = () => {
   const [cGender, setCGender] = useState("");
   const [cID, setCID] = useState("");
 
-  const [mobile, setMobile] = useState(+91-22112211)
+  const [mobile, setMobile] = useState(+91 - 22112211)
   const [email, setEmail] = useState("flights@wright.com")
 
-  
+
 
 
 
   const pushAdultInfo = () => {
-    var adult = {fName: aFName, lName:aLName, Gender: aGender, ID: aID};
-    adultsInfo.push(adult); 
+    var adult = {fName: aFName, lName: aLName, Gender: aGender, ID: aID};
+    adultsInfo.push(adult);
   }
 
   const pushChildInfo = () => {
-    var child = {fName: cFName, lName:cLName, Gender: cGender, ID: cID};
-    childsInfo.push(child); 
+    var child = {fName: cFName, lName: cLName, Gender: cGender, ID: cID};
+    childsInfo.push(child);
   }
 
   const finalSubmission = () => {
@@ -62,27 +62,27 @@ const Traveller = () => {
         {no_adults.map((e) => (
           <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>
             <div className="input-field col s3">
-              <input type="text" className="validate" id={`first-name-${e}`} value={aFName} onChange={(e) =>setAFName(e.target.value)}/>
+              <input type="text" className="validate" id={`first-name-${e}`} value={aFName} onChange={(e) => setAFName(e.target.value)} />
               <label for={`first-name-${e}`}>First Name</label>
             </div>
 
             <div className="input-field col s3">
-              <input type="text" className="validate" id={`last-name-${e}`} value={aLName} onChange={(e) =>setALName(e.target.value)}/>
+              <input type="text" className="validate" id={`last-name-${e}`} value={aLName} onChange={(e) => setALName(e.target.value)} />
               <label for={`last-name-${e}`}>Last Name</label>
             </div>
 
             <div className="input-field col s3">
-              <input type="text" className="validate" id={`gender-${e}`} value={aGender} onChange={(e) =>setAGender(e.target.value)}/>
+              <input type="text" className="validate" id={`gender-${e}`} value={aGender} onChange={(e) => setAGender(e.target.value)} />
               <label for={`gender-${e}`}>Gender</label>
             </div>
 
             <div className="input-field col s3">
-              <input type="text" className="validate" id={`id-${e}`} value={aID} onChange={(e) =>setAID(e.target.value)} />
+              <input type="text" className="validate" id={`id-${e}`} value={aID} onChange={(e) => setAID(e.target.value)} />
               <label for={`id-${e}`}>ID Authorization</label>
             </div>
 
             {pushAdultInfo()}
-            
+
           </form>
         ))
         }
@@ -93,26 +93,26 @@ const Traveller = () => {
           <div>
             <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>
               <div className="input-field col s3">
-              <input type="text" className="validate" id={`first-name-${e}`} value={cFName} onChange={(e) =>setCFName(e.target.value)} />
-              <label for={`first-name-${e}`}>First Name</label>
+                <input type="text" className="validate" id={`first-name-${e}`} value={cFName} onChange={(e) => setCFName(e.target.value)} />
+                <label for={`first-name-${e}`}>First Name</label>
               </div>
 
               <div className="input-field col s3">
-              <input type="text" className="validate" id={`last-name-${e}`} value={cLName} onChange={(e) =>setCLName(e.target.value)} />
-              <label for={`last-name-${e}`}>Last Name</label>
+                <input type="text" className="validate" id={`last-name-${e}`} value={cLName} onChange={(e) => setCLName(e.target.value)} />
+                <label for={`last-name-${e}`}>Last Name</label>
               </div>
 
               <div className="input-field col s3">
-              <input type="text" className="validate" id={`gender-${e}`} value={cGender} onChange={(e) =>setCGender(e.target.value)}/>
-              <label for={`gender-${e}`}>Gender</label>
+                <input type="text" className="validate" id={`gender-${e}`} value={cGender} onChange={(e) => setCGender(e.target.value)} />
+                <label for={`gender-${e}`}>Gender</label>
               </div>
 
               <div className="input-field col s3">
-              <input type="text" className="validate" id={`id-${e}`} value={cID} onChange={(e) =>setCID(e.target.value)}/>
-              <label for={`id-${e}`}>ID Authorization</label>
+                <input type="text" className="validate" id={`id-${e}`} value={cID} onChange={(e) => setCID(e.target.value)} />
+                <label for={`id-${e}`}>ID Authorization</label>
               </div>
               {pushChildInfo()}
-          </form>
+            </form>
           </div>
         ))
         }
@@ -121,11 +121,11 @@ const Traveller = () => {
         <h6>CONTACT DETAILS</h6>
         <form name="contact" className="traveler contact-forms">
           <div className="input-field col s6">
-            <input type="text" className="validate" id="mobile" value={mobile} onChange={(e) => {setMobile(e.target.value)}}/>
+            <input type="tel" className="validate" id="mobile" value={mobile} onChange={(e) => {setMobile(e.target.value)}} />
             <label for="mobile">Mobile No</label>
           </div>
           <div className="input-field col s6">
-            <input type="text" className="validate" id="email" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+            <input type="email" className="validate" id="email" value={email} onChange={(e) => {setEmail(e.target.value)}} />
             <label for="email">Email</label>
           </div>
         </form>
@@ -135,7 +135,7 @@ const Traveller = () => {
         <Link to='/successful'>
           {finalSubmission()}
           <button className="btn-large transparent waves-effect traveler-continue">CONTINUE</button>
-        </Link> 
+        </Link>
       </div>
     </div>
   )
