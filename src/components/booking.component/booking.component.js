@@ -4,7 +4,6 @@ import {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import FinalComponent from '../successful.component/successful.component'
 import {FormControl, FormControlLabel, RadioGroup, Radio} from "@material-ui/core";
-
 import "./booking.component.css";
 
 const BoardingPass = (props) => {
@@ -102,7 +101,7 @@ const DisplayReview = () => {
       <div className="booking-main">
         <BoardingPass singleFlightOffer={singleFlightOffer} returnFlightOffer={returnFlightOffer} isReturn={isReturn} />
         <div className="book-main-right">
-          <div className="order-title"><p>FARE SUMMARY</p></div>
+          <div className="order-title fare"><p>FARE SUMMARY</p></div>
           <div className="order-details">
             <table>
               <tbody>

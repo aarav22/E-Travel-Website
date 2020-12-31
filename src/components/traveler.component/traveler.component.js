@@ -58,7 +58,7 @@ const Traveller = () => {
     <div className="traveler-container">
       <h4 className="traveler-title">Traveller Details</h4>
       <div className="traveler-adult">
-        <h6>ADULT</h6>
+        <h6 className="adult">ADULT</h6>
         {no_adults.map((e) => (
           <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>
             <div className="input-field col s3">
