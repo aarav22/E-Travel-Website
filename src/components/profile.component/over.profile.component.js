@@ -30,7 +30,7 @@ export default function Overview(props) {
   return (
     <div className="over-sec">
       { console.log("hello from over.profile", props.user)}
-      <h3 className="over-title">Account Overview</h3>
+      <h3 className="over-title">Profile Info</h3>
       <table className="over-info">
         <tbody>
           <tr className="over-table-row">

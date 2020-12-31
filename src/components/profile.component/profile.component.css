@@ -1,11 +1,60 @@
 .profile-main {
   display: grid;
   grid-template-areas:
-  "top top"
-  "profile content";
-  grid-template-columns: 20rem auto;
+    "topbar topbar"
+    "side-nav main-content";
+  grid-template-columns: 20rem auto; 
+  grid-template-rows: 4rem auto;
+  height: 100vh;
+  gap: 2rem;
+  padding: 0 3rem;
 }
 
-.profile-title {grid-area: top;}
-.profile-navigation {grid-area: profile;}
-.content-main {grid-area: content-main;}
+.profile-title {grid-area: topbar;}
+.profile-navigation {grid-area: side-nav;}
+.content-main {grid-area: main-content;}
+
+.profile-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: flex-start;
+}
+
+.profile-title {
+  font-size: 3rem;
+}
+.profile-img {
+  align-self: center;
+  width: 15rem;
+  border: 2.5px solid #8D96E2;
+  border-radius: 50%;
+  height: auto;
+  margin: 2rem 0;
+}
+
+.profile-nav-button {
+  cursor: pointer;
+  height: 2.5rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.over-sec {
+  padding: 0rem 3rem 1rem 3rem;
+  margin-left: 3rem;
+  border: 2.5px solid #8D96E2;
+  width: 70%;
+  background-color: black;
+}
+
+.over-title {
+  padding-bottom: 1rem;
+}
+
+.profile-tab-active {
+  background-color: #8D96E2;
+  color: black;
+}
+

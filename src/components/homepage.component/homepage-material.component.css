@@ -163,6 +163,14 @@ top: 170px;transform: rotate(-179.78deg);
 }
 
 @media only screen and (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .home-contain {
+    min-height: 180vh;
+  }
+
   .home-content {
     position: absolute;
     top: 405px;

@@ -1,6 +1,6 @@
-import Axios from "axios";
-import React, {useState, useEffect} from "react";
-import Navigation from "./navigation.profle.component"
+// import Axios from "axios";
+import React, {useState} from "react";
+import Previous from "./previous.profle.component"
 import Overview from "./over.profile.component"
 import Address from "./add.profile.component"
 
@@ -11,18 +11,18 @@ export default function Profile(props) {
   const tabs = [
     {
       name: "over",
-      label: "Account Overview",
+      label: "Profile Info",
       content: (<Overview user={props.user} />)
+    },
+    {
+      name: "orders",
+      label: "Previous Ventures",
+      content: (<Previous></Previous>)
     },
     {
       name: "address",
       label: "Addresses",
       content: (<Address user={props.user} />)
-    },
-    {
-      name: "orders",
-      label: "Your Orders",
-      content: (<div></div>)
     },
   ]
 
@@ -33,10 +33,10 @@ export default function Profile(props) {
       </div>
       <div className="profile-navigation">
         <img
-          className="circle profile-img"
+          className="profile-img"
           src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png"}
           alt="profile pic"
-          style={{"width": "150px"}} />
+        />
         {
           tabs.map((tab, i) => (
             <button
