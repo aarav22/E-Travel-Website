@@ -32,7 +32,6 @@ const FlightPage = (props) => {
   const [maxPrice, setMaxPrice] = useState(1000000); // This will be an integer >= 0
   const [tempMaxPrice, setTempMaxPrice] = useState(0); //storing until user hits go
 
-
   const [excludedAirlineCodes, setExcludedFlights] = useState() // this will be a string of exculded airline codes separated by comma
   const [includedAirlineCodes, setIncludedFlights] = useState() // this will be a string of included airline codes separated by comma
   const [isNonStop, setNonStop] = useState(false);
@@ -67,19 +66,28 @@ const FlightPage = (props) => {
     return time;
   }
 
-  const includedFlightsHandler = (flightCode) => {
-    if (includedAirlineCodes) {
-      setIncludedFlights(includedAirlineCodes + "," + flightCode);
+  const includedFlightsHandler = (flightCode, checked) => {
+    console.log("Check", checked);
+    if (!checked) {
+      setIncludedFlights();
     } else {
-      setIncludedFlights(flightCode)
+      if (includedAirlineCodes) {
+        setIncludedFlights(includedAirlineCodes + "," + flightCode);
+      } else {
+        setIncludedFlights(flightCode)
+      }
     }
   }
 
-  const excludedFlightsHandler = (flightCode) => {
-    if (excludedAirlineCodes) {
-      setExcludedFlights(excludedAirlineCodes + "," + flightCode);
+  const excludedFlightsHandler = (flightCode, checked) => {
+    if (!checked) {
+      setExcludedFlights("");
     } else {
-      setExcludedFlights(flightCode)
+      if (excludedAirlineCodes) {
+        setExcludedFlights(excludedAirlineCodes + "," + flightCode);
+      } else {
+        setExcludedFlights(flightCode)
+      }
     }
   }
   useEffect(() => {
@@ -196,16 +204,17 @@ const FlightPage = (props) => {
         </div>
 
         <div className="filter-only">
-          <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}><div className="filtername">Only These</div></div>
+        {/* <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}> */}
+          <div className="filtername">Only These</div>
           <div className="only-filters">
-            <form>
+            <form name="includes">
               {
-                clickOnly && airlinesList &&
-                airlinesList.map((airline) => {
+                airlinesList &&
+                airlinesList.map((airline, index) => {
                   return (
                     <p className="only-filter-fields filter">
                       <label for={airline}>
-                        <input key={airline} type="checkbox" id={airline} name="only" value={airline} onChange={(e) => includedFlightsHandler(e.target.value)} />
+                        <input key={index} type="checkbox" id={airline} name="only" value={airline} onChange={(e) => includedFlightsHandler(e.target.value, e.target.checked)} />
                         <span>{airline}</span>
                       </label>
                     </p>
@@ -214,19 +223,20 @@ const FlightPage = (props) => {
               }
             </form>
           </div>
-
         </div>
+
         <div className="filter-except">
-          <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}><div className="filtername">Except These</div></div>
+          {/* <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}> */}
+            <div className="filtername">Except These</div>
           <div className="except-filters">
-            <form>
+            <form name="excepts ">
               {
-                clickExcept && airlinesList &&
-                airlinesList.map((airline) => {
+                airlinesList &&
+                airlinesList.map((airline, index) => {
                   return (
                     <p className="except-filter-fields filter">
-                      <label for={airline}>
-                        <input key={airline} type="checkbox" id={airline} name="except" value={airline} onChange={(e) => excludedFlightsHandler(e.target.value)} />
+                      <label for={`except-${airline}`}>
+                        <input key={index + 100} type="checkbox" id={`except-${airline}`} name="except" value={airline} onChange={(e) => excludedFlightsHandler(e.target.value, e.target.checked)} />
                         <span>{airline}</span>
                       </label>
                     </p>

@@ -17,7 +17,7 @@ import Footer from "./components/footer.component/footer.component"
 import Traveller from "./components/traveler.component/traveler.component.js"
 
 
-import "./App.css";
+import "./App.css"; 
 
 function App() {
   return (
