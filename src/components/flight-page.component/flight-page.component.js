@@ -178,11 +178,11 @@ const FlightPage = (props) => {
         {
           props.location.isRoundTrip && (
             <div className="locs rounded">
-              <div className="departure">
+              <div className="departure bomdel">
                 {destination ? destination : "BOM"}
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="55" height="47" fill="none"><g filter="url(#filter0_d)"><path d="M39.069 25.458l-4.838 5.073 2.644 2.76L46.25 23.5l-9.375-9.792-2.644 2.762 4.838 5.072H8.75v3.916h30.319z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="13.708" x2="27.5" y2="33.292" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="-3" y="-8" width="61" height="63" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
-              <div className="arrival">
+              <div className="arrival bomdel">
                 {source ? source : "DEL"}
               </div>
             </div>
@@ -196,14 +196,14 @@ const FlightPage = (props) => {
         </div>
 
         <div className="filter-only">
-          <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}>Only These</div>
+          <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}><div className="filtername">Only These</div></div>
           <div className="only-filters">
             <form>
               {
                 clickOnly && airlinesList &&
                 airlinesList.map((airline) => {
                   return (
-                    <p className="only-filter-fields">
+                    <p className="only-filter-fields filter">
                       <label for={airline}>
                         <input key={airline} type="checkbox" id={airline} name="only" value={airline} onChange={(e) => includedFlightsHandler(e.target.value)} />
                         <span>{airline}</span>
@@ -217,14 +217,14 @@ const FlightPage = (props) => {
 
         </div>
         <div className="filter-except">
-          <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}>Except These</div>
+          <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}><div className="filtername">Except These</div></div>
           <div className="except-filters">
             <form>
               {
                 clickExcept && airlinesList &&
                 airlinesList.map((airline) => {
                   return (
-                    <p className="except-filter-fields">
+                    <p className="except-filter-fields filter">
                       <label for={airline}>
                         <input key={airline} type="checkbox" id={airline} name="except" value={airline} onChange={(e) => excludedFlightsHandler(e.target.value)} />
                         <span>{airline}</span>
@@ -237,7 +237,7 @@ const FlightPage = (props) => {
           </div>
         </div>
 
-        <button className="" onClick={() => setMaxPrice(tempMaxPrice)}>GO</button>
+        <button className="apply" onClick={() => setMaxPrice(tempMaxPrice)}>APPLY</button>
       </div>
 
       <div className="flight-page-flights">
@@ -246,26 +246,29 @@ const FlightPage = (props) => {
             {
               currentFlights.map((flight) => {
                 return (
+
                   <div className={`${props.location.isRoundTrip ? "flight-card split" : "flight-card"}`} key={flight.id} >
+                      
                     <div className="airline-details">
                       <p className="airline-provider vistara ">Air India</p>
-                      <p className="airline-name vistara">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                      <p className="airline-name code">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                     </div>
                     <div className="flight-timings">
                       <div className="flight-timing-dep">
                         <div className="timing-dep time">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
-                        <p className="vistara">{flightItineary.source}</p>
+                        <p className="city">{flightItineary.source}</p>
                       </div>
                       <div className="timing-dur duration">{flight.itineraries[0].duration}</div>
                       <div className="flight-timing-arr">
                         <div className="timing-arr time">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
-                        <p className="vistara">{flightItineary.destination}</p>
+                        <p className="city">{flightItineary.destination}</p>
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating price">{`INR ₹ ${flight.price.total}`}</div>
+                      <div className="flight-rating price">{`₹ ${flight.price.total}`}</div>
                     </div>
                     <FormControlLabel value={flight.id} control={<Radio className={classes.radio} onChange={(e) => {setSingleFlightOffer(flight); setRadioSingle(e.target.value)}} />} />
+        
                   </div>
                 )
               })
@@ -328,7 +331,7 @@ const FlightPage = (props) => {
           </button>
         </Link>)
       }
-    </div >
+    </div>
   )
 }
 

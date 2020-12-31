@@ -30,9 +30,16 @@ color: #FFFFFF;
 }
 
 .book-top {
+
+  font-family: 'Bebas Neue', 'cursive';
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
+  font-size: 48px;
+  line-height: 58px;
+  display: flex;
+  align-items: center;
+
+  color: #FFFFFF;
 }
 
 .booking-main {
@@ -81,22 +88,39 @@ color: #FFFFFF;
 }
 
 .mid-time {
+  font-family: 'Saira SemiCondensed';
+  font-style: normal;
   font-weight: 600;
   font-size: 30px;
   line-height: 47px;
+  display: flex;
+  align-items: center;
+
+  color: #FFFFFF;
 }
 
 .mid-date {
   font-weight: 500;
+  font-family: 'Saira SemiCondensed', 'sans-serif';
+  font-style: normal;
+  font-weight: bold;
   font-size: 18px;
   line-height: 28px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+
+  color: rgba(205, 202, 202, 0.71);
+
 }
 
 .mid-dep,
 .mid-port {
   font-weight: normal;
-  font-size: 13px;
+  font-size: 18px;
   line-height: 20px;
+  font-family: 'Saira SemiCondensed', 'sans-serif';
+  color: #FFFFFF;
 }
 
 .mid-term {

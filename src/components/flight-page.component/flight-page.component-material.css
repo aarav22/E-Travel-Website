@@ -99,7 +99,7 @@
 
 .bomdel {
 
-  font-family: Bebas Neue;
+  font-family:'Bebas Neue', cursive;
   font-style: normal;
   font-weight: normal;
   font-size: 3rem;
@@ -115,10 +115,27 @@
 
 .vistara{
 
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  /* or 125% */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+  
+  color: #FFFFFF;
+}
+
+.code{
 font-family: 'Saira Semi Condensed', sans-serif;
 font-style: normal;
 font-weight: normal;
-font-size: 28px;
+font-size: 18px;
+line-height: 24px;
 /* or 125% */
 
 display: flex;
@@ -129,12 +146,25 @@ letter-spacing: 0.05em;
 color: #FFFFFF;
 }
 
+.city{
+  font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 25px;
+line-height: 47px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+}
+
 .time{
   
   font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   
@@ -147,7 +177,7 @@ color: #FFFFFF;
 font-family: 'Saira Semi Condensed', sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 20px;
+font-size: 15px;
 display: flex;
 align-items: center;
 
@@ -159,18 +189,56 @@ color: #FFFFFF;
   font-family: 'Saira Semi Condensed', sans-serif;
 font-style: normal;
 font-weight: normal;
-font-size: 30px;
+font-size: 20px;
 display: flex;
 align-items: center;
 letter-spacing: -0.04em;
 }
 
+.filtername{
+  font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 38px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+}
+
+.apply{
+  background-color: black;
+  color: #000000;
+  font-size: 25px;
+  font-family: 'Bebas Neue', cursive;
+  background: -webkit-linear-gradient(rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+}
+
+.filter{
+  font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 800;
+font-size: 18px;
+/* or 472% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.06em;
+
+color: #ffffff;
+
+}
+
 .flight-page-continue-button {
   background-color: black;
-  font-family: Bebas Neue;
-  width: 9rem;
-  font-size: 1.80rem;
-  height: 4rem;
+  font-family: 'Bebas Neue', cursive;
+  width: 11rem;
+  font-size: 35px;
+  height: 3.5rem;
   color: blue;
   -webkit-text-fill-color: transparent;
   background: -webkit-linear-gradient(rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
