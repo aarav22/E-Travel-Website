@@ -38,6 +38,7 @@ app.post('/api/update_contact', user_controller.update_contact);
 
 app.post('/api/checkout', user_controller.on_payment);
 app.post('/api/post_review', user_controller.post_reviews)
+app.get('/api/get_history', user_controller.order_history);
 
 app.get('/api/fcars', fcar_controller.see_fcar);
 

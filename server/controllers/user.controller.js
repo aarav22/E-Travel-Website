@@ -116,7 +116,7 @@ module.exports = {
         let travellerInfo = req.body.travellerInfo;
 
         history.push({  // Updating user's past purchases: 
-            purchase_date: Date.now(),
+            purchase_date: Date().toLocaleDateString(),
             singleFlightOffer: singleFlightOffer,
             returnFlightOffer: returnFlightOffer,
             travellerInfo: travellerInfo
@@ -163,5 +163,17 @@ module.exports = {
                 if (err) return res.status(400).send("Error from post-reviews: ", err);
             }
         )
+    }, 
+
+    order_history(req, res) {
+        // console.log(req);
+        const user_id = req.query.user_id;
+        User.findOne(
+            { _id: user_id },
+            (err, user) => {
+                if (err) return res.status(400).send("Error from order history: ", err);
+                return res.status(200).json({success: true, history: user.history}); 
+            });
+
     }
 }
