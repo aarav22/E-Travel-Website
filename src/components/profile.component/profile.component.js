@@ -1,5 +1,6 @@
 // import Axios from "axios";
 import React, {useState} from "react";
+import { useSelector} from 'react-redux';
 import Previous from "./previous.profle.component"
 import Overview from "./over.profile.component"
 import Address from "./add.profile.component"
@@ -8,11 +9,13 @@ import "./profile.component.css"
 
 export default function Profile(props) {
   const [current, setCurrent] = useState("over");
+  const userProfile = useSelector(state => state.user.curr_user);
+
   const tabs = [
     {
       name: "over",
       label: "Profile Info",
-      content: (<Overview user={props.user} />)
+      content: (<Overview />)
     },
     {
       name: "orders",
@@ -34,7 +37,7 @@ export default function Profile(props) {
       <div className="profile-navigation">
         <img
           className="profile-img"
-          src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png"}
+          src={(userProfile) ? userProfile .profile_picture : "https://www.w3schools.com/howto/img_avatar.png"}
           alt="profile pic"
         />
         {
