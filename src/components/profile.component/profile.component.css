@@ -58,3 +58,22 @@
   color: black;
 }
 
+.previous-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card-container {
+  margin-left: 45px;
+  border: 2.5px solid #8D96E2;
+  height: 10rem;
+  width: 65%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  gap: 3rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
