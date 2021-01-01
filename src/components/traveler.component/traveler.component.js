@@ -31,10 +31,6 @@ const Traveller = () => {
   const [mobile, setMobile] = useState()
   const [email, setEmail] = useState("")
 
-
-
-
-
   const pushAdultInfo = () => {
     var adult = {fName: aFName, lName: aLName, Gender: aGender, ID: aID};
     adultsInfo.push(adult);
@@ -88,7 +84,7 @@ const Traveller = () => {
         }
       </div>
       <div className="traveler-child">
-        <h6>CHILD</h6>
+        {no_kids && (<h6>CHILD</h6>)}
         {no_kids.map((e) => (
           <div>
             <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>
