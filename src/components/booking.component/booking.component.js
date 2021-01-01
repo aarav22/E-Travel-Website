@@ -24,20 +24,19 @@ const BoardingPass = (props) => {
       <div className="book-top">ITINERARY</div>
       <div className="book-mid up">
         <div className="mook-mid-left">
-          <span className="img"></span>
+          <span className="img code"></span>
           <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
-          <p>AI-803</p>
         </div>
         <div className="book-mid-right">
           <div className="book-mid-dep">
-            <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
             <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
           </div>
           <div className="book-mid-time"><p>1h 35mins</p></div>
           <div className="book-mid-arr">
-            <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
             <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
@@ -106,15 +105,15 @@ const DisplayReview = () => {
             <table>
               <tbody>
                 <tr>
-                  <td>Base Fare</td>
+                  <td className="order-price">Base Fare</td>
                   <td className="order-price">{"₹" + singleFlightOffer.price.total}</td>
                 </tr>
                 <tr>
-                  <td>Surcharges</td>
+                  <td className="order-price">Surcharges</td>
                   <td className="order-price">{"₹" + 500}</td>
                 </tr>
                 <tr>
-                  <td>Discount</td>
+                  <td className="order-price">Discount</td>
                   <td className="order-price">{"₹" + discount}</td>
                 </tr>
                 <tr>
