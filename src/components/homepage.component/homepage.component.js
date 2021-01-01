@@ -343,7 +343,7 @@ export default function Homepage() {
             <p className="white-text">This is your fourth panel</p>
           </div>
         </div>
-        <a className="btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
+        <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
       </section>
     </div>
   )
