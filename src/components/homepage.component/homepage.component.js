@@ -92,7 +92,7 @@ export default function Homepage() {
     return {city: city, country: country};
   }
 
-  const getCity = (destination) => {
+  const getCity = (destination) => { 
     console.log(destination)
     var results = airportCodes.find(obj => obj.IATA === destination)
 
@@ -132,7 +132,7 @@ export default function Homepage() {
    // Images: 
   const googlePlaceSearch =  (destination, offerObject) => {
     const maxWidth = 400;
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://salty-sea-64026.herokuapp.com/";
     const anotherProxyUrl = "http://alloworigin.com/get?url="
     let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
     axios.get(proxyurl+url)
