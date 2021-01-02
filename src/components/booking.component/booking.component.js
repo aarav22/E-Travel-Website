@@ -32,15 +32,24 @@ const BoardingPass = (props) => {
             <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
+            {console.log(props)}
+            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
           </div>
-          <div className="book-mid-time"><p>1h 35mins</p></div>
-          <div className="book-mid-arr">
-            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-            <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-            <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
-          </div>
+          {
+            props.singleFlightOffer.itineraries[0].segments.map((item) => {
+              return (
+                <div style={{display: "flex", gap: "1rem"}}>
+                  <div className="book-mid-time"><p>{item.duration}</p></div>
+                  <div className="book-mid-arr">
+                    <div className="mid-time time">{convertTime(item.arrival.at)}</div>
+                    <div className="mid-date">{convertDate(item.arrival.at)}</div>
+                    <div className="mid-dep">{item.arrival.iataCode}</div>
+                    <div className="mid-term">{`Terminal: ${item.arrival.terminal ? item.arrival.terminal : "NA"}`}</div>
+                  </div>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
       {props.isReturn && (
@@ -55,15 +64,23 @@ const BoardingPass = (props) => {
               <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
               <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
               <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal ? props.returnFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
+              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal ? props.returnFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
             </div>
-            <div className="book-mid-time"><p>1h 35mins</p></div>
-            <div className="book-mid-arr">
-              <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-              <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-              <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
-            </div>
+            {
+              props.returnFlightOffer.itineraries[0].segments.map((item) => {
+                return (
+                  <div style={{display: "flex", gap: "1rem"}}>
+                    <div className="book-mid-time"><p>{item.duration}</p></div>
+                    <div className="book-mid-arr">
+                      <div className="mid-time time">{convertTime(item.arrival.at)}</div>
+                      <div className="mid-date">{convertDate(item.arrival.at)}</div>
+                      <div className="mid-dep">{item.arrival.iataCode}</div>
+                      <div className="mid-term">{`Terminal: ${item.arrival.terminal ? item.arrival.terminal : "NA"}`}</div>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       )}
@@ -123,16 +140,16 @@ const DisplayReview = () => {
               </tbody>
             </table>
           </div>
-          
+
           <div className="booking-cancel-message">
             <h6 className="book-top">HOT DEALS</h6>
             <FormControl component="fieldset">
               <RadioGroup name="coupon" value={valRadioSingle} className="book-text">
-                <FormControlLabel value="cs1208" control={<Radio onChange={(e) => {setDiscount(1208); setRadioSingle(e.target.value);}}/>} label="CS-1208 - That okay?" />
-                <FormControlLabel value="cs1216" control={<Radio onChange={(e) => {setDiscount(1216); setRadioSingle(e.target.value);}}/>} label="CS-1216 - Correct..but not exactly" />
-                <FormControlLabel value="cs1202" control={<Radio onChange={(e) => {setDiscount(1202); setRadioSingle(e.target.value);}}/>} label="CS-1202 - best professor" />
-              </RadioGroup> 
-            </FormControl>  
+                <FormControlLabel value="cs1208" control={<Radio onChange={(e) => {setDiscount(1208); setRadioSingle(e.target.value);}} />} label="CS-1208 - That okay?" />
+                <FormControlLabel value="cs1216" control={<Radio onChange={(e) => {setDiscount(1216); setRadioSingle(e.target.value);}} />} label="CS-1216 - Correct..but not exactly" />
+                <FormControlLabel value="cs1202" control={<Radio onChange={(e) => {setDiscount(1202); setRadioSingle(e.target.value);}} />} label="CS-1202 - best professor" />
+              </RadioGroup>
+            </FormControl>
           </div>
 
           <div className="booking-coupon">

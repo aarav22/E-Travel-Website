@@ -41,7 +41,7 @@ const crousel = (props) => {
         }
         )
         */}
-      <div className="carousel-item amber white-text" href="#two!">
+      <div className="carousel-item black white-text" href="#two!">
         <h2>Second Panel</h2>
         <p className="white-text">This is your second panel</p>
       </div>
