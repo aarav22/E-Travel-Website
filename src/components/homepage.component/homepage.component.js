@@ -14,6 +14,7 @@ import M from "materialize-css";
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import "./homepage-material.component.css"
+import {set} from 'mongoose';
 
 const Amadeus = require('amadeus');
 const useStyles = makeStyles({
@@ -40,6 +41,7 @@ export default function Homepage() {
   const [cheapestRoutes, setCheapestRoutes] = useState("");
   var cheapestRoutesConverted = [];
   var photosForCarousel = [];
+  const [photos, setPhotos] = useState([]);
 
   /*
   / This is to get the current location of the user, I plug the coordinates of the user to get the city and country (Google Geocode API )
@@ -92,7 +94,7 @@ export default function Homepage() {
     return {city: city, country: country};
   }
 
-  const getCity = (destination) => { 
+  const getCity = (destination) => {
     console.log(destination)
     var results = airportCodes.find(obj => obj.IATA === destination)
 
@@ -129,33 +131,33 @@ export default function Homepage() {
     }).catch(err => {throw ("error from inspiration", err)});
   };
 
-   // Images: 
-  const googlePlaceSearch =  (destination, offerObject) => {
+  // Images: 
+  const googlePlaceSearch = (destination, offerObject) => {
     const maxWidth = 400;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
     const anotherProxyUrl = "http://alloworigin.com/get?url="
     let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
-    axios.get(proxyurl+url)
-    .then(res => {
-      let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
-      console.log(res.data.candidates[0].photos[0].photo_reference);
+    axios.get(proxyurl + url)
+      .then(res => {
+        let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
+        console.log(res.data.candidates[0].photos[0].photo_reference);
 
-      fetch(proxyurl + another_url)
-        .then(r =>
-          r.blob())
-          .then(myBlob =>  {
+        fetch(proxyurl + another_url)
+          .then(r =>
+            r.blob())
+          .then(myBlob => {
             var imageURL = URL.createObjectURL(myBlob);
             console.log(imageURL);
             photosForCarousel.push({offerObject: offerObject, photo_ref: imageURL});
-        })
-        .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
 
-      // fetch(proxyurl + another_url)
-      // .then(res => {
-      // let imageUrl = res.blob()
-      // photosForCarousel.push({offerObject: offerObject, photo_ref: URL.createObjectURL(imageUrl)});
-      // }).catch(err => console.log(err))
-    })
+        // fetch(proxyurl + another_url)
+        // .then(res => {
+        // let imageUrl = res.blob()
+        // photosForCarousel.push({offerObject: offerObject, photo_ref: URL.createObjectURL(imageUrl)});
+        // }).catch(err => console.log(err))
+      })
   }
 
 
@@ -169,9 +171,11 @@ export default function Homepage() {
       .catch(err => console.log(err));
     const res = defineUserLocation()
     getIATA(res.city, res.country);
+    if (photos.length === 0) {
+      setPhotos(photosForCarousel);
+    }
     console.log(photosForCarousel);
   }, [])
-
 
 
   const [destination, setDes] = useState('');
@@ -464,7 +468,15 @@ export default function Homepage() {
         </a>
       </section>
       <section id="2" style={{display: "flex", justifyItems: "center"}}>
-        <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photosForCarousel} />
+        {
+          // <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} />
+        }
+        <div>
+          {console.log("I am everywhere", photos)}
+          {photos[0] &&
+            <img src={photos[0].photo_ref} alt="something" />
+          }
+        </div>
       </section>
       <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
     </div>

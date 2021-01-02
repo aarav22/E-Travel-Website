@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import M from "materialize-css";
 
 const data = [
@@ -25,34 +25,37 @@ const carousel = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+  }, [props.photosForCarousel])
+
   return (
-      (props.photosForCarousel).length ? 
+    <div>
+      { (props.photosForCarousel.length > 0) &&
         <div style={props.style} className="carousel carousel-slider center">
           {
-            props.photosForCarousel.map((item, index) => {
-              return (
-                  <div key={index} className="carousel-item white-text">
-                    <img src={item.photo_ref} alt="something" />
-                    <h2>{data[0].offerObject.destCity}</h2>
-                    <p className="white-text">This is your first panel</p>
-                  </div>
-              )
-            }) 
+            props.photosForCarousel.map((item, index) =>
+              <div key={index} className="carousel-item white-text">
+                <img src={item.photo_ref} alt="something" />
+                <h2>{item.offerObject.destCity}</h2>
+                <p className="white-text">This is your first panel</p>
+                {console.log("I am everywhere", props)}
+              </div>
+            )
           }
+        </div>
+      }
+      <div style={props.style} className="carousel carousel-slider center">{
+        data.map(() =>
+          <div className="carousel-item white-text">
+            <img src={data[0].photo_ref} alt="something" />
+            <h2>{data[0].offerObject.destCity}</h2>
+            <p className="white-text">This is your second panel</p>
+            {console.log("I am here", props)}
           </div>
-          : 
-          <div style={props.style} className="carousel carousel-slider center">{
-            data.map((item, index) => {
-              return (
-                <div className="carousel-item white-text">
-                    <img src={data[0].photo_ref} alt="something" />
-                    <h2>{data[0].offerObject.destCity}</h2>
-                    <p className="white-text">This is your second panel</p>
-                  </div>
-              )
-            }) 
-          }
-          </div>
+        )
+      }
+      </div>
+    </div>
   )
 }
 
