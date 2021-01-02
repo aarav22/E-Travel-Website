@@ -30,6 +30,16 @@ align-items: center;
 color: #FFFFFF;
 }
 
+.booking-coupon{
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
 .book-top {
 
   font-family: 'Bebas Neue', 'cursive';
@@ -74,6 +84,22 @@ color: #FFFFFF;
   border-image-slice: 1;
 }
 
+.code{
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 28px;
+line-height: 35px;
+/* or 125% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.05em;
+
+color: #FFFFFF;
+}
+
 .book-mid-right {
   display: flex;
   gap: 1rem;
@@ -81,9 +107,26 @@ color: #FFFFFF;
 }
 
 .book-mid-time {
-  display: flex;
+  font-family: 'Saira Semi Condensed', sans-serif;
   justify-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
+  display: flex;
   align-items: center;
+  color: #FFFFFF;
+
+}
+
+.book-text{
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 47px;
+display: flex;
+color: #FFFFFF;
 }
 
 .book-mid-time p {
@@ -91,23 +134,22 @@ color: #FFFFFF;
 }
 
 .mid-time {
-  font-family: 'Saira SemiCondensed','sans-serif';
+  font-family: 'Saira Semi Condensed', sans-serif;
+  justify-content: center;
   font-style: normal;
-  font-weight:900;
-  font-size: 30px;
-  line-height: 47px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
   display: flex;
   align-items: center;
-
-  color: #d51e1e;
 }
 
 .mid-date {
   font-weight: 400;
-  font-family: 'Saira SemiCondensed', 'sans-serif';
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 28px;
   display: flex;
   align-items: center;
@@ -122,15 +164,20 @@ color: #FFFFFF;
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-  font-family: 'Saira SemiCondensed', 'sans-serif';
+  font-family: 'Saira Semi Condensed', sans-serif;
   color: #FFFFFF;
 }
 
 .mid-term {
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 28px;
+  display: flex;
+  align-items: center;
+
+color: #FFFFFF;
 }
 
 .book-mid-dep, 
@@ -140,7 +187,14 @@ color: #FFFFFF;
 }
 
 .book-bottom p:first-child {
-  font-weight: bolder;
+  /* font-weight: bolder;
+  font-style: normal; */
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+  display: flex;
+  align-items: center;
 }
 
 .book-main-right {
@@ -163,7 +217,15 @@ color: #FFFFFF;
 }
 
 .order-price {
-  text-align: right;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: #FFFFFF;
 }
 
 .order-details {

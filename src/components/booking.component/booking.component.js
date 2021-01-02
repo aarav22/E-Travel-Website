@@ -24,20 +24,19 @@ const BoardingPass = (props) => {
       <div className="book-top">ITINERARY</div>
       <div className="book-mid up">
         <div className="mook-mid-left">
-          <span className="img"></span>
+          <span className="img code"></span>
           <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
-          <p>AI-803</p>
         </div>
         <div className="book-mid-right">
           <div className="book-mid-dep">
-            <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
             <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "Not Yet Confirmed"}`}</div>
           </div>
           <div className="book-mid-time"><p>1h 35mins</p></div>
           <div className="book-mid-arr">
-            <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
+            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
             <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
             <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal ? props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal : "Not Yet Confirmed"}`}</div>
@@ -106,19 +105,19 @@ const DisplayReview = () => {
             <table>
               <tbody>
                 <tr>
-                  <td>Base Fare</td>
+                  <td className="order-price">Base Fare</td>
                   <td className="order-price">{"₹" + singleFlightOffer.price.total}</td>
                 </tr>
                 <tr>
-                  <td>Surcharges</td>
+                  <td className="order-price">Surcharges</td>
                   <td className="order-price">{"₹" + 500}</td>
                 </tr>
                 <tr>
-                  <td>Discount</td>
+                  <td className="order-price">Discount</td>
                   <td className="order-price">{"₹" + discount}</td>
                 </tr>
                 <tr>
-                  <td>Total Amount</td>
+                  <td className="order-price">Total Amount</td>
                   <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + 500 - discount)}</td>
                 </tr>
               </tbody>
@@ -126,9 +125,9 @@ const DisplayReview = () => {
           </div>
           
           <div className="booking-cancel-message">
-            <h6>COUPONS</h6>
+            <h6 className="book-top">HOT DEALS</h6>
             <FormControl component="fieldset">
-              <RadioGroup name="coupon" value={valRadioSingle}>
+              <RadioGroup name="coupon" value={valRadioSingle} className="book-text">
                 <FormControlLabel value="cs1208" control={<Radio onChange={(e) => {setDiscount(1208); setRadioSingle(e.target.value);}}/>} label="CS-1208 - That okay?" />
                 <FormControlLabel value="cs1216" control={<Radio onChange={(e) => {setDiscount(1216); setRadioSingle(e.target.value);}}/>} label="CS-1216 - Correct..but not exactly" />
                 <FormControlLabel value="cs1202" control={<Radio onChange={(e) => {setDiscount(1202); setRadioSingle(e.target.value);}}/>} label="CS-1202 - best professor" />
@@ -142,7 +141,7 @@ const DisplayReview = () => {
             A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.
           </div>
           <Link className="booking-button btn-large waves-effect transparent" to='/traveller'>
-            Ka-Ching!
+            CONTINUE
           </Link>
         </div>
       </div>
