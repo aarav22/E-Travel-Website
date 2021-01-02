@@ -126,7 +126,7 @@ export default function Homepage() {
           })
       }).catch(err => { throw ("error from inspiration", err) });
   };
-/asdsa
+
    // Images: 
   const googlePlaceSearch = (destination, offerObject) => {
     const maxWidth = 400;
