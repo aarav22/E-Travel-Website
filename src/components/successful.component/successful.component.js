@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios'
 import {Link} from "react-router-dom";
@@ -88,6 +88,7 @@ export default function Successful(props) {
   const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
   const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
   const travellerInfo = useSelector(state => state.flight.travellers); 
+  const [isBooked, setBooked] = useState(false);
 
   const user = useSelector(state => state.user.curr_user);
   console.log("User:", user)
@@ -101,15 +102,18 @@ export default function Successful(props) {
   // const flightOffer = useSelector(state => state.flight.flightOffer);
 
   // Save in prev bookings: 
-  axios({
-    method: "POST",
-    url: 'http://localhost:5000/api/checkout',
-    data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id, travellerInfo: travellerInfo}  
-  }).then(res => {
-    console.log(res);
-    // console.log("Var inside: ", isSignedIn, res.data.user._id);
-  }) 
-    .catch(err => console.log("Error from checkout", err));
+  if(!isBooked) {
+    axios({
+      method: "POST",
+      url: 'http://localhost:5000/api/checkout',
+      data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id, travellerInfo: travellerInfo}  
+    }).then(res => {
+      setBooked(true);
+      console.log(res);
+      // console.log("Var inside: ", isSignedIn, res.data.user._id);
+    }) 
+      .catch(err => console.log("Error from checkout", err));
+}
 
   // const amadeus = new Amadeus({
   //     clientId: `${process.env.REACT_APP_AMADEUS_API}`,
