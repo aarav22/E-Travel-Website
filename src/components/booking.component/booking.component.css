@@ -30,6 +30,16 @@ align-items: center;
 color: #FFFFFF;
 }
 
+.booking-coupon{
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
 .book-top {
 
   font-family: 'Bebas Neue', 'cursive';
@@ -100,14 +110,23 @@ color: #FFFFFF;
   font-family: 'Saira Semi Condensed', sans-serif;
   justify-content: center;
   font-style: normal;
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 20px;
   line-height: 31px;
   display: flex;
   align-items: center;
-
   color: #FFFFFF;
 
+}
+
+.book-text{
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 47px;
+display: flex;
+color: #FFFFFF;
 }
 
 .book-mid-time p {
@@ -118,7 +137,7 @@ color: #FFFFFF;
   font-family: 'Saira Semi Condensed', sans-serif;
   justify-content: center;
   font-style: normal;
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 20px;
   line-height: 31px;
   display: flex;
@@ -202,7 +221,7 @@ color: #FFFFFF;
   text-align: right;
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 25px;
   line-height: 47px;
   display: flex;
   align-items: center;

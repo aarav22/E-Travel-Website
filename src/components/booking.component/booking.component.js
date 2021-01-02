@@ -117,7 +117,7 @@ const DisplayReview = () => {
                   <td className="order-price">{"₹" + discount}</td>
                 </tr>
                 <tr>
-                  <td>Total Amount</td>
+                  <td className="order-price">Total Amount</td>
                   <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + 500 - discount)}</td>
                 </tr>
               </tbody>
@@ -125,9 +125,9 @@ const DisplayReview = () => {
           </div>
           
           <div className="booking-cancel-message">
-            <h6>COUPONS</h6>
+            <h6 className="book-top">HOT DEALS</h6>
             <FormControl component="fieldset">
-              <RadioGroup name="coupon" value={valRadioSingle}>
+              <RadioGroup name="coupon" value={valRadioSingle} className="book-text">
                 <FormControlLabel value="cs1208" control={<Radio onChange={(e) => {setDiscount(1208); setRadioSingle(e.target.value);}}/>} label="CS-1208 - That okay?" />
                 <FormControlLabel value="cs1216" control={<Radio onChange={(e) => {setDiscount(1216); setRadioSingle(e.target.value);}}/>} label="CS-1216 - Correct..but not exactly" />
                 <FormControlLabel value="cs1202" control={<Radio onChange={(e) => {setDiscount(1202); setRadioSingle(e.target.value);}}/>} label="CS-1202 - best professor" />
@@ -141,7 +141,7 @@ const DisplayReview = () => {
             A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.
           </div>
           <Link className="booking-button btn-large waves-effect transparent" to='/traveller'>
-            Ka-Ching!
+            CONTINUE
           </Link>
         </div>
       </div>

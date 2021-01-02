@@ -260,7 +260,7 @@ const FlightPage = (props) => {
                   <div className={`${props.location.isRoundTrip ? "flight-card split" : "flight-card"}`} key={flight.id} >
                       
                     <div className="airline-details">
-                      <p className="airline-provider vistara ">Air India</p>
+                      {/* <p className="airline-provider vistara ">Air India</p> */}
                       <p className="airline-name code">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                     </div>
                     <div className="flight-timings">
