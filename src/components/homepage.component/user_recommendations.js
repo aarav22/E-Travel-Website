@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 
 
 const carousel = (props) => {
-    
+    console.log("gggggggggggggg", props)
     return (
         <section style={{ display: "flex", justifyItems: "center" }}>
             <div id="2" style={{ position: "absolute", left: "10%", top: "60rem", width: "80%" }} className="carousel carousel-slider center">

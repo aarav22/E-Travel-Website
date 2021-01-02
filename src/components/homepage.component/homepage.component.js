@@ -128,16 +128,31 @@ export default function Homepage() {
   };
 
    // Images: 
-  const googlePlaceSearch = (destination, offerObject) => {
+  const googlePlaceSearch =  (destination, offerObject) => {
     const maxWidth = 400;
-    axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`)
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const anotherProxyUrl = "http://alloworigin.com/get?url="
+    let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
+    axios.get(proxyurl+url)
     .then(res => {
-      console.log(res.data.candidates[0].photos[0].photo_reference)
-      axios.get(`https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`)
-      .then(res => {
-      console.log("Here", res)
-      photosForCarousel.push({offerObject: offerObject, photo_ref: res.data});
-      }).catch(err => console.log(err))
+      let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
+      console.log(res.data.candidates[0].photos[0].photo_reference);
+
+      fetch(proxyurl + another_url)
+        .then(r =>
+          r.blob())
+          .then(myBlob =>  {
+            var imageURL = URL.createObjectURL(myBlob);
+            console.log(imageURL);
+            photosForCarousel.push({offerObject: offerObject, photo_ref: imageURL});
+        })
+        .catch(err => console.log(err));
+
+      // fetch(proxyurl + another_url)
+      // .then(res => {
+      // let imageUrl = res.blob()
+      // photosForCarousel.push({offerObject: offerObject, photo_ref: URL.createObjectURL(imageUrl)});
+      // }).catch(err => console.log(err))
     })
   }
 
