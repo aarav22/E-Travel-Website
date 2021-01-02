@@ -5,7 +5,8 @@
   grid-template-areas: 
   "side top top"
   "side content content"
-  "side pagi continue";
+  "side pagi pagi"
+  "continue continue continue";
   gap: 1rem;
   grid-template-columns: 20rem auto auto;
 }
@@ -18,8 +19,17 @@
 
 .flight-page-flights {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 1rem;
+  min-height: 700px;
+}
+
+.flight-page-flights-round {
+  display: flex;
+  justify-content: flex-end;
   gap: 2rem;
+  min-height: 700px;
+  margin-left: 1.5rem;
 }
 
 .flight-page-topbar {
@@ -49,6 +59,7 @@
 
 .split {
   width: 35rem;
+  
 }
 
 .flight-page-left,
@@ -101,69 +112,47 @@
 }
 
 .bomdel {
-
   font-family:'Bebas Neue', cursive;
   font-style: normal;
   font-weight: normal;
   font-size: 3rem;
-  /* or 163% */
-  
+
   display: flex;
   align-items: center;
+  
   letter-spacing: -0.02em;
-  
   color: #FFFFFF;
-  
-  }
+}
 
-.vistara{
-
+.flight-code{
   font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: normal;
+  font-size: 18px;
   line-height: 24px;
-  /* or 125% */
-  
+
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: 0.05em;
-  
+
   color: #FFFFFF;
 }
 
-.code{
-font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 24px;
-/* or 125% */
-
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.05em;
-
-color: #FFFFFF;
-}
-
-.city{
+.flight-city{
   font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 25px;
-line-height: 47px;
-display: flex;
-align-items: center;
-text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  text-align: center;
 
-color: #FFFFFF;
+  color: #FFFFFF;
 }
 
-.time{
-  
+.flight-time {
   font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -172,44 +161,39 @@ color: #FFFFFF;
   align-items: center;
   
   color: #FFFFFF;
-   
 }
 
-.duration{
-
-font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: 500;
-font-size: 15px;
-display: flex;
-align-items: center;
-
-color: #FFFFFF;
-
-}
-
-.price{
+.flight-duration {
   font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-display: flex;
-align-items: center;
-letter-spacing: -0.04em;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.flight-price{
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
 }
 
 .filtername{
   font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 38px;
-/* identical to box height */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 38px;
 
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 
-color: #FFFFFF;
+  color: #FFFFFF;
 
 }
 

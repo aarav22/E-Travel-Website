@@ -176,22 +176,22 @@ const FlightPage = (props) => {
       <div className="flight-page-topbar">
         <div className="locs">
           <div className="departure bomdel">
-            {source ? source : "DEL"}
+            {flightItineary.source ? flightItineary.source : "BOM"}
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="47" fill="none"><g filter="url(#filter0_d)"><path d="M39.069 25.458l-4.838 5.073 2.644 2.76L46.25 23.5l-9.375-9.792-2.644 2.762 4.838 5.072H8.75v3.916h30.319z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="13.708" x2="27.5" y2="33.292" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="-3" y="-8" width="61" height="63" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
           <div className="arrival bomdel">
-            {destination ? destination : "BOM"}
+            {flightItineary.destination ? flightItineary.destination : "BOM"}
           </div>
         </div>
         {
           props.location.isRoundTrip && (
             <div className="locs rounded">
               <div className="departure bomdel">
-                {destination ? destination : "BOM"}
+                {flightItineary.source ? flightItineary.source : "BOM"}
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="55" height="47" fill="none"><g filter="url(#filter0_d)"><path d="M39.069 25.458l-4.838 5.073 2.644 2.76L46.25 23.5l-9.375-9.792-2.644 2.762 4.838 5.072H8.75v3.916h30.319z" fill="url(#paint0_linear)" /></g><defs><linearGradient id="paint0_linear" x1="27.5" y1="13.708" x2="27.5" y2="33.292" gradientUnits="userSpaceOnUse"><stop offset=".224" stop-color="#98A1F3" stop-opacity=".93" /><stop offset=".771" stop-color="#03E7E7" stop-opacity=".85" /></linearGradient><filter id="filter0_d" x="-3" y="-8" width="61" height="63" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset /><feGaussianBlur stdDeviation="4" /><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.78 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow" /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" /></filter></defs></svg>
               <div className="arrival bomdel">
-                {source ? source : "DEL"}
+                {flightItineary.destination ? flightItineary.destination : "BOM"}
               </div>
             </div>
           )
@@ -204,7 +204,7 @@ const FlightPage = (props) => {
         </div>
 
         <div className="filter-only">
-        {/* <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}> */}
+          {/* <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}> */}
           <div className="filtername">Only These</div>
           <div className="only-filters">
             <form name="includes">
@@ -227,7 +227,7 @@ const FlightPage = (props) => {
 
         <div className="filter-except">
           {/* <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}> */}
-            <div className="filtername">Except These</div>
+          <div className="filtername">Except These</div>
           <div className="except-filters">
             <form name="excepts ">
               {
@@ -250,7 +250,7 @@ const FlightPage = (props) => {
         <button className="apply" onClick={() => setMaxPrice(tempMaxPrice)}>APPLY</button>
       </div>
 
-      <div className="flight-page-flights">
+      <div className={`${props.location.isRoundTrip ? "flight-page-flights-round" : "flight-page-flights"}`}>
         <FormControl component="fieldset" className="flight-page direct">
           <RadioGroup name="flighSomething" className="flight-page-left" value={valRadioSingle} >
             {
@@ -258,27 +258,27 @@ const FlightPage = (props) => {
                 return (
 
                   <div className={`${props.location.isRoundTrip ? "flight-card split" : "flight-card"}`} key={flight.id} >
-                      
+
                     <div className="airline-details">
                       {/* <p className="airline-provider vistara ">Air India</p> */}
-                      <p className="airline-name code">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                      <p className="airline-name flight-code">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                     </div>
                     <div className="flight-timings">
                       <div className="flight-timing-dep">
-                        <div className="timing-dep time">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
-                        <p className="city">{flightItineary.source}</p>
+                        <div className="timing-dep flight-time">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
+                        <p className="flight-city">{flightItineary.source}</p>
                       </div>
-                      <div className="timing-dur duration">{flight.itineraries[0].duration}</div>
+                      <div className="timing-dur flight-duration">{flight.itineraries[0].duration}</div>
                       <div className="flight-timing-arr">
-                        <div className="timing-arr time">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
-                        <p className="city">{flightItineary.destination}</p>
+                        <div className="timing-arr flight-time">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
+                        <p className="flight-city">{flightItineary.destination}</p>
                       </div>
                     </div>
                     <div className="flight-card-price">
-                      <div className="flight-rating price">{`₹ ${flight.price.total}`}</div>
+                      <div className="flight-rating flight-price">{`₹ ${flight.price.total}`}</div>
                     </div>
                     <FormControlLabel value={flight.id} control={<Radio className={classes.radio} onChange={(e) => {setSingleFlightOffer(flight); setRadioSingle(e.target.value)}} />} />
-        
+
                   </div>
                 )
               })
@@ -295,22 +295,22 @@ const FlightPage = (props) => {
                     <div className="flight-card split" key={flight.id}  >
                       <div className="flight-card-details">
                         <div className="airline-details">
-                          <p className="airline-name">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
+                          <p className="airline-name flight-code">{flight.itineraries[0].segments[0].carrierCode + " " + flight.itineraries[0].segments[0].aircraft.code}</p>
                         </div>
                       </div>
                       <div className="flight-timings">
                         <div className="flight-timing-dep">
-                          <div className="timing-dep">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
-                          <p>{flightItineary.destination}</p>
+                          <div className="timing-dep flight-time">{convertTime(flight.itineraries[0].segments[0].departure.at)}</div>
+                          <p className="flight-city">{flightItineary.destination}</p>
                         </div>
-                        <div className="timing-dur">{flight.itineraries[0].duration}</div>
+                        <div className="timing-dur flight-duration">{flight.itineraries[0].duration}</div>
                         <div className="flight-timing-arr">
-                          <div className="timing-arr">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
-                          <p>{flightItineary.source}</p>
+                          <div className="timing-arr flight-time">{convertTime(flight.itineraries[0].segments[0].arrival.at)}</div>
+                          <p className="flight-city">{flightItineary.source}</p>
                         </div>
                       </div>
                       <div className="flight-card-price">
-                        <div className="flight-rating">{`₹${flight.price.total}`}</div>
+                        <div className="flight-rating flight-price">{`₹${flight.price.total}`}</div>
                       </div>
                       <FormControlLabel value={flight.id} control={<Radio className={classes.radio} />} onChange={(e) => {setReturnFlightOffer(flight); setRadioReturn(e.target.value)}} />
                     </div>

@@ -6,37 +6,35 @@ import {useSelector} from 'react-redux';
 const PassengersInfo = (props) => {
   console.log(props.travellerInfo[0])
   return (
-    <div>
-      <h6>Adults:</h6>
-      {
-        props.travellerInfo[0].map((adult) =>
-          <div>
-            <p>{adult.fName + " " + adult.lName}</p>
-            <p>{adult.gender}</p>
-            <p>{adult.ID}</p>
-          </div>
-        )
-      }
+    <div className="passenger-info">
+      <div>
+        <h6>Adults:</h6>
+        {
+          props.travellerInfo[0].map((adult) =>
+            <div>
+              <p>{adult.fName + " " + adult.lName}</p>
+            </div>
+          )
+        }
+      </div>
 
-      <h6>Children:</h6>
-      {
-        props.travellerInfo[1].map((children, _) =>
-          <div>
-            <p>{children.fName + " " + children.lName}</p>
-            <p>{children.gender}</p>
-            <p>{children.ID}</p>
-          </div>
-        )
-      }
-      <h6>Contact:</h6>
-      {
-        props.travellerInfo[2].map((contact, _) =>
-          <div>
-            <p>Phone: {contact[0]}</p>
-            <p>Email: {contact[1]}</p>
-          </div>
-        )
-      }
+      <div>
+        <h6>Children:</h6>
+        {
+          props.travellerInfo[1].map((children, _) =>
+            <div>
+              <p>{children.fName ? children.fName + " " + children.lName : "None"}</p>
+            </div>
+          )
+        }
+      </div>
+      <div>
+        <h6>Contact:</h6>
+        <div>
+          <p>Phone: {props.travellerInfo[2][0]}</p>
+          <p>E-mail: {props.travellerInfo[2][1]}</p>
+        </div>
+      </div>
     </div>
   )
 }
@@ -70,9 +68,9 @@ const HistoryCard = (props) => {
           </div>
           <div className="card-right">
             <h5 className="arr">ARRIVAL</h5>
-            <div className="left-date">{convertDate(props.object.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-            <div className="left-time">{convertTime(props.object.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-            <div className="left-place">{props.object.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
+            <div className="left-date">{convertDate(props.object.singleFlightOffer.itineraries[0].segments[props.object.singleFlightOffer.itineraries[0].segments.length - 1].arrival.at)}</div>
+            <div className="left-time">{convertTime(props.object.singleFlightOffer.itineraries[0].segments[props.object.singleFlightOffer.itineraries[0].segments.length - 1].arrival.at)}</div>
+            <div className="left-place">{props.object.singleFlightOffer.itineraries[0].segments[props.object.singleFlightOffer.itineraries[0].segments.length - 1].arrival.iataCode}</div>
           </div>
           <div className="card-price">
             <div className="total-price">{props.object.singleFlightOffer.price.grandTotal}</div>
@@ -93,9 +91,9 @@ const HistoryCard = (props) => {
             </div>
             <div className="card-right">
               <h5 className="arr">ARRIVAL</h5>
-              <div className="left-date">{convertDate(props.object.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-              <div className="left-time">{convertTime(props.object.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-              <div className="left-place">{props.object.returnFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
+              <div className="left-date">{convertDate(props.object.returnFlightOffer.itineraries[0].segments[props.object.returnFlightOffer.itineraries[0].segments.length - 1].arrival.at)}</div>
+              <div className="left-time">{convertTime(props.object.returnFlightOffer.itineraries[0].segments[props.object.returnFlightOffer.itineraries[0].segments.length - 1].arrival.at)}</div>
+              <div className="left-place">{props.object.returnFlightOffer.itineraries[0].segments[props.object.returnFlightOffer.itineraries[0].segments.length - 1].arrival.iataCode}</div>
             </div>
             <div className="card-price">
               <div className="total-price">{props.object.returnFlightOffer.price.grandTotal}</div>

@@ -23,63 +23,71 @@ const BoardingPass = (props) => {
   }
 
   return (
-  <div className="book-main-left">
-          <div className="book-top">ITINERARY</div>
-          <div className="book-mid up">
-            <div className="mook-mid-left">
-              <span className="img"></span>
-              <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
-              <p>AI-803</p>
-            </div>
-            <div className="book-mid-right">
-              <div className="book-mid-dep">
-                <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
-                <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
-                <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-                <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
-              </div>
-              <div className="book-mid-time"><p>1h 35mins</p></div>
-              <div className="book-mid-arr">
-                <div className="mid-time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-                <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-                <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-                <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].arrival.terminal}`}</div>
-              </div>
-            </div>
+    <div className="book-main-left">
+      <div className="book-top">ITINERARY</div>
+      <div className="book-mid up">
+        <div className="mook-mid-left">
+          <span className="img code"></span>
+          <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
+        </div>
+        <div className="book-mid-right">
+          <div className="book-mid-dep">
+            <div className="mid-time time">{convertTime(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+            <div className="mid-date">{convertDate(props.singleFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+            <div className="mid-dep">{props.singleFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
+            {console.log(props)}
+            <div className="mid-term">{`Terminal: ${props.singleFlightOffer.itineraries[0].segments[0].departure.terminal ? props.singleFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
           </div>
-          {props.isReturn && (
+          {
+            props.singleFlightOffer.itineraries[0].segments.map((item) => {
+              return (
+                <div style={{display: "flex", gap: "1rem"}}>
+                  <div className="book-mid-time"><p>{item.duration}</p></div>
+                  <div className="book-mid-arr">
+                    <div className="mid-time time">{convertTime(item.arrival.at)}</div>
+                    <div className="mid-date">{convertDate(item.arrival.at)}</div>
+                    <div className="mid-dep">{item.arrival.iataCode}</div>
+                    <div className="mid-term">{`Terminal: ${item.arrival.terminal ? item.arrival.terminal : "NA"}`}</div>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+      {props.isReturn && (
 
-            <div className="book-mid down">
-              <div className="mook-mid-left">
-                <span className="img"></span>
-                <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
-              </div>
-              <div className="book-mid-right">
-                <div className="book-mid-dep">
-                  <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
-                  <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
-                  <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
-                  <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal}`}</div>
-                </div>
-                <div className="book-mid-time"><p>1h 35mins</p></div>
-                <div className="book-mid-arr">
-                  <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-                  <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].arrival.at)}</div>
-                  <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].arrival.iataCode}</div>
-                  <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].arrival.terminal}`}</div>
-                </div>
-              </div>
+        <div className="book-mid down">
+          <div className="mook-mid-left">
+            <span className="img"></span>
+            <h6>{props.singleFlightOffer.itineraries[0].segments[0].carrierCode + " " + props.singleFlightOffer.itineraries[0].segments[0].aircraft.code}</h6>
+          </div>
+          <div className="book-mid-right">
+            <div className="book-mid-dep">
+              <div className="mid-time">{convertTime(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+              <div className="mid-date">{convertDate(props.returnFlightOffer.itineraries[0].segments[0].departure.at)}</div>
+              <div className="mid-dep">{props.returnFlightOffer.itineraries[0].segments[0].departure.iataCode}</div>
+              <div className="mid-term">{`Terminal: ${props.returnFlightOffer.itineraries[0].segments[0].departure.terminal ? props.returnFlightOffer.itineraries[0].segments[0].departure.terminal : "NA"}`}</div>
             </div>
-          )}
-          <div className="book-bottom">
-            <p>Mandatory check-list for passengers (in lieu of COVID-19):</p>
-            <p>➡ Certify your health status through the Aarogya Setu app or the self-declaration form at the airport.</p>
-            <p>➡ Remember to web check-in before arriving at the airport; carry a printed or soft copy of the boarding pass.</p>
-            <p>➡ Please reach at least 2 hours prior to flight departure.</p>
-            <p>➡ Please wear a kfcuing mask.</p>
-            <p>➡ PPE kits will be provided and are compulsory to be used.</p>
+            {
+              props.returnFlightOffer.itineraries[0].segments.map((item) => {
+                return (
+                  <div style={{display: "flex", gap: "1rem"}}>
+                    <div className="book-mid-time"><p>{item.duration}</p></div>
+                    <div className="book-mid-arr">
+                      <div className="mid-time time">{convertTime(item.arrival.at)}</div>
+                      <div className="mid-date">{convertDate(item.arrival.at)}</div>
+                      <div className="mid-dep">{item.arrival.iataCode}</div>
+                      <div className="mid-term">{`Terminal: ${item.arrival.terminal ? item.arrival.terminal : "NA"}`}</div>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
+      )}
+    </div>
   );
 }
 
