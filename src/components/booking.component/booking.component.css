@@ -127,7 +127,7 @@ color: #FFFFFF;
 
 .mid-date {
   font-weight: 400;
-  font-family: 'Saira SemiCondensed', sans-serif;
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 17px;
@@ -145,12 +145,12 @@ color: #FFFFFF;
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-  font-family: 'Saira SemiCondensed', sans-serif;
+  font-family: 'Saira Semi Condensed', sans-serif;
   color: #FFFFFF;
 }
 
 .mid-term {
-  font-family: 'Saira SemiCondensed', sans-serif;
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -198,15 +198,10 @@ color: #FFFFFF;
 }
 
 .order-price {
-  font-family: 'Saira SemiCondensed', sans-serif;
-  text-align: right;
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
-  line-height: 47px;
-  display: flex;
-  align-items: center;
-
+  font-size: 20px;
   color: #FFFFFF;
 
 }
