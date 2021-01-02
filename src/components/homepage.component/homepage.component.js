@@ -171,11 +171,20 @@ export default function Homepage() {
       .catch(err => console.log(err));
     const res = defineUserLocation()
     getIATA(res.city, res.country);
-    if (photos.length === 0) {
+
+    let count = photos.filter(function (el) {
+      return !!el ? el : false;
+    }).length
+
+    if (count === 0) {
       setPhotos(photosForCarousel);
     }
     console.log(photosForCarousel);
   }, [])
+
+  useEffect(() => {
+
+  }, [photos])
 
 
   const [destination, setDes] = useState('');
@@ -468,15 +477,21 @@ export default function Homepage() {
         </a>
       </section>
       <section id="2" style={{display: "flex", justifyItems: "center"}}>
-        {
-          // <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} />
+        
+        {/* <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} /> */}
+        {photos[0] && 
+        //  photos.map((item, index) =>
+        //  <div key={index} className="carousel-item white-text">
+        //    <img src={item.photo_ref} alt="something" />
+        //    <h2>{item.offerObject.destCity}</h2>
+        //    <p className="white-text">This is your first panel</p>
+        //    {console.log("I am everywhere")}
+        //  </div>
+       //)
+         <img src={photos[0].photo_ref} alt="https://picsum.photos/200" /> 
         }
-        <div>
-          {console.log("I am everywhere", photos)}
-          {photos[0] &&
-            <img src={photos[0].photo_ref} alt="something" />
-          }
-        </div>
+          
+        
       </section>
       <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
     </div>
