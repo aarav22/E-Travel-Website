@@ -101,15 +101,19 @@ export default function Successful(props) {
   // const flightOffer = useSelector(state => state.flight.flightOffer);
 
   // Save in prev bookings: 
-  axios({
-    method: "POST",
-    url: 'http://localhost:5000/api/checkout',
-    data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id, travellerInfo: travellerInfo}  
-  }).then(res => {
-    console.log(res);
-    // console.log("Var inside: ", isSignedIn, res.data.user._id);
-  }) 
-    .catch(err => console.log("Error from checkout", err));
+
+  useEffect(() => {
+    axios({
+      method: "POST",
+      url: 'http://localhost:5000/api/checkout',
+      data: {singleFlightOffer: singleFlightOffer, returnFlightOffer: returnFlightOffer, userId: user._id, travellerInfo: travellerInfo}  
+    }).then(res => {
+      console.log(res);
+      // console.log("Var inside: ", isSignedIn, res.data.user._id);
+    }) 
+      .catch(err => console.log("Error from checkout", err));
+  }, [])
+
 
   // const amadeus = new Amadeus({
   //     clientId: `${process.env.REACT_APP_AMADEUS_API}`,
