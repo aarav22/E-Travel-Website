@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, {useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -24,12 +26,12 @@ export default function Homepage() {
   const amadeus = new Amadeus({
     clientId: `${process.env.REACT_APP_AMADEUS_API}`,
     clientSecret: `${process.env.REACT_APP_AMADEUS_SECRET}`
-});
+  });
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const [numBookings, setNumBookings] = useState("Loading");
-  
+
   /* Start of API calls for getting recommendations---------------------------------------------------- */
 
   const [city, setCity] = useState("Delhi");
@@ -47,114 +49,114 @@ export default function Homepage() {
   / Use the city names to get picture reference (Google Place Search)
   / Use the reference to get pictures (Google Place Photos)
   / Use the pictures and map them to the carousel
-  */  
+  */
 
   const getIATA = (city, country) => {
     amadeus.referenceData.locations.get({
-        subType: "AIRPORT",
-        keyword: city,
-        countryCode: country
+      subType: "AIRPORT",
+      keyword: city,
+      countryCode: country
     }).then(res => {
-        console.log("IATA: ", res.data[0].iataCode)
-        //  setIataCode(res.data.iataCode);
-        try {
-            getInspiration(res.data[0].iataCode, city, country);
-        } catch(err) {
-            console.log("Error from inspiration: ", err)
-        }
-        
+      console.log("IATA: ", res.data[0].iataCode)
+      //  setIataCode(res.data.iataCode);
+      try {
+        getInspiration(res.data[0].iataCode, city, country);
+      } catch (err) {
+        console.log("Error from inspiration: ", err)
+      }
+
     })
-        .catch(err => { throw ("error from getIATA", err) });
+      .catch(err => {throw ("error from getIATA", err)});
   };
-  
+
   const defineUserLocation = () => {
-  var city = "Delhi", country="IN";
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    var city = "Delhi", country = "IN";
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
         axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=administrative_area_level_1&key=${process.env.REACT_APP_API_KEY}`)
-        .then(res => {
-          city = res.data.results[0].address_components[0].long_name;
-          // setCity(res.data.results[0].address_components[0].long_name);
-        }).catch(err => {throw("error from geocode", err)}); 
+          .then(res => {
+            city = res.data.results[0].address_components[0].long_name;
+            // setCity(res.data.results[0].address_components[0].long_name);
+          }).catch(err => {throw ("error from geocode", err)});
 
         axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=country&key=${process.env.REACT_APP_API_KEY}`)
-        .then(res => {
-          country = res.data.results[0].address_components[0].short_name; 
-          // setCountry(res.data.results[0].address_components[0].short_name);
-        }).catch(err => {throw("errpr from geocode", err)}); 
+          .then(res => {
+            country = res.data.results[0].address_components[0].short_name;
+            // setCountry(res.data.results[0].address_components[0].short_name);
+          }).catch(err => {throw ("errpr from geocode", err)});
 
         console.log(city, country);
-        
-    });
+
+      });
+    }
+    return {city: city, country: country};
   }
-  return {city: city, country: country}; 
-}
 
   const getCity = (destination) => {
     console.log(destination)
     var results = airportCodes.find(obj => obj.IATA === destination)
 
-      // await amadeus.referenceData.locations.get({
-      //     subType: "CITY",
-      //     keyword: destination,
-      // }).then(res => {
-      //     // console.log("IATA: ", res.data[0].iataCode)
-      //     results = res.data.address;
-      // })
-      //     .catch(err => { throw ("errpr from getCity", err) });
+    // await amadeus.referenceData.locations.get({
+    //     subType: "CITY",
+    //     keyword: destination,
+    // }).then(res => {
+    //     // console.log("IATA: ", res.data[0].iataCode)
+    //     results = res.data.address;
+    // })
+    //     .catch(err => { throw ("errpr from getCity", err) });
 
-      return results.city;
+    return results.city;
   };
 
 
   const getInspiration = (iataCode, city, country) => {
-      amadeus.shopping.flightDestinations.get({
-          origin: iataCode,
-      }).then(res => {
-          let cheapestRoutes = (res.data).slice(0, 5);
-          cheapestRoutes ? cheapestRoutes.map((route, index) => {
-              let destCity = getCity(route.destination);
-              let departureDate = route.departureDate;
-              let returnDate = route.returnDate;
-              let price = route.price.total;
-              let cheapRoute = { origin: city, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price };
-              cheapestRoutesConverted.push(cheapRoute);
-              console.log(cheapestRoutesConverted);
-          }) : "";
-          cheapestRoutesConverted.map((route, index) => {
-            googlePlaceSearch(route.destCity, route); 
-          })
-      }).catch(err => { throw ("error from inspiration", err) });
+    amadeus.shopping.flightDestinations.get({
+      origin: iataCode,
+    }).then(res => {
+      let cheapestRoutes = (res.data).slice(0, 5);
+      cheapestRoutes ? cheapestRoutes.map((route, index) => {
+        let destCity = getCity(route.destination);
+        let departureDate = route.departureDate;
+        let returnDate = route.returnDate;
+        let price = route.price.total;
+        let cheapRoute = {origin: city, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
+        cheapestRoutesConverted.push(cheapRoute);
+        console.log(cheapestRoutesConverted);
+      }) : "";
+      cheapestRoutesConverted.map((route, index) => {
+        googlePlaceSearch(route.destCity, route);
+      })
+    }).catch(err => {throw ("error from inspiration", err)});
   };
 
-   // Images: 
+  // Images: 
   const googlePlaceSearch = (destination, offerObject) => {
     const maxWidth = 400;
     axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`)
-    .then(res => {
-      console.log(res.data.candidates[0].photos[0].photo_reference)
-      axios.get(`https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`)
       .then(res => {
-      console.log("Here", res)
-      photosForCarousel.push({offerObject: offerObject, photo_ref: res.data});
-      }).catch(err => console.log(err))
-    })
+        console.log(res.data.candidates[0].photos[0].photo_reference)
+        axios.get(`https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`)
+          .then(res => {
+            console.log("Here", res)
+            photosForCarousel.push({offerObject: offerObject, photo_ref: res.data});
+          }).catch(err => console.log(err))
+      })
   }
 
 
-    /* End of API calls for getting recommendations---------------------------------------------------- */
-  
+  /* End of API calls for getting recommendations---------------------------------------------------- */
+
   useEffect(() => {
     axios.get('http://localhost:5000/api/num_bookings')
-    .then(res => {
-      setNumBookings(res.data.numBookings);
-    })
-    .catch(err => console.log(err));
+      .then(res => {
+        setNumBookings(res.data.numBookings);
+      })
+      .catch(err => console.log(err));
     const res = defineUserLocation()
     getIATA(res.city, res.country);
-    console.log(photosForCarousel); 
+    console.log(photosForCarousel);
   }, [])
-  
+
 
 
   const [destination, setDes] = useState('');
@@ -197,7 +199,6 @@ export default function Homepage() {
   useEffect(() => {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll(".modal"));
-    M.Carousel.init(document.querySelectorAll(".carousel"), {fullWidth: true, indicators: true})
   }, [])
 
   const handleClickEco = () => {
@@ -447,7 +448,10 @@ export default function Homepage() {
         <a href="#2" className="arrow bounce">
         </a>
       </section>
-      <User_Recommendations photosForCarousel={photosForCarousel}/>
+      <section id="2" style={{display: "flex", justifyItems: "center"}}>
+        <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photosForCarousel} />
+      </section>
+      <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
     </div>
   )
 }
