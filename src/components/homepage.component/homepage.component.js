@@ -46,6 +46,8 @@ export default function Homepage() {
   const oneRef = useRef();
   var cheapestRoutesConverted = [];
   var photosForCarousel = [];
+  const [currentCity, setCurrentCity] = useState("Delhi");
+  const [currentCountry, setCurrentCountry] = useState("IN");
   const [photos, setPhotos] = useState([{
     "offerObject": {
       "origin": "Delhi",
@@ -76,7 +78,8 @@ export default function Homepage() {
   const defineUserLocation = () => {
     let city = "Delhi", country = "IN";
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(async function (position) {
+      // console.log("Not be here:", city, country);
+      var promises = navigator.geolocation.getCurrentPosition(async function (position) {
         const [cityRes, countryRes] = await Promise.all([
           axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=administrative_area_level_1&key=${process.env.REACT_APP_API_KEY}`)
             .catch(err => {throw ("error from geocode", err)}),
@@ -84,14 +87,19 @@ export default function Homepage() {
             .catch(err => {throw ("errpr from geocode", err)})
         ]);
 
-        city = cityRes.data.results[0].address_components[0].long_name;
-        country = countryRes.data.results[0].address_components[0].short_name;
-        // console.log(city, country);
-        return {city: city, country: country};
+        setCurrentCity(cityRes.data.results[0].address_components[0].long_name);
+        setCurrentCountry(countryRes.data.results[0].address_components[0].short_name);
+        console.log("Please be here:", cityRes.data.results[0].address_components[0].long_name, countryRes.data.results[0].address_components[0].short_name);
+        // return {city: city, country: country};
       });
-    }
-    return {city: city, country: country};
+      // Promise.all(promises).then(res => {
+      //   console.log("Heeeere: ", res);
+      //   return res;
+      // })
+    // } else {return {city: city, country: country};}
+    
   }
+}
 
   const getCity = (destination) => {
     var results = airportCodes.find(obj => obj.IATA === destination)
@@ -103,7 +111,7 @@ export default function Homepage() {
     const maxWidth = 400;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
     let photosCarousel = []
-    var promises = cheapestRoutesConverted.map( (route) => {
+    var promises = cheapestRoutesConverted.map((route) => {
       let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${route.destCity}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
       return axios.get(proxyurl + url)
           .then(res => {
@@ -140,8 +148,8 @@ export default function Homepage() {
     const locationRes = defineUserLocation()
     const iataRes = await amadeus.referenceData.locations.get({
       subType: "AIRPORT",
-      keyword: locationRes.city,
-      countryCode: locationRes.country
+      keyword: currentCity,
+      countryCode: currentCountry
     }).then(async res => {
         await amadeus.shopping.flightDestinations.get({
           origin: res.data[0].iataCode,
@@ -152,7 +160,7 @@ export default function Homepage() {
                   let departureDate = route.departureDate;
                   let returnDate = route.returnDate;
                   let price = route.price.total;
-                  let cheapRoute = {origin: locationRes.city, originCountry: locationRes.country, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
+                  let cheapRoute = {origin: currentCity, originCountry: currentCountry, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
                   cheapestRoutesConverted.push(cheapRoute);
               }) : "";
                 googlePlaceSearch(cheapestRoutesConverted);
@@ -477,7 +485,7 @@ export default function Homepage() {
                 <img src={item.photo_ref} alt="something" />
                 <h2>{item.offerObject.destCity}</h2>
                 <p className="white-text">This is your first panel</p>
-                {console.log("I am everywhere", photos)}
+                {/* {console.log("I am everywhere", photos)} */}
               </div>
             )
           }
