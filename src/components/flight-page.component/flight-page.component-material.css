@@ -78,7 +78,8 @@
 .timing-dur {
   height: 1.45rem;
   width: 7rem;
-  justify-self: center;
+  justify-self: flex-end;
+  text-align: center;
   border-bottom: 1px solid white;
 }
 
@@ -116,11 +117,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 3rem;
-
-  display: flex;
-  align-items: center;
   
-  letter-spacing: -0.02em;
   color: #FFFFFF;
 }
 
@@ -131,9 +128,6 @@
   font-size: 18px;
   line-height: 24px;
 
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: 0.05em;
 
   color: #FFFFFF;
@@ -145,9 +139,6 @@
   font-weight: normal;
   font-size: 25px;
   line-height: 47px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 
   color: #FFFFFF;
 }
@@ -157,8 +148,6 @@
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
-  display: flex;
-  align-items: center;
   
   color: #FFFFFF;
 }
@@ -168,19 +157,14 @@
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
-  display: flex;
-  align-items: center;
   color: #FFFFFF;
 }
 
 .flight-price{
   font-family: 'Saira Semi Condensed', sans-serif;
-  font-style: normal;
-  font-weight: normal;
+  /* font-style: normal; */
+  /* font-weight: normal; */
   font-size: 20px;
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.04em;
 }
 
 .filtername{
@@ -207,16 +191,16 @@
 
 .filter{
   font-family: 'Saira Semi Condensed', sans-serif;
-font-style: normal;
-font-weight: 800;
-font-size: 18px;
-/* or 472% */
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  /* or 472% */
 
-display: flex;
-align-items: center;
-letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
 
-color: #ffffff;
+  color: #ffffff;
 }
 
 .flight-page-continue-button {
