@@ -56,7 +56,7 @@ export default function Homepage() {
     },
     "photo_ref": "https://picsum.photos/400/200"
   }]);
-  
+
 
 
 
@@ -103,31 +103,30 @@ export default function Homepage() {
     const maxWidth = 400;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
     let photosCarousel = []
-    var promises = cheapestRoutesConverted.map( (route) => {
+    var promises = cheapestRoutesConverted.map((route) => {
       let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${route.destCity}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
       return axios.get(proxyurl + url)
-          .then(res => {
-            // console.log(res);
-            let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
-            return fetch(proxyurl + another_url)
-              .then(r =>
-                {
-                  return r.blob()
-                    .then(myBlob => {
-                      var imageURL = URL.createObjectURL(myBlob);
-                      photosCarousel.push({offerObject: route, photo_ref: imageURL});
-                      return true;
-                      
-                    })
-                    .catch(err => console.log(err));
+        .then(res => {
+          // console.log(res);
+          let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
+          return fetch(proxyurl + another_url)
+            .then(r => {
+              return r.blob()
+                .then(myBlob => {
+                  var imageURL = URL.createObjectURL(myBlob);
+                  photosCarousel.push({offerObject: route, photo_ref: imageURL});
+                  return true;
+
                 })
-                
-          }).catch(err => console.log(err));
-      });
-      Promise.all(promises).then(res => {
-        setPhotos(photosCarousel);
-      })
-      
+                .catch(err => console.log(err));
+            })
+
+        }).catch(err => console.log(err));
+    });
+    Promise.all(promises).then(res => {
+      setPhotos(photosCarousel);
+    })
+
   }
 
 
@@ -143,23 +142,23 @@ export default function Homepage() {
       keyword: locationRes.city,
       countryCode: locationRes.country
     }).then(async res => {
-        await amadeus.shopping.flightDestinations.get({
-          origin: res.data[0].iataCode,
-        }).then(res => {
-              let cheapestRoutes = (res.data).slice(0, 5);
-              cheapestRoutes ? cheapestRoutes.map((route, index) => {
-                  let destCity = getCity(route.destination);
-                  let departureDate = route.departureDate;
-                  let returnDate = route.returnDate;
-                  let price = route.price.total;
-                  let cheapRoute = {origin: locationRes.city, originCountry: locationRes.country, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
-                  cheapestRoutesConverted.push(cheapRoute);
-              }) : "";
-                googlePlaceSearch(cheapestRoutesConverted);
-        }).catch(err => {throw ("error from inspiration", err)});
-      })
+      await amadeus.shopping.flightDestinations.get({
+        origin: res.data[0].iataCode,
+      }).then(res => {
+        let cheapestRoutes = (res.data).slice(0, 5);
+        cheapestRoutes ? cheapestRoutes.map((route, index) => {
+          let destCity = getCity(route.destination);
+          let departureDate = route.departureDate;
+          let returnDate = route.returnDate;
+          let price = route.price.total;
+          let cheapRoute = {origin: locationRes.city, originCountry: locationRes.country, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
+          cheapestRoutesConverted.push(cheapRoute);
+        }) : "";
+        googlePlaceSearch(cheapestRoutesConverted);
+      }).catch(err => {throw ("error from inspiration", err)});
+    })
       .catch(err => {throw ("error from getIATA", err)});
-      console.log("Photos for carousel: ", photosForCarousel);
+    console.log("Photos for carousel: ", photosForCarousel);
   }, []);
 
   useEffect(() => {
@@ -198,11 +197,12 @@ export default function Homepage() {
   useEffect(() => {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll(".modal"));
-  }, [])
+    M.Carousel.init(document.querySelectorAll(".carousel", {fullWidth: true, indicators: true}))
+  }, [phoos])
 
-/*
-  *********************************Ending Use Effects************************************************
-*/
+  /*
+    *********************************Ending Use Effects************************************************
+  */
 
   const handleClickEco = () => {
     setIsOpenEco(!isOpenEco)
@@ -451,45 +451,30 @@ export default function Homepage() {
         <a href="#2" className="arrow bounce">
         </a>
       </section>
-      <section id="2" style={{display: "flex", justifyItems: "center"}}>
-        
-        {/* <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} /> */}
-        {/* <Recc photos={photos}/> */}
+      <section style={{display: "flex", justifyItems: "center"}}>
         {
-          // setPhotos(photos)
-          }
-        { photos[0] && photos[1] && photos[2] && photos[3] && 
-          <div>
-            <img src={photos[0].photo_ref} />
-            <img src={photos[1].photo_ref} />
-            <img src={photos[2].photo_ref} />
-            <img src={photos[3].photo_ref} />
-            <p>{photos.toString()}</p>
-          </div>
-} 
-        {
-          photos[0] &&
-          
-          <div className="carousel carousel-slider center">
-          {
-            photos.map((item, index) =>
-              <div key={index} className="carousel-item white-text">
-                <img src={item.photo_ref} alt="something" />
-                <h2>{item.offerObject.destCity}</h2>
+          (photos[0] && photos[1] && photos[2] && photos[3]) ?
+            <div id="2" style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} className="carousel carousel-slider center">
+              {
+                photos.map((item, index) =>
+                  <div key={index} className="carousel-item white-text">
+                    <img src={item.photo_ref} alt="something" />
+                    <h2>{item.offerObject.destCity}</h2>
+                    <p className="white-text">This is your first panel</p>
+                    {console.log("I am everywhere", photos)}
+                  </div>
+                )
+              }
+            </div>
+            :
+            <div id="2" style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} className="carousel carousel-slider center">
+              <div className="carousel-item white-text">
+                <img src="https://picsum.photos/400" alt="something" />
+                <h2>"item.offerObject.destCity"</h2>
                 <p className="white-text">This is your first panel</p>
-                {console.log("I am everywhere", photos)}
               </div>
-            )
-          }
-        </div>
-          // <div>
-          //   <img src={photos[0].photo_ref} />
-          //   <p>{photos.toString()}</p>
-          // </div>
+            </div>
         }
-        
-          
-        
       </section>
       <a className="transparent btn-large" style={{position: "absolute", left: "45%", top: "90rem"}} href="#1">Back to Top</a>
     </div>
