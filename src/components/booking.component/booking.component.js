@@ -153,6 +153,7 @@ const DisplayReview = () => {
           </div>
 
           <div className="booking-coupon">
+            Note: 
             Cancellation & Date change charges
             Cancellation Fees Apply
             A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.

@@ -44,7 +44,9 @@
 .over-sec {
   padding: 0rem 3rem 1rem 3rem;
   margin-left: 3rem;
-  border: 2.5px solid #8D96E2;
+  border: 2.5px solid;
+  border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+  border-image-slice: 1;
   width: 70%;
   background-color: black;
 }
@@ -66,7 +68,9 @@
 
 .card-container {
   margin-left: 45px;
-  border: 2.5px solid #8D96E2;
+  border: 2.5px solid;
+  border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+  border-image-slice: 1;
   width: 65%;
   height: 10rem;
   background-color: rgba(0, 0, 0, 0.7);

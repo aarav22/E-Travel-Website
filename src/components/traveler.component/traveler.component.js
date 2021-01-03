@@ -84,7 +84,7 @@ const Traveller = () => {
         }
       </div>
       <div className="traveler-child">
-        {no_kids && (<h6>CHILD</h6>)}
+        {no_kids && (<h6 className="adult">CHILD</h6>)}
         {no_kids.map((e) => (
           <div>
             <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>
@@ -114,7 +114,7 @@ const Traveller = () => {
         }
       </div>
       <div className="contact-info">
-        <h6>CONTACT DETAILS</h6>
+        <h6 className="adult">CONTACT DETAILS</h6>
         <form name="contact" className="traveler contact-forms">
           <div className="input-field col s6">
             <input type="tel" className="validate" id="mobile" value={mobile} onChange={(e) => {setMobile(e.target.value)}} />

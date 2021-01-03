@@ -8,7 +8,7 @@
     padding: 0.5rem;
     width: auto;
     height: auto;
-    border: 1px solid #868686;
+    border: 1px solid #ffffff;
     border-radius: 5px;
 }
 
@@ -16,7 +16,7 @@
     padding: 0.5rem;
     width: auto;
     height: auto;
-    border: 1px solid #868686;
+    border: 1px solid #ffffff;
     border-radius: 5px;
 }
 
@@ -80,7 +80,7 @@
     background-color: transparent;
     max-width: 15rem;
     border: none;
-    color: #868686;
+    color: #ffffff;
 }
 
 .addr-addr-add {
@@ -100,6 +100,6 @@
 }
 
 .add-more-sign {
-    fill: #868686;
+    fill: #ffffff;
 }
 

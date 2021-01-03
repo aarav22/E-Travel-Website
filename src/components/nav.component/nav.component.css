@@ -71,7 +71,10 @@
     opacity: 0;
     z-index: 2;
     background: var(--bg-accent);
-    border-top: 2px solid white;
+    border: 2.5px solid;
+    border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+    border-image-slice: 1;
+    background-color:rgba(0, 0, 0, 0.85);
 
     display: flex;
     align-items: center;
@@ -82,7 +85,7 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     
-    box-shadow: rgba(2, 8, 20, 0.1);
+    box-shadow: rgba(104, 106, 111, 0.1);
     transform: translateX(-60%);
     
     transition: opacity .15s ease-out;
