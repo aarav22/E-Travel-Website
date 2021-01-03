@@ -14,7 +14,6 @@ import M from "materialize-css";
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import "./homepage-material.component.css"
-import {set} from 'mongoose';
 
 const Amadeus = require('amadeus');
 const useStyles = makeStyles({
@@ -23,21 +22,6 @@ const useStyles = makeStyles({
   }
 });
 
-const Recc = (props) => {
-  try {
-    console.log(props)
-    return (
-      <div className="textforcarousel">
-        <p> {props.photos} </p>
-      </div>
-    )
-  } catch (err) {
-    console.log(err)
-    return (
-      <div></div>
-    )
-  }
-}
 export default function Homepage() {
   const amadeus = new Amadeus({
     clientId: `${process.env.REACT_APP_AMADEUS_API}`,
@@ -72,7 +56,7 @@ export default function Homepage() {
     },
     "photo_ref": "https://picsum.photos/400/200"
   }]);
-  // const photos = useSelector(state => state.flight.userRec);
+  
 
 
 
@@ -110,7 +94,6 @@ export default function Homepage() {
   }
 
   const getCity = (destination) => {
-    // console.log(destination)
     var results = airportCodes.find(obj => obj.IATA === destination)
     return results.city;
   };
@@ -124,7 +107,7 @@ export default function Homepage() {
       let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${route.destCity}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
       return axios.get(proxyurl + url)
           .then(res => {
-            console.log(res);
+            // console.log(res);
             let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
             return fetch(proxyurl + another_url)
               .then(r =>
@@ -142,7 +125,6 @@ export default function Homepage() {
           }).catch(err => console.log(err));
       });
       Promise.all(promises).then(res => {
-        console.log("Line 145: ", res);
         setPhotos(photosCarousel);
       })
       
@@ -151,7 +133,9 @@ export default function Homepage() {
 
   /* End of API calls for getting recommendations---------------------------------------------------- */
 
-
+  /*
+          *********************************Begin Use Effects************************************************
+  */
   useEffect(async () => {
     const locationRes = defineUserLocation()
     const iataRes = await amadeus.referenceData.locations.get({
@@ -159,7 +143,6 @@ export default function Homepage() {
       keyword: locationRes.city,
       countryCode: locationRes.country
     }).then(async res => {
-        // console.log("Res from IATA: ", res);
         await amadeus.shopping.flightDestinations.get({
           origin: res.data[0].iataCode,
         }).then(res => {
@@ -171,23 +154,15 @@ export default function Homepage() {
                   let price = route.price.total;
                   let cheapRoute = {origin: locationRes.city, originCountry: locationRes.country, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
                   cheapestRoutesConverted.push(cheapRoute);
-                  // console.log(cheapestRoutesConverted);
               }) : "";
-              // cheapestRoutesConverted.map((route) => {
                 googlePlaceSearch(cheapestRoutesConverted);
-              // });
-              // setPhotos(photosForCarousel);
         }).catch(err => {throw ("error from inspiration", err)});
       })
       .catch(err => {throw ("error from getIATA", err)});
       console.log("Photos for carousel: ", photosForCarousel);
-      
   }, []);
 
   useEffect(() => {
-    // return(
-    //   <Recc photos={photos}/>
-    // )
   }, [photosForCarousel]);
 
 
@@ -224,6 +199,10 @@ export default function Homepage() {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll(".modal"));
   }, [])
+
+/*
+  *********************************Ending Use Effects************************************************
+*/
 
   const handleClickEco = () => {
     setIsOpenEco(!isOpenEco)
@@ -479,7 +458,7 @@ export default function Homepage() {
         {
           // setPhotos(photos)
           }
-         { photos[0] && photos[1] && photos[2] && photos[3] && 
+        { photos[0] && photos[1] && photos[2] && photos[3] && 
           <div>
             <img src={photos[0].photo_ref} />
             <img src={photos[1].photo_ref} />
@@ -498,7 +477,7 @@ export default function Homepage() {
                 <img src={item.photo_ref} alt="something" />
                 <h2>{item.offerObject.destCity}</h2>
                 <p className="white-text">This is your first panel</p>
-                {console.log("I am everywhere")}
+                {console.log("I am everywhere", photos)}
               </div>
             )
           }
