@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import axios from 'axios';
 
+
 const clientId =
   process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -39,7 +40,7 @@ function LogoutHooks() {
   });
 
   return (
-    <li className="nav-item nav-login logout has-dropdown">
+    <li style={{marginTop: "1.5rem"}} className="nav-item nav-login logout has-dropdown">
       <button style={{"background": "transparent", "border": "none"}} className="nav-logout-button" href="#">
         <img className="nav-profile-pic" alt="profile" src={user["profile_picture"]}></img>
       </button>

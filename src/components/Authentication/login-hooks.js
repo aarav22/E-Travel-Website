@@ -11,13 +11,11 @@ const clientId =
 
 function LoginHooks() {
   const dispatch = useDispatch();
-  var isSignedIn = useSelector(state => state.user.isSignedIn);
-  var user = useSelector(state => state.user.curr_user);
 
   const onSuccess = (response) => {
     // console.log('Login Success: currentUser:', response.profileObj);
     alert(
-      `Logged in successfully welcome ${response.profileObj.name} . \n See console for full profile object.`
+      `Logged in successfully welcome ${response.profileObj.name}`
     );
 
     axios({
@@ -27,7 +25,7 @@ function LoginHooks() {
     }).then(res => {
       let userObject = {user: res.data.user, isSignedIn: res.data.isSignedIn}
       dispatch(userSignedIn(userObject));
-      console.log(res);
+      // console.log(res);
       // console.log("Var inside: ", isSignedIn, res.data.user._id);
     })
       .catch(err => console.log("Error from succesfulResponseGoogle", err));

@@ -1,3 +1,4 @@
+
 .booking-container {
   display: flex; 
   flex-direction: column;
@@ -29,15 +30,32 @@ align-items: center;
 color: #FFFFFF;
 }
 
+.booking-coupon{
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
 .book-top {
+
+  font-family: 'Bebas Neue', 'cursive';
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
+  font-size: 48px;
+  line-height: 58px;
+  display: flex;
+  align-items: center;
+
+  color: #FFFFFF;
 }
 
 .booking-main {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -58,10 +76,28 @@ color: #FFFFFF;
 
 .book-mid {
   display: flex;
-  border: 2.5px solid #8D96E2;
   background-color: rgba(0, 0, 0, 0.65);
   gap: 4rem;
   padding: 1.5rem;
+  border: 2.5px solid;
+  border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+  border-image-slice: 1;
+}
+
+.code{
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 28px;
+line-height: 35px;
+/* or 125% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.05em;
+
+color: #FFFFFF;
 }
 
 .book-mid-right {
@@ -71,9 +107,26 @@ color: #FFFFFF;
 }
 
 .book-mid-time {
-  display: flex;
+  font-family: 'Saira Semi Condensed', sans-serif;
   justify-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
+  display: flex;
   align-items: center;
+  color: #FFFFFF;
+
+}
+
+.book-text{
+font-family: 'Saira Semi Condensed', sans-serif;
+font-style: normal;
+font-weight: 900;
+font-size: 30px;
+line-height: 47px;
+display: flex;
+color: #FFFFFF;
 }
 
 .book-mid-time p {
@@ -81,29 +134,50 @@ color: #FFFFFF;
 }
 
 .mid-time {
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 47px;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
 }
 
 .mid-date {
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
   line-height: 28px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+
+  color: rgba(205, 202, 202, 0.71);
+
 }
 
 .mid-dep,
 .mid-port {
   font-weight: normal;
-  font-size: 13px;
+  font-size: 18px;
   line-height: 20px;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  color: #FFFFFF;
 }
 
 .mid-term {
+  font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 28px;
+  display: flex;
+  align-items: center;
+
+color: #FFFFFF;
 }
 
 .book-mid-dep, 
@@ -112,9 +186,15 @@ color: #FFFFFF;
   flex-direction: column;
 }
 
-
 .book-bottom p:first-child {
-  font-weight: bolder;
+  /* font-weight: bolder;
+  font-style: normal; */
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
+  /* or 112% */
+  display: flex;
+  align-items: center;
 }
 
 .book-main-right {
@@ -127,15 +207,30 @@ color: #FFFFFF;
 .order-title {
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  line-height: 58px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
 }
 
 .order-price {
-  text-align: right;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 47px;
+  align-items: center;
+  font-size: 20px;
+  color: #FFFFFF;
 }
 
 .order-details {
-  border: 2.5px solid #8D96E2;
+  border: 2.5px solid;
+  border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+  border-image-slice: 1;
   background-color: rgba(0, 0, 0, 0.65);
   padding: 1.5rem;
   width: 100%;

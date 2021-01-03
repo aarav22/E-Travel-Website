@@ -1,6 +1,7 @@
-import Axios from "axios";
-import React, {useState, useEffect} from "react";
-import Navigation from "./navigation.profle.component"
+// import Axios from "axios";
+import React, {useState} from "react";
+import {useSelector} from 'react-redux';
+import Previous from "./previous.profle.component"
 import Overview from "./over.profile.component"
 import Address from "./add.profile.component"
 
@@ -8,45 +9,48 @@ import "./profile.component.css"
 
 export default function Profile(props) {
   const [current, setCurrent] = useState("over");
+  const userProfile = useSelector(state => state.user.curr_user);
+
   const tabs = [
     {
       name: "over",
-      label: "Account Overview",
-      content: (<Overview user={props.user} />)
+      label: "Profile Info",
+      content: (<Overview />)
+    },
+    {
+      name: "orders",
+      label: "Previous Ventures",
+      content: (<Previous></Previous>)
     },
     {
       name: "address",
       label: "Addresses",
       content: (<Address user={props.user} />)
     },
-    {
-      name: "orders",
-      label: "Your Orders",
-      content: (<div></div>)
-    },
   ]
 
-    return(
-        <div className="profile-main">
-            {console.log("hello from profile", props.user)}
-            <div className="profile-navigation">
-            
-                <img 
-                    className="profile-img" class="circle responsive-img" 
-                    src={(props.user) ? props.user.profile_picture : "https://www.w3schools.com/howto/img_avatar.png" }
-                    alt="profile pic" 
-                    style={{"width": "150px"}} />
-                {
-                    tabs.map((tab, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setCurrent(tab.name)}
-                            className={`profile-nav-button ${(tab.name === current) ? "profile-tab-active": ""}`}>
-                            {tab.label}
-                        </button>
-                    ))
-                }
-            </div>
+  return (
+    <div className="profile-main">
+      <div className="profile-title">
+        My Account
+      </div>
+      <div className="profile-navigation">
+        <img
+          className="profile-img"
+          src={(userProfile) ? userProfile.profile_picture : "https://www.w3schools.com/howto/img_avatar.png"}
+          alt="profile pic"
+        />
+        {
+          tabs.map((tab, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(tab.name)}
+              className={`profile-nav-button ${(tab.name === current) ? "profile-tab-active" : ""}`}>
+              {tab.label}
+            </button>
+          ))
+        }
+      </div>
 
       {
         tabs.map((tab, i) => {
