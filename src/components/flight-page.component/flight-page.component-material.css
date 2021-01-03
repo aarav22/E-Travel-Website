@@ -103,9 +103,9 @@
 }
 
 .flight-page-continue-btn {
-  align-self: flex-end;
-  justify-self: center;
+  justify-self: flex-end;
   padding-bottom: 3rem;
+  padding-right: 6rem;
 }
 
 .flight-page {
@@ -215,4 +215,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  border: 2px solid;
+  border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+  border-image-slice: 1;
 }

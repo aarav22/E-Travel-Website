@@ -86,7 +86,7 @@ export default function Homepage() {
 
         city = cityRes.data.results[0].address_components[0].long_name;
         country = countryRes.data.results[0].address_components[0].short_name;
-        // console.log(city, country);
+        console.log("qwertyuiopqwertyuiop", city, country);
         return {city: city, country: country};
       });
     }
@@ -100,7 +100,7 @@ export default function Homepage() {
 
   // Images: 
   const googlePlaceSearch = async (cheapestRoutesConverted) => {
-    const maxWidth = 400;
+    const maxWidth = 1100;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
     let photosCarousel = []
     var promises = cheapestRoutesConverted.map((route) => {
@@ -197,8 +197,8 @@ export default function Homepage() {
   useEffect(() => {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
     M.Modal.init(document.querySelectorAll(".modal"));
-    M.Carousel.init(document.querySelectorAll(".carousel", {fullWidth: true, indicators: true}))
-  }, [phoos])
+    M.Carousel.init(document.querySelectorAll(".carousel", {indicators: true}))
+  }, [photos])
 
   /*
     *********************************Ending Use Effects************************************************
@@ -454,13 +454,19 @@ export default function Homepage() {
       <section style={{display: "flex", justifyItems: "center"}}>
         {
           (photos[0] && photos[1] && photos[2] && photos[3]) ?
-            <div id="2" style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} className="carousel carousel-slider center">
+            <div id="2" style={{position: "absolute", left: "10%", top: "55rem", width: "80%", height: "30rem"}} className="carousel carousel-slider center">
               {
                 photos.map((item, index) =>
-                  <div key={index} className="carousel-item white-text">
-                    <img src={item.photo_ref} alt="something" />
-                    <h2>{item.offerObject.destCity}</h2>
-                    <p className="white-text">This is your first panel</p>
+                  <div key={index}
+                    style={{
+                      backgroundImage: `url(${item.photo_ref})`,
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundAttachment: "fixed"
+                    }}
+                    className="carousel-item white-text">
+                    <h3 className="black-text" style={{marginTop: "23rem", textShadow: "0 0 3px #ffffff"}}>{item.offerObject.destCity}</h3>
                     {console.log("I am everywhere", photos)}
                   </div>
                 )

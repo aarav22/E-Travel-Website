@@ -7,6 +7,7 @@ import PaginationComponent from '../pagination.component/pagination.component';
 import {flightOffer} from '../flight-page.component/flightsSlice'
 import InputSlider from './slider-input'
 import {RadioGroup, FormControlLabel, Radio, FormControl, Button, makeStyles} from '@material-ui/core';
+import M from "materialize-css";
 
 // import "./flight-page.component.css";
 import "./flight-page.component-material.css";
@@ -146,6 +147,10 @@ const FlightPage = (props) => {
       setAirlinesList(newList);
     }
   }, [airlinesObject]);
+
+  useEffect(() => {
+    M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+  })
 
   // This code is for pagination: 
   // For single trip: 
@@ -333,11 +338,36 @@ const FlightPage = (props) => {
           paginate={paginate} />
       </div>
       {
-        (<Link className="flight-page-continue-btn" to="/book">
-          <button className="flight-page-continue-button" onClick={() => saveFlightOffer()}>
-            CONTINUE <i class="fas fa-angle-double-right"></i>
-          </button>
-        </Link>)
+        props.location.isRoundTrip ?
+          (returnFlightOffer && singleFlightOffer) ?
+            <Link className="flight-page-continue-btn" to="/book">
+              <button className="flight-page-continue-button" onClick={() => saveFlightOffer()}>
+                CONTINUE <i class="fas fa-angle-double-right"></i>
+              </button>
+            </Link>
+            :
+            <div className="flight-page-continue-btn">
+              <button className="flight-page-continue-button btn tooltipped"
+                data-position="top"
+                data-tooltip="Please select an offer">
+                CONTINUE
+            </button>
+            </div>
+          :
+          (singleFlightOffer) ?
+            <Link className="flight-page-continue-btn" to="/book">
+              <button className="flight-page-continue-button" onClick={() => saveFlightOffer()}>
+                CONTINUE <i class="fas fa-angle-double-right"></i>
+              </button>
+            </Link>
+            :
+            <div className="flight-page-continue-btn">
+              <button className="flight-page-continue-button btn tooltipped"
+                data-position="top"
+                data-tooltip="Please select an offer">
+                CONTINUE
+              </button>
+            </div>
       }
     </div>
   )
