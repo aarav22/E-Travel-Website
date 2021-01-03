@@ -127,10 +127,10 @@ const Traveller = () => {
         </form>
       </div>
 
-      <div className="continue-btn">
+      <div className="traveler-continue-btn">
         <Link to='/successful'>
           {finalSubmission()}
-          <button className="btn-large transparent waves-effect traveler-continue">CONTINUE</button>
+          <button className="flight-page-continue-button traveler-continue">CONTINUE</button>
         </Link>
       </div>
     </div>

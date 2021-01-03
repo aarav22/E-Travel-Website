@@ -165,7 +165,7 @@ export default function Successful(props) {
 
       </div>
 
-      <Link to="/" className="go-home btn btn-large transparent waves-effect waves-light">
+      <Link to="/" className="go-home flight-page-continue-button">
         <i class="fas fa-home"></i>   Go Home
       </Link>
     </div>

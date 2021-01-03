@@ -157,7 +157,7 @@ const DisplayReview = () => {
             Cancellation Fees Apply
             A penalty of upto ₹ 3,450 will be charged by the airline & by Wright based on how close to the departure date you cancel.
           </div>
-          <Link className="booking-button btn-large waves-effect transparent" to='/traveller'>
+          <Link className="booking-button flight-page-continue-button" to='/traveller'>
             CONTINUE
           </Link>
         </div>

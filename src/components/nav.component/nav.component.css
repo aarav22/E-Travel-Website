@@ -70,23 +70,21 @@
     width: 150px;
     opacity: 0;
     z-index: 2;
-    background: var(--bg-accent);
-    border-top: 2px solid white;
+    background: black;
+    border: 2px solid;
+    border-image-source: linear-gradient(180deg, rgba(152, 161, 243, 0.93), rgba(3, 231, 231, 0.85));
+    border-image-slice: 1;
 
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    padding: 0.5rem;
 
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    
-    box-shadow: rgba(2, 8, 20, 0.1);
-    transform: translateX(-60%);
+    transform: translateX(-50%);
     
     transition: opacity .15s ease-out;
 }
+
 
 .has-dropdown:focus-within .nav-dropdown {
     opacity: 1;

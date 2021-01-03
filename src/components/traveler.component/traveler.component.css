@@ -21,13 +21,18 @@ font-size: 48px;
 }
 
 .adult{
-font-family: 'Bebas Neue', cursive;
-font-style: normal;
-font-weight: normal;
-font-size: 40px;
-line-height: 48px;
-display: flex;
-align-items: center;
-color: #FFFFFF;
+  font-family: 'Bebas Neue', cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
 
+.traveler-continue-btn {
+  margin-top: 5rem;
+  justify-self: flex-end;
+  align-self: flex-end;
 }

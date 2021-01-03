@@ -452,9 +452,10 @@ export default function Homepage() {
         </a>
       </section>
       <section style={{display: "flex", justifyItems: "center"}}>
+        <h4 style={{fontFamily: "Saira Semi Condensed", color: "#757575", position: "absolute", left: "10%", top: "53rem"}}>Cheapest destinations from your location</h4>
         {
           (photos[0] && photos[1] && photos[2] && photos[3]) ?
-            <div id="2" style={{position: "absolute", left: "10%", top: "55rem", width: "80%", height: "30rem"}} className="carousel carousel-slider center">
+            <div id="2" style={{position: "absolute", left: "10%", top: "58rem", width: "80%", height: "30rem"}} className="carousel carousel-slider center">
               {
                 photos.map((item, index) =>
                   <div key={index}
@@ -466,7 +467,9 @@ export default function Homepage() {
                       backgroundAttachment: "fixed"
                     }}
                     className="carousel-item white-text">
-                    <h3 className="black-text" style={{marginTop: "23rem", textShadow: "0 0 3px #ffffff"}}>{item.offerObject.destCity}</h3>
+                    <h3 className="black-text" style={{marginTop: "20rem", textShadow: "0 0 3px #ffffff"}}>{item.offerObject.destCity}</h3>
+                    <h5 className="black-text" style={{textShadow: "0 0 3px #ffffff"}}>Catch this flight on: {item.offerObject.departureDate}</h5>
+                    <h5 className="black-text" style={{textShadow: "0 0 3px #ffffff"}}>for: ₹{item.offerObject.price}</h5>
                     {console.log("I am everywhere", photos)}
                   </div>
                 )
@@ -476,8 +479,7 @@ export default function Homepage() {
             <div id="2" style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} className="carousel carousel-slider center">
               <div className="carousel-item white-text">
                 <img src="https://picsum.photos/400" alt="something" />
-                <h2>"item.offerObject.destCity"</h2>
-                <p className="white-text">This is your first panel</p>
+                <h2>Loading</h2>
               </div>
             </div>
         }
