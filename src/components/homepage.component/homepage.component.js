@@ -116,26 +116,36 @@ export default function Homepage() {
   };
 
   // Images: 
-  const googlePlaceSearch = async (destination, offerObject) => {
+  const googlePlaceSearch = async (cheapestRoutesConverted) => {
     const maxWidth = 400;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
-    let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
-    await axios.get(proxyurl + url)
-      .then(async res => {
-        let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
-        // console.log(res.data.candidates[0].photos[0].photo_reference);
-        await fetch(proxyurl + another_url)
-          .then(r =>
-            r.blob())
-          .then(myBlob => {
-            var imageURL = URL.createObjectURL(myBlob);
-            // console.log(imageURL);
-            photosForCarousel.push({offerObject: offerObject, photo_ref: imageURL});
-            setPhotos(photosForCarousel);
-          })
-          .catch(err => console.log(err));
-      }).catch(err => console.log(err));
-      return true;
+    let photosCarousel = []
+    var promises = cheapestRoutesConverted.map( (route) => {
+      let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${route.destCity}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
+      return axios.get(proxyurl + url)
+          .then(res => {
+            console.log(res);
+            let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
+            return fetch(proxyurl + another_url)
+              .then(r =>
+                {
+                  return r.blob()
+                    .then(myBlob => {
+                      var imageURL = URL.createObjectURL(myBlob);
+                      photosCarousel.push({offerObject: route, photo_ref: imageURL});
+                      return true;
+                      
+                    })
+                    .catch(err => console.log(err));
+                })
+                
+          }).catch(err => console.log(err));
+      });
+      Promise.all(promises).then(res => {
+        console.log("Line 145: ", res);
+        setPhotos(photosCarousel);
+      })
+      
   }
 
 
@@ -163,9 +173,9 @@ export default function Homepage() {
                   cheapestRoutesConverted.push(cheapRoute);
                   // console.log(cheapestRoutesConverted);
               }) : "";
-              cheapestRoutesConverted.map((route) => {
-                googlePlaceSearch(route.destCity, route);
-              });
+              // cheapestRoutesConverted.map((route) => {
+                googlePlaceSearch(cheapestRoutesConverted);
+              // });
               // setPhotos(photosForCarousel);
         }).catch(err => {throw ("error from inspiration", err)});
       })
@@ -464,17 +474,39 @@ export default function Homepage() {
       </section>
       <section id="2" style={{display: "flex", justifyItems: "center"}}>
         
-        <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} />
+        {/* <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} /> */}
         {/* <Recc photos={photos}/> */}
         {
           // setPhotos(photos)
           }
-        {
-          photos &&
+         { photos[0] && photos[1] && photos[2] && photos[3] && 
           <div>
             <img src={photos[0].photo_ref} />
+            <img src={photos[1].photo_ref} />
+            <img src={photos[2].photo_ref} />
+            <img src={photos[3].photo_ref} />
             <p>{photos.toString()}</p>
           </div>
+} 
+        {
+          photos[0] &&
+          
+          <div className="carousel carousel-slider center">
+          {
+            photos.map((item, index) =>
+              <div key={index} className="carousel-item white-text">
+                <img src={item.photo_ref} alt="something" />
+                <h2>{item.offerObject.destCity}</h2>
+                <p className="white-text">This is your first panel</p>
+                {console.log("I am everywhere")}
+              </div>
+            )
+          }
+        </div>
+          // <div>
+          //   <img src={photos[0].photo_ref} />
+          //   <p>{photos.toString()}</p>
+          // </div>
         }
         
           
