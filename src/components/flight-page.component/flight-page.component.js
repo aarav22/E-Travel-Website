@@ -204,12 +204,11 @@ const FlightPage = (props) => {
         </div>
 
         <div className="filter-only">
-          {/* <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}> */}
-          <div className="filtername">Only These</div>
+          <div className={`filter-click only`} onClick={() => setClickOnly(!clickOnly)}><div className="filtername">Only These</div></div>
           <div className="only-filters">
             <form name="includes">
               {
-                airlinesList &&
+                clickOnly && airlinesList &&
                 airlinesList.map((airline, index) => {
                   return (
                     <p className="only-filter-fields filter">
@@ -226,12 +225,11 @@ const FlightPage = (props) => {
         </div>
 
         <div className="filter-except">
-          {/* <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}> */}
-          <div className="filtername">Except These</div>
+          <div className={`filter-click except`} onClick={() => setClickExcept(!clickExcept)}><div className="filtername"> Except These </div></div>
           <div className="except-filters">
             <form name="excepts ">
               {
-                airlinesList &&
+                clickExcept && airlinesList &&
                 airlinesList.map((airline, index) => {
                   return (
                     <p className="except-filter-fields filter">
