@@ -11,6 +11,7 @@ const initialState = {
     singleFlightOffer:'', 
     returnFlightOffer:'',
     numBookings: 2789002,
+    userRec: [],
 
     // Traveller details:
     travellers: []
@@ -48,9 +49,13 @@ const flightSlice = createSlice({
         travellersInfo(state, action) {
             const travellerInfo = action.payload;
             state.travellers = travellerInfo;
+        },
+
+        userRecommendations(state, action) {
+            state.userRec = action.payload;
         }
         
     }
 });
-export const { flightItineary, flightOffer, numBooking, travellersInfo } = flightSlice.actions;
+export const { flightItineary, flightOffer, numBooking, travellersInfo , userRecommendations} = flightSlice.actions;
 export default flightSlice.reducer; 
