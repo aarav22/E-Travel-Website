@@ -3,7 +3,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {flightItineary} from '../flight-page.component/flightsSlice'
+import {flightItineary, userRecommendations} from '../flight-page.component/flightsSlice'
 import AirportSearch from '../airport-codes.component/airport-codes.component'
 import User_Recommendations from './user_recommendations'
 import airportCodes from '../airport-codes.component/airports.json'
@@ -23,6 +23,21 @@ const useStyles = makeStyles({
   }
 });
 
+const Recc = (props) => {
+  try {
+    console.log(props)
+    return (
+      <div className="textforcarousel">
+        <p> {props.photos} </p>
+      </div>
+    )
+  } catch (err) {
+    console.log(err)
+    return (
+      <div></div>
+    )
+  }
+}
 export default function Homepage() {
   const amadeus = new Amadeus({
     clientId: `${process.env.REACT_APP_AMADEUS_API}`,
@@ -32,16 +47,36 @@ export default function Homepage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [numBookings, setNumBookings] = useState("Loading");
-
-  /* Start of API calls for getting recommendations---------------------------------------------------- */
-
-  const [city, setCity] = useState("Delhi");
-  const [country, setCountry] = useState("IN");
-  const [iataCode, setIataCode] = useState("DEL");
-  const [cheapestRoutes, setCheapestRoutes] = useState("");
+  const [destination, setDes] = useState('');
+  const [source, setSource] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
+  const [returnDate, setEndDate] = useState(''); // Return date
+  const [isOpenEco, setIsOpenEco] = useState(false);
+  const [isOpenOne, setIsOpenOne] = useState(false);
+  const [one, setOne] = useState("One-Way")
+  const [econ, setEcon] = useState("Economy")
+  const [numAdults, setAdults] = useState(1);
+  const [numInfants, setInfants] = useState(0);
+  const [isOpenPeps, setOpenPeps] = useState(false);
+  const ecoRef = useRef();
+  const oneRef = useRef();
   var cheapestRoutesConverted = [];
   var photosForCarousel = [];
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState([{
+    "offerObject": {
+      "origin": "Delhi",
+      "destCity": "Indore",
+      "departureDate": "2021-05-14",
+      "returnDate": "2021-05-17",
+      "price": "4869.00"
+    },
+    "photo_ref": "https://picsum.photos/400/200"
+  }]);
+  // const photos = useSelector(state => state.flight.userRec);
+
+
+
+  /* Start of API calls for getting recommendations---------------------------------------------------- */
 
   /*
   / This is to get the current location of the user, I plug the coordinates of the user to get the city and country (Google Geocode API )
@@ -53,115 +88,98 @@ export default function Homepage() {
   / Use the pictures and map them to the carousel
   */
 
-  const getIATA = (city, country) => {
-    amadeus.referenceData.locations.get({
-      subType: "AIRPORT",
-      keyword: city,
-      countryCode: country
-    }).then(res => {
-      console.log("IATA: ", res.data[0].iataCode)
-      //  setIataCode(res.data.iataCode);
-      try {
-        getInspiration(res.data[0].iataCode, city, country);
-      } catch (err) {
-        console.log("Error from inspiration: ", err)
-      }
-
-    })
-      .catch(err => {throw ("error from getIATA", err)});
-  };
 
   const defineUserLocation = () => {
-    var city = "Delhi", country = "IN";
+    let city = "Delhi", country = "IN";
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=administrative_area_level_1&key=${process.env.REACT_APP_API_KEY}`)
-          .then(res => {
-            city = res.data.results[0].address_components[0].long_name;
-            // setCity(res.data.results[0].address_components[0].long_name);
-          }).catch(err => {throw ("error from geocode", err)});
+      navigator.geolocation.getCurrentPosition(async function (position) {
+        const [cityRes, countryRes] = await Promise.all([
+          axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=administrative_area_level_1&key=${process.env.REACT_APP_API_KEY}`)
+            .catch(err => {throw ("error from geocode", err)}),
+          axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=country&key=${process.env.REACT_APP_API_KEY}`)
+            .catch(err => {throw ("errpr from geocode", err)})
+        ]);
 
-        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=country&key=${process.env.REACT_APP_API_KEY}`)
-          .then(res => {
-            country = res.data.results[0].address_components[0].short_name;
-            // setCountry(res.data.results[0].address_components[0].short_name);
-          }).catch(err => {throw ("errpr from geocode", err)});
-
-        console.log(city, country);
-
+        city = cityRes.data.results[0].address_components[0].long_name;
+        country = countryRes.data.results[0].address_components[0].short_name;
+        // console.log(city, country);
+        return {city: city, country: country};
       });
     }
     return {city: city, country: country};
   }
 
   const getCity = (destination) => {
-    console.log(destination)
+    // console.log(destination)
     var results = airportCodes.find(obj => obj.IATA === destination)
-
-    // await amadeus.referenceData.locations.get({
-    //     subType: "CITY",
-    //     keyword: destination,
-    // }).then(res => {
-    //     // console.log("IATA: ", res.data[0].iataCode)
-    //     results = res.data.address;
-    // })
-    //     .catch(err => { throw ("errpr from getCity", err) });
-
     return results.city;
   };
 
-
-  const getInspiration = (iataCode, city, country) => {
-    amadeus.shopping.flightDestinations.get({
-      origin: iataCode,
-    }).then(res => {
-      let cheapestRoutes = (res.data).slice(0, 5);
-      cheapestRoutes ? cheapestRoutes.map((route, index) => {
-        let destCity = getCity(route.destination);
-        let departureDate = route.departureDate;
-        let returnDate = route.returnDate;
-        let price = route.price.total;
-        let cheapRoute = {origin: city, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
-        cheapestRoutesConverted.push(cheapRoute);
-        console.log(cheapestRoutesConverted);
-      }) : "";
-      cheapestRoutesConverted.map((route, index) => {
-        googlePlaceSearch(route.destCity, route);
-      })
-    }).catch(err => {throw ("error from inspiration", err)});
-  };
-
   // Images: 
-  const googlePlaceSearch = (destination, offerObject) => {
+  const googlePlaceSearch = async (destination, offerObject) => {
     const maxWidth = 400;
     const proxyurl = "https://salty-sea-64026.herokuapp.com/";
-    const anotherProxyUrl = "http://alloworigin.com/get?url="
     let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${destination}&fields=photos&inputtype=textquery&key=${process.env.REACT_APP_API_KEY}`;
-    axios.get(proxyurl + url)
-      .then(res => {
+    await axios.get(proxyurl + url)
+      .then(async res => {
         let another_url = `https://maps.googleapis.com/maps/api/place/photo?parameters&maxwidth=${maxWidth}&photoreference=${res.data.candidates[0].photos[0].photo_reference}&key=${process.env.REACT_APP_API_KEY}`
-        console.log(res.data.candidates[0].photos[0].photo_reference);
-
-        fetch(proxyurl + another_url)
+        // console.log(res.data.candidates[0].photos[0].photo_reference);
+        await fetch(proxyurl + another_url)
           .then(r =>
             r.blob())
           .then(myBlob => {
             var imageURL = URL.createObjectURL(myBlob);
-            console.log(imageURL);
+            // console.log(imageURL);
             photosForCarousel.push({offerObject: offerObject, photo_ref: imageURL});
+            setPhotos(photosForCarousel);
           })
           .catch(err => console.log(err));
-
-        // fetch(proxyurl + another_url)
-        // .then(res => {
-        // let imageUrl = res.blob()
-        // photosForCarousel.push({offerObject: offerObject, photo_ref: URL.createObjectURL(imageUrl)});
-        // }).catch(err => console.log(err))
-      })
+      }).catch(err => console.log(err));
+      return true;
   }
 
 
   /* End of API calls for getting recommendations---------------------------------------------------- */
+
+
+  useEffect(async () => {
+    const locationRes = defineUserLocation()
+    const iataRes = await amadeus.referenceData.locations.get({
+      subType: "AIRPORT",
+      keyword: locationRes.city,
+      countryCode: locationRes.country
+    }).then(async res => {
+        // console.log("Res from IATA: ", res);
+        await amadeus.shopping.flightDestinations.get({
+          origin: res.data[0].iataCode,
+        }).then(res => {
+              let cheapestRoutes = (res.data).slice(0, 5);
+              cheapestRoutes ? cheapestRoutes.map((route, index) => {
+                  let destCity = getCity(route.destination);
+                  let departureDate = route.departureDate;
+                  let returnDate = route.returnDate;
+                  let price = route.price.total;
+                  let cheapRoute = {origin: locationRes.city, originCountry: locationRes.country, destCity: destCity, departureDate: departureDate, returnDate: returnDate, price: price};
+                  cheapestRoutesConverted.push(cheapRoute);
+                  // console.log(cheapestRoutesConverted);
+              }) : "";
+              cheapestRoutesConverted.map((route) => {
+                googlePlaceSearch(route.destCity, route);
+              });
+              // setPhotos(photosForCarousel);
+        }).catch(err => {throw ("error from inspiration", err)});
+      })
+      .catch(err => {throw ("error from getIATA", err)});
+      console.log("Photos for carousel: ", photosForCarousel);
+      
+  }, []);
+
+  useEffect(() => {
+    // return(
+    //   <Recc photos={photos}/>
+    // )
+  }, [photosForCarousel]);
+
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/num_bookings')
@@ -169,39 +187,7 @@ export default function Homepage() {
         setNumBookings(res.data.numBookings);
       })
       .catch(err => console.log(err));
-    const res = defineUserLocation()
-    getIATA(res.city, res.country);
-
-    let count = photos.filter(function (el) {
-      return !!el ? el : false;
-    }).length
-
-    if (count === 0) {
-      setPhotos(photosForCarousel);
-    }
-    console.log(photosForCarousel);
   }, [])
-
-  useEffect(() => {
-
-  }, [photos])
-
-
-  const [destination, setDes] = useState('');
-  const [source, setSource] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [returnDate, setEndDate] = useState(''); // Return date
-  const [isReturn, setIsReturn] = useState(false); // Return option selected
-  const [isOpenEco, setIsOpenEco] = useState(false);
-  const [isOpenOne, setIsOpenOne] = useState(false);
-  const [one, setOne] = useState("One-Way")
-  const [econ, setEcon] = useState("Economy")
-  const [numAdults, setAdults] = useState(1);
-  const [numInfants, setInfants] = useState(0);
-  const [isOpenPeps, setOpenPeps] = useState(false);
-
-  const ecoRef = useRef();
-  const oneRef = useRef();
 
   useEffect(() => {
     const funcHandle = (event) => {
@@ -478,18 +464,19 @@ export default function Homepage() {
       </section>
       <section id="2" style={{display: "flex", justifyItems: "center"}}>
         
-        {/* <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} /> */}
-        {photos[0] && 
-        //  photos.map((item, index) =>
-        //  <div key={index} className="carousel-item white-text">
-        //    <img src={item.photo_ref} alt="something" />
-        //    <h2>{item.offerObject.destCity}</h2>
-        //    <p className="white-text">This is your first panel</p>
-        //    {console.log("I am everywhere")}
-        //  </div>
-       //)
-         <img src={photos[0].photo_ref} alt="https://picsum.photos/200" /> 
+        <User_Recommendations style={{position: "absolute", left: "10%", top: "60rem", width: "80%"}} photosForCarousel={photos} />
+        {/* <Recc photos={photos}/> */}
+        {
+          // setPhotos(photos)
+          }
+        {
+          photos &&
+          <div>
+            <img src={photos[0].photo_ref} />
+            <p>{photos.toString()}</p>
+          </div>
         }
+        
           
         
       </section>

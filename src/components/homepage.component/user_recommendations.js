@@ -44,17 +44,6 @@ const carousel = (props) => {
           }
         </div>
       }
-      <div style={props.style} className="carousel carousel-slider center">{
-        data.map(() =>
-          <div className="carousel-item white-text">
-            <img src={data[0].photo_ref} alt="something" />
-            <h2>{data[0].offerObject.destCity}</h2>
-            <p className="white-text">This is your second panel</p>
-            {console.log("I am here", props)}
-          </div>
-        )
-      }
-      </div>
     </div>
   )
 }
