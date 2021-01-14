@@ -84,7 +84,7 @@ const Traveller = () => {
         }
       </div>
       <div className="traveler-child">
-        {no_kids && (<h6>CHILD</h6>)}
+        {no_kids && (<h6 className="adult">CHILD</h6>)}
         {no_kids.map((e) => (
           <div>
             <form key={`${e}`} name={`${e}`} className={`traveler ${e}-forms`}>

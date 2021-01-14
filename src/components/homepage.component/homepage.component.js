@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, {useState, useRef, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {flightItineary, userRecommendations} from '../flight-page.component/flightsSlice'
 import AirportSearch from '../airport-codes.component/airport-codes.component'

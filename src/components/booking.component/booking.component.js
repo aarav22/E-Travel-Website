@@ -39,7 +39,7 @@ const BoardingPass = (props) => {
             props.singleFlightOffer.itineraries[0].segments.map((item) => {
               return (
                 <div style={{display: "flex", gap: "1rem"}}>
-                  <div className="book-mid-time"><p>{item.duration}</p></div>
+                  <div className="book-mid-time"><p>{item.duration.substring(2)}</p></div>
                   <div className="book-mid-arr">
                     <div className="mid-time time">{convertTime(item.arrival.at)}</div>
                     <div className="mid-date">{convertDate(item.arrival.at)}</div>
