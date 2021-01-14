@@ -152,7 +152,7 @@ export default function Successful(props) {
       </div>
 
 
-      <Pdf targetRef={ref} filename="code-example.pdf">
+      <Pdf targetRef={ref} filename="itinerary-FRA-BE-19283102.pdf">
         {({toPdf}) => <button onClick={toPdf}>Generate Pdf</button>}
       </Pdf>
 
