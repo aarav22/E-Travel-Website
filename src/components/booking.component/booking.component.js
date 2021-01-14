@@ -104,9 +104,11 @@ const DisplayReview = () => {
   const [valRadioSingle, setRadioSingle] = useState('')
   const singleFlightOffer = useSelector(state => state.flight.singleFlightOffer);
   const returnFlightOffer = useSelector(state => state.flight.returnFlightOffer);
+  var returnFare = 0;
   var isReturn = false;
   if (returnFlightOffer) {
     isReturn = true;
+    returnFare = returnFlightOffer.price.total;
   }
 
   return (
@@ -123,7 +125,7 @@ const DisplayReview = () => {
               <tbody>
                 <tr>
                   <td className="order-price">Base Fare</td>
-                  <td className="order-price">{"₹" + singleFlightOffer.price.total}</td>
+                  <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + parseFloat(returnFare))}</td>
                 </tr>
                 <tr>
                   <td className="order-price">Surcharges</td>
@@ -135,7 +137,7 @@ const DisplayReview = () => {
                 </tr>
                 <tr>
                   <td className="order-price">Total Amount</td>
-                  <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + 500 - discount)}</td>
+                  <td className="order-price">{"₹" + (parseFloat(singleFlightOffer.price.total) + parseFloat(returnFare) + 500 - discount)}</td>
                 </tr>
               </tbody>
             </table>
